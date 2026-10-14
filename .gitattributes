@@ -5,6 +5,6 @@ artifacts/yolo/**/model_card.md text eol=lf
 *.sh text eol=lf
 *.bat text eol=crlf
 artifacts/test/frozen_evaluation.json text eol=lf
-
 # Preserve exact handoff bytes and recorded checksums on every platform.
 * -text
+DatasetVer4_Public.zip filter=lfs diff=lfs merge=lfs -text

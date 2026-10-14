@@ -4,20 +4,20 @@
   "python": "3.11 or 3.12, 64-bit",
   "files": {
     ".gitattributes": {
-      "bytes": 364,
-      "sha256": "8fece370bdb2de999140679d0d2cd847f0db4dc1840dd47a2d90b225664ac9cf"
+      "bytes": 429,
+      "sha256": "0517958a95cadb6a98316267645b782e5806686b5cfd3ed3fdd112a0c356c48f"
     },
     ".gitignore": {
-      "bytes": 450,
-      "sha256": "971074df7fed92cbb47fc25a62a3214bcf02fbb5518f0ab614bf35f3827b68fc"
+      "bytes": 520,
+      "sha256": "766836f7cc96458b55f1f9b6dd7f170d07ff8778d8b4da8da726809b9e8bbeaf"
     },
     "PLAN.md": {
       "bytes": 73445,
       "sha256": "d8d4b78a0c2388a60cf9a5259cd2e18da5dc11bec3354dc86a9cf52aaca3e995"
     },
     "README.md": {
-      "bytes": 16510,
-      "sha256": "095719980a18a445441ebbe514adaa4a3239c7451a77a6295a96c0ded58bddcb"
+      "bytes": 16610,
+      "sha256": "9f7f8c872e0893a32c62be2d36c87b2021c64d15145c61cf6ad1196041e7cb91"
     },
     "Review.md": {
       "bytes": 18494,

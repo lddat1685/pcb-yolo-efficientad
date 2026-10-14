@@ -27,3 +27,6 @@ rerun_tmp/
 ~$*
 reports/portable_verification/
 notebooks/**/*.ipynb_checkpoints/
+
+# Dataset archive is stored through Git LFS.
+!DatasetVer4_Public.zip

@@ -22,6 +22,8 @@ Có chụp từng ảnh, software trigger, ROI và nhập ảnh đã lưu từ M
 Xem [hướng dẫn cài đặt và kết nối camera](docs/CAMERA_DAHUA.md).
 Kết nối trực tiếp hiện dành cho Windows x64; chưa xác nhận trên camera vật lý.
 
+Dataset archive and download instructions: [DATASET_DOWNLOAD.md](DATASET_DOWNLOAD.md).
+
 **Dataset:** đặt nội dung `DatasetVer4_Public` trong `data/`, hoặc đặt thư mục
 `DatasetVer4_Public` bên cạnh repo. Vị trí khác: đặt biến `DATASET_ROOT` trước khi chạy.
 Không có dataset vẫn dùng được Upload ảnh; Gallery và kiểm thử parity cần dataset đầy đủ.
