@@ -1,0 +1,9 @@
+model_id: B01_yolo11n
+recipe_id: yolo_aug_v1
+architecture: yolo11n
+pretrained: artifacts/pretrained/yolo11n.pt
+train: {imgsz: 640, epochs: 100, patience: 20, optimizer: AdamW, lr0: 0.001, batch: 16, workers: 8,
+       deterministic: true, augment: yolo_aug_v1, cos_lr: false, warmup_epochs: 3.0, cache: false, plots: true}
+selection: {split: calibration, metric: ultralytics_fitness}
+infer: {conf_floor: 0.001, iou: 0.7, max_det: 300, imgsz: 640, agnostic_nms: false, half: false}
+classes_ref: benchmarks/deeppcb/configs/classes.json

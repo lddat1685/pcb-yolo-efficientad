@@ -1,0 +1,806 @@
+{
+  "checks": [
+    {
+      "detail": "Finite positive boxes remain inside the image in both annotation formats.",
+      "id": "box_valid",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "YOLO and manifest class IDs/names match the class schema.",
+      "id": "class_id_valid",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Every canonical image fully decodes.",
+      "id": "image_decode",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Decoded dimensions match manifest; canonical images are RGB.",
+      "id": "image_metadata",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Canonical file hashes match manifest.sha256.",
+      "id": "image_sha256",
+      "n_violations": 3,
+      "status": "FAIL"
+    },
+    {
+      "detail": "Every decoded image is 640 x 640.",
+      "id": "image_size_640",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Defect labels and manifest boxes are nonempty.",
+      "id": "label_defect_nonempty",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Good labels and manifest boxes are empty.",
+      "id": "label_good_empty",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "YOLO labels agree with manifest boxes (normalized tolerance 1e-9).",
+      "id": "label_manifest_match",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Label file hashes match manifest.label_sha256.",
+      "id": "label_sha256",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "All partition pairs have disjoint recomputed file hashes.",
+      "id": "leak_image_hash",
+      "n_violations": 6,
+      "status": "FAIL"
+    },
+    {
+      "detail": "All partition pairs have disjoint unions of pair_ids.",
+      "id": "leak_pair",
+      "n_violations": 6,
+      "status": "FAIL"
+    },
+    {
+      "detail": "All partition pairs have disjoint recomputed RGB pixel hashes.",
+      "id": "leak_pixel_hash",
+      "n_violations": 6,
+      "status": "FAIL"
+    },
+    {
+      "detail": "All partition pairs have disjoint source groups.",
+      "id": "leak_source_group",
+      "n_violations": 6,
+      "status": "FAIL"
+    },
+    {
+      "detail": "Canonical image and label paths exist inside dataset root.",
+      "id": "manifest_paths_exist",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Individual manifest records have the required field types.",
+      "id": "manifest_schema",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Canonical sample IDs are unique.",
+      "id": "manifest_unique_ids",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Sample membership, groups and all pair aliases match holdout.",
+      "id": "partition_counts",
+      "n_violations": 6,
+      "status": "FAIL"
+    },
+    {
+      "detail": "RGB pixel hashes match manifest.pixel_sha256.",
+      "id": "pixel_sha256",
+      "n_violations": 3,
+      "status": "FAIL"
+    },
+    {
+      "detail": "Every release.files entry matches its SHA-256.",
+      "id": "release_sha256",
+      "n_violations": 1,
+      "status": "FAIL"
+    },
+    {
+      "detail": "Development filenames expose labels; never use paths/IDs as model features.",
+      "id": "shortcut_filename",
+      "n_violations": 2,
+      "status": "WARN"
+    }
+  ],
+  "class_box_counts": {
+    "calibration": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    },
+    "fusion": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    },
+    "test": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    },
+    "train": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    }
+  },
+  "class_image_counts": {
+    "calibration": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    },
+    "fusion": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    },
+    "test": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    },
+    "train": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    }
+  },
+  "counts": {
+    "by_partition": {
+      "calibration": {
+        "defect": 1,
+        "good": 0,
+        "images": 1,
+        "source_groups": 1
+      },
+      "fusion": {
+        "defect": 1,
+        "good": 0,
+        "images": 1,
+        "source_groups": 1
+      },
+      "test": {
+        "defect": 1,
+        "good": 0,
+        "images": 1,
+        "source_groups": 1
+      },
+      "train": {
+        "defect": 1,
+        "good": 0,
+        "images": 1,
+        "source_groups": 1
+      }
+    },
+    "total": {
+      "defect": 4,
+      "good": 0,
+      "images": 4
+    }
+  },
+  "dataset_root": ".\\reports\\verification\\leakage\\dataset",
+  "eda": {
+    "box_sizes": {
+      "mouse_bite": {
+        "area": {
+          "max": 1024.0,
+          "min": 1024.0,
+          "n": 2,
+          "p05": 1024.0,
+          "p50": 1024.0,
+          "p95": 1024.0
+        },
+        "height": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "width": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        }
+      },
+      "open_circuit": {
+        "area": {
+          "max": 1024.0,
+          "min": 1024.0,
+          "n": 2,
+          "p05": 1024.0,
+          "p50": 1024.0,
+          "p95": 1024.0
+        },
+        "height": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "width": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        }
+      },
+      "pin_hole": {
+        "area": {
+          "max": 1024.0,
+          "min": 1024.0,
+          "n": 2,
+          "p05": 1024.0,
+          "p50": 1024.0,
+          "p95": 1024.0
+        },
+        "height": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "width": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        }
+      },
+      "short": {
+        "area": {
+          "max": 1024.0,
+          "min": 1024.0,
+          "n": 2,
+          "p05": 1024.0,
+          "p50": 1024.0,
+          "p95": 1024.0
+        },
+        "height": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "width": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        }
+      },
+      "spur": {
+        "area": {
+          "max": 1024.0,
+          "min": 1024.0,
+          "n": 2,
+          "p05": 1024.0,
+          "p50": 1024.0,
+          "p95": 1024.0
+        },
+        "height": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "width": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        }
+      },
+      "spurious_copper": {
+        "area": {
+          "max": 1024.0,
+          "min": 1024.0,
+          "n": 2,
+          "p05": 1024.0,
+          "p50": 1024.0,
+          "p95": 1024.0
+        },
+        "height": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "width": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        }
+      }
+    },
+    "boxes_per_image": {
+      "calibration": {
+        "6": 1
+      },
+      "fusion": {
+        "6": 1
+      },
+      "test": {
+        "6": 1
+      },
+      "train": {
+        "6": 1
+      }
+    },
+    "by_source_group": {
+      "calibration/group_0": {
+        "boxes": 6,
+        "defect": 1,
+        "good": 0,
+        "images": 1
+      },
+      "fusion/group_0": {
+        "boxes": 6,
+        "defect": 1,
+        "good": 0,
+        "images": 1
+      },
+      "test/group_0": {
+        "boxes": 6,
+        "defect": 1,
+        "good": 0,
+        "images": 1
+      },
+      "train/group_0": {
+        "boxes": 6,
+        "defect": 1,
+        "good": 0,
+        "images": 1
+      }
+    },
+    "filename_label_hints": 2,
+    "normal_evidence_development": {},
+    "partitions": [
+      "train",
+      "calibration"
+    ],
+    "small_defects": {
+      "mouse_bite": {
+        "fraction_short_side_lt_px": {
+          "16": 0.0,
+          "32": 0.0
+        },
+        "n": 2,
+        "resize_256_short_side": {
+          "max": 12.8,
+          "min": 12.8,
+          "n": 2,
+          "p05": 12.8,
+          "p50": 12.8,
+          "p95": 12.8
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "smallest_by_area": {
+          "area": 1024.0,
+          "height": 32.0,
+          "partition": "calibration",
+          "sample_id": "calibration_defect",
+          "short_side": 32.0,
+          "width": 32.0
+        }
+      },
+      "pin_hole": {
+        "fraction_short_side_lt_px": {
+          "16": 0.0,
+          "32": 0.0
+        },
+        "n": 2,
+        "resize_256_short_side": {
+          "max": 12.8,
+          "min": 12.8,
+          "n": 2,
+          "p05": 12.8,
+          "p50": 12.8,
+          "p95": 12.8
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "smallest_by_area": {
+          "area": 1024.0,
+          "height": 32.0,
+          "partition": "calibration",
+          "sample_id": "calibration_defect",
+          "short_side": 32.0,
+          "width": 32.0
+        }
+      }
+    },
+    "source_group_is_not_verified_board_or_design": null,
+    "source_modes_development": {
+      "unknown": 2
+    },
+    "transforms_development": {
+      "null": 2
+    },
+    "uniform_good_development": 0
+  },
+  "errors": [
+    {
+      "message": "calibration/fusion: shared image_hash 6dc23a33fa87be13aa1dace8840b02112981504711bcba58d01f4a221a00fea9",
+      "sample_id": null,
+      "stage": "leak_image_hash"
+    },
+    {
+      "message": "calibration/test: shared image_hash 6dc23a33fa87be13aa1dace8840b02112981504711bcba58d01f4a221a00fea9",
+      "sample_id": null,
+      "stage": "leak_image_hash"
+    },
+    {
+      "message": "fusion/test: shared image_hash 6dc23a33fa87be13aa1dace8840b02112981504711bcba58d01f4a221a00fea9",
+      "sample_id": null,
+      "stage": "leak_image_hash"
+    },
+    {
+      "message": "train/calibration: shared image_hash 6dc23a33fa87be13aa1dace8840b02112981504711bcba58d01f4a221a00fea9",
+      "sample_id": null,
+      "stage": "leak_image_hash"
+    },
+    {
+      "message": "train/fusion: shared image_hash 6dc23a33fa87be13aa1dace8840b02112981504711bcba58d01f4a221a00fea9",
+      "sample_id": null,
+      "stage": "leak_image_hash"
+    },
+    {
+      "message": "train/test: shared image_hash 6dc23a33fa87be13aa1dace8840b02112981504711bcba58d01f4a221a00fea9",
+      "sample_id": null,
+      "stage": "leak_image_hash"
+    },
+    {
+      "message": "calibration/fusion: shared pair pair_0",
+      "sample_id": null,
+      "stage": "leak_pair"
+    },
+    {
+      "message": "calibration/test: shared pair pair_0",
+      "sample_id": null,
+      "stage": "leak_pair"
+    },
+    {
+      "message": "fusion/test: shared pair pair_0",
+      "sample_id": null,
+      "stage": "leak_pair"
+    },
+    {
+      "message": "train/calibration: shared pair pair_0",
+      "sample_id": null,
+      "stage": "leak_pair"
+    },
+    {
+      "message": "train/fusion: shared pair pair_0",
+      "sample_id": null,
+      "stage": "leak_pair"
+    },
+    {
+      "message": "train/test: shared pair pair_0",
+      "sample_id": null,
+      "stage": "leak_pair"
+    },
+    {
+      "message": "calibration/fusion: shared pixel_hash 876b54f8e91bcdba7fa41caed92ecdfa53a63422651e9eba36b63c1729aea409",
+      "sample_id": null,
+      "stage": "leak_pixel_hash"
+    },
+    {
+      "message": "calibration/test: shared pixel_hash 876b54f8e91bcdba7fa41caed92ecdfa53a63422651e9eba36b63c1729aea409",
+      "sample_id": null,
+      "stage": "leak_pixel_hash"
+    },
+    {
+      "message": "fusion/test: shared pixel_hash 876b54f8e91bcdba7fa41caed92ecdfa53a63422651e9eba36b63c1729aea409",
+      "sample_id": null,
+      "stage": "leak_pixel_hash"
+    },
+    {
+      "message": "train/calibration: shared pixel_hash 876b54f8e91bcdba7fa41caed92ecdfa53a63422651e9eba36b63c1729aea409",
+      "sample_id": null,
+      "stage": "leak_pixel_hash"
+    },
+    {
+      "message": "train/fusion: shared pixel_hash 876b54f8e91bcdba7fa41caed92ecdfa53a63422651e9eba36b63c1729aea409",
+      "sample_id": null,
+      "stage": "leak_pixel_hash"
+    },
+    {
+      "message": "train/test: shared pixel_hash 876b54f8e91bcdba7fa41caed92ecdfa53a63422651e9eba36b63c1729aea409",
+      "sample_id": null,
+      "stage": "leak_pixel_hash"
+    },
+    {
+      "message": "calibration/fusion: shared source_group group_0",
+      "sample_id": null,
+      "stage": "leak_source_group"
+    },
+    {
+      "message": "calibration/test: shared source_group group_0",
+      "sample_id": null,
+      "stage": "leak_source_group"
+    },
+    {
+      "message": "fusion/test: shared source_group group_0",
+      "sample_id": null,
+      "stage": "leak_source_group"
+    },
+    {
+      "message": "train/calibration: shared source_group group_0",
+      "sample_id": null,
+      "stage": "leak_source_group"
+    },
+    {
+      "message": "train/fusion: shared source_group group_0",
+      "sample_id": null,
+      "stage": "leak_source_group"
+    },
+    {
+      "message": "train/test: shared source_group group_0",
+      "sample_id": null,
+      "stage": "leak_source_group"
+    },
+    {
+      "message": "calibration.groups: missing=['group_1']; unexpected=['group_0']",
+      "sample_id": null,
+      "stage": "partition_counts"
+    },
+    {
+      "message": "calibration.pair_ids: missing=['pair_1']; unexpected=['pair_0']",
+      "sample_id": null,
+      "stage": "partition_counts"
+    },
+    {
+      "message": "fusion.groups: missing=['group_2']; unexpected=['group_0']",
+      "sample_id": null,
+      "stage": "partition_counts"
+    },
+    {
+      "message": "fusion.pair_ids: missing=['pair_2']; unexpected=['pair_0']",
+      "sample_id": null,
+      "stage": "partition_counts"
+    },
+    {
+      "message": "test.groups: missing=['group_3']; unexpected=['group_0']",
+      "sample_id": null,
+      "stage": "partition_counts"
+    },
+    {
+      "message": "test.pair_ids: missing=['pair_3']; unexpected=['pair_0']",
+      "sample_id": null,
+      "stage": "partition_counts"
+    },
+    {
+      "message": "benchmarks/deeppcb/manifests/samples.jsonl: SHA-256 mismatch: expected 35b6db7cf9be01cfc8556a8252c35d12477925b6cdcd2f7d9552506b3e74f88b, got 8488e5332c0a3ff7d99c576e9f9a5fa7b5b7fc3a1dfd9f93fccf5e4c2d9ad993",
+      "sample_id": null,
+      "stage": "release_sha256"
+    },
+    {
+      "message": "image SHA-256 differs from manifest",
+      "sample_id": "calibration_defect",
+      "stage": "image_sha256"
+    },
+    {
+      "message": "RGB pixel SHA-256 differs from manifest",
+      "sample_id": "calibration_defect",
+      "stage": "pixel_sha256"
+    },
+    {
+      "message": "image SHA-256 differs from manifest",
+      "sample_id": "fusion_defect",
+      "stage": "image_sha256"
+    },
+    {
+      "message": "RGB pixel SHA-256 differs from manifest",
+      "sample_id": "fusion_defect",
+      "stage": "pixel_sha256"
+    },
+    {
+      "message": "image SHA-256 differs from manifest",
+      "sample_id": "test_defect",
+      "stage": "image_sha256"
+    },
+    {
+      "message": "RGB pixel SHA-256 differs from manifest",
+      "sample_id": "test_defect",
+      "stage": "pixel_sha256"
+    }
+  ],
+  "leakage": {
+    "pairs": [
+      {
+        "a": "train",
+        "b": "calibration",
+        "image_hash": 1,
+        "pair": 1,
+        "pixel_hash": 1,
+        "source_group": 1
+      },
+      {
+        "a": "train",
+        "b": "fusion",
+        "image_hash": 1,
+        "pair": 1,
+        "pixel_hash": 1,
+        "source_group": 1
+      },
+      {
+        "a": "train",
+        "b": "test",
+        "image_hash": 1,
+        "pair": 1,
+        "pixel_hash": 1,
+        "source_group": 1
+      },
+      {
+        "a": "calibration",
+        "b": "fusion",
+        "image_hash": 1,
+        "pair": 1,
+        "pixel_hash": 1,
+        "source_group": 1
+      },
+      {
+        "a": "calibration",
+        "b": "test",
+        "image_hash": 1,
+        "pair": 1,
+        "pixel_hash": 1,
+        "source_group": 1
+      },
+      {
+        "a": "fusion",
+        "b": "test",
+        "image_hash": 1,
+        "pair": 1,
+        "pixel_hash": 1,
+        "source_group": 1
+      }
+    ]
+  },
+  "overall": "FAIL",
+  "release": {
+    "mismatches": [
+      "benchmarks/deeppcb/manifests/samples.jsonl"
+    ],
+    "n_locked": 4,
+    "n_verified": 3
+  },
+  "schema_version": 1
+}

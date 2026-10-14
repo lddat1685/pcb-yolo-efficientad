@@ -1,0 +1,19 @@
+recipe_id: fusion_recipe_v1
+calibration_split: calibration
+development_split: fusion
+
+grid_search:
+  yolo_min: 0.10
+  yolo_max: 0.90
+  yolo_step: 0.02
+  ad_num_points: 50
+
+constraints:
+  primary_frr_max: 0.05
+  secondary_frr_max: 0.01
+
+cost_matrix:
+  c_fn: 100.0
+  c_fp: 1.0
+  defect_prevalence: 0.01
+  n_simulation: 10000

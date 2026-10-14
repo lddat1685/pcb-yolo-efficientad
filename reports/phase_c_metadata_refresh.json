@@ -1,0 +1,170 @@
+{
+  "bundle_sha256": "1a474917c538501d8352a30295c34c88b328fabf83744906a552d70a3fd6e984",
+  "dataset_inventory_unchanged": true,
+  "models": {
+    "B01_yolo11n": {
+      "best_epoch": 13,
+      "early_stopped": true,
+      "epochs_run": 33,
+      "overall": {
+        "map50": 0.9341408318893346,
+        "map50_95": 0.7240575938947142,
+        "pr_conf": 0.4964964964964965,
+        "pr_definition": "Ultralytics F1-optimal confidence (not operating threshold)",
+        "precision": 0.9200001954248777,
+        "recall": 0.8945469545445234
+      },
+      "per_class": {
+        "mouse_bite": {
+          "ap50": 0.9638803000948835,
+          "ap50_95": 0.7511297757465137,
+          "n_gt_boxes": 339,
+          "precision": 0.9191823533152107,
+          "recall": 0.9174041297935103
+        },
+        "open_circuit": {
+          "ap50": 0.9863670110986422,
+          "ap50_95": 0.6864870748855068,
+          "n_gt_boxes": 234,
+          "precision": 0.9416210895919941,
+          "recall": 0.9650139496327174
+        },
+        "pin_hole": {
+          "ap50": 0.8182132012674659,
+          "ap50_95": 0.7402501771368164,
+          "n_gt_boxes": 265,
+          "precision": 0.8063539646163647,
+          "recall": 0.7886792452830189
+        },
+        "short": {
+          "ap50": 0.9085818610403151,
+          "ap50_95": 0.5975648937099005,
+          "n_gt_boxes": 160,
+          "precision": 0.9065298055793938,
+          "recall": 0.8486344440622556
+        },
+        "spur": {
+          "ap50": 0.957774227710809,
+          "ap50_95": 0.6996073434204076,
+          "n_gt_boxes": 277,
+          "precision": 0.9621692959212941,
+          "recall": 0.9181819287558606
+        },
+        "spurious_copper": {
+          "ap50": 0.9700283901238927,
+          "ap50_95": 0.8693062984691406,
+          "n_gt_boxes": 269,
+          "precision": 0.9841446635250081,
+          "recall": 0.929368029739777
+        }
+      },
+      "results_csv_sha256": "c3b2e0a50a04d93010fd471358920d6bf9d8e1d8e86b2758bb5e1b6e1f5a2f96",
+      "run_manifest_sha256": "0c94bb6ee08db432cf66d81c2dc57eee2f74b69ea1923e1d728522c5197a2e26",
+      "train_time_s": 1260.5,
+      "validation_context": {
+        "batch": 16,
+        "checkpoint_sha256": "c0cfe917a685a9d20014d4ece0c0d012f2a8a4d53c100190d7961a3d5cd21b05",
+        "device": "cpu",
+        "half": false,
+        "imgsz": 640,
+        "python": "3.14.7",
+        "rect": false,
+        "split": "calibration",
+        "torch_version": "2.14.0+cpu",
+        "ultralytics_version": "8.4.161"
+      }
+    },
+    "B02_yolo11s": {
+      "best_epoch": 23,
+      "early_stopped": true,
+      "epochs_run": 43,
+      "overall": {
+        "map50": 0.9408849607293804,
+        "map50_95": 0.7392858571501647,
+        "pr_conf": 0.5795795795795796,
+        "pr_definition": "Ultralytics F1-optimal confidence (not operating threshold)",
+        "precision": 0.910859149909308,
+        "recall": 0.9197194136460188
+      },
+      "per_class": {
+        "mouse_bite": {
+          "ap50": 0.9685997069734623,
+          "ap50_95": 0.7710773840783082,
+          "n_gt_boxes": 339,
+          "precision": 0.9552543990145346,
+          "recall": 0.9446283486875141
+        },
+        "open_circuit": {
+          "ap50": 0.9909022013046781,
+          "ap50_95": 0.6936441548516169,
+          "n_gt_boxes": 234,
+          "precision": 0.97032823562929,
+          "recall": 0.9914529914529915
+        },
+        "pin_hole": {
+          "ap50": 0.831403758424777,
+          "ap50_95": 0.7537212621248008,
+          "n_gt_boxes": 265,
+          "precision": 0.6085728377218853,
+          "recall": 0.8566037735849057
+        },
+        "short": {
+          "ap50": 0.9343414545671933,
+          "ap50_95": 0.6207301791238156,
+          "n_gt_boxes": 160,
+          "precision": 0.9603912764208942,
+          "recall": 0.90625
+        },
+        "spur": {
+          "ap50": 0.9787033241992871,
+          "ap50_95": 0.73931783716583,
+          "n_gt_boxes": 277,
+          "precision": 0.9747941192983912,
+          "recall": 0.9350180505415162
+        },
+        "spurious_copper": {
+          "ap50": 0.9413593189068845,
+          "ap50_95": 0.8572243255566161,
+          "n_gt_boxes": 269,
+          "precision": 0.9958140313708532,
+          "recall": 0.8843633176091859
+        }
+      },
+      "results_csv_sha256": "dede74fa347ee92dd190fa103fdc0acc315e4e0f9055818c6683d5961f502fdd",
+      "run_manifest_sha256": "57139af843e514b6187b111261a64850a9775956c5a73fe9d2bd31541a0f5507",
+      "train_time_s": 1695.3,
+      "validation_context": {
+        "batch": 16,
+        "checkpoint_sha256": "aa079248bd566b3adf8863e3b43dde93d3392307a3ef17107e4c126bf410936c",
+        "device": "cpu",
+        "half": false,
+        "imgsz": 640,
+        "python": "3.14.7",
+        "rect": false,
+        "split": "calibration",
+        "torch_version": "2.14.0+cpu",
+        "ultralytics_version": "8.4.161"
+      }
+    }
+  },
+  "protected_files_unchanged": true,
+  "protected_sha256": {
+    "artifacts/yolo/B01_yolo11n/seed42/best.pt": "c0cfe917a685a9d20014d4ece0c0d012f2a8a4d53c100190d7961a3d5cd21b05",
+    "artifacts/yolo/B01_yolo11n/seed42/last.pt": "4de28ac1fbb70c3243c33e97aec0f2fb3b99f09784cd257338ade41c4dfbbfad",
+    "artifacts/yolo/B01_yolo11n/seed42/preds_calibration.jsonl": "28de8c3bd95dcf5f9d81dff913379591c9d42ea9cc9223f77390a581c08a1941",
+    "artifacts/yolo/B01_yolo11n/seed42/preds_fusion.jsonl": "a3dfea548c3421ac05a5f343d1523edfcdc3b2f68324fa1aa8f60a6dbf0677b5",
+    "artifacts/yolo/B02_yolo11s/seed42/best.pt": "aa079248bd566b3adf8863e3b43dde93d3392307a3ef17107e4c126bf410936c",
+    "artifacts/yolo/B02_yolo11s/seed42/last.pt": "1f1ce96cf729af3f998bf6f9d4b47a5b94782088b8569ccf1627f6ea656d5850",
+    "artifacts/yolo/B02_yolo11s/seed42/preds_calibration.jsonl": "2d8b410b766d2de50d5fdf8e154369f87503bd9f3ffe393bdda0b1c06e99effb",
+    "artifacts/yolo/B02_yolo11s/seed42/preds_fusion.jsonl": "29c72c0df08ab2ba2d8aab0cd7c1f85060e4930f4429f1a6af97ba295d2a96e6",
+    "runs/yolo/B01_yolo11n/seed42/weights/best.pt": "c0cfe917a685a9d20014d4ece0c0d012f2a8a4d53c100190d7961a3d5cd21b05",
+    "runs/yolo/B01_yolo11n/seed42/weights/last.pt": "4de28ac1fbb70c3243c33e97aec0f2fb3b99f09784cd257338ade41c4dfbbfad",
+    "runs/yolo/B01_yolo11n/seed42/weights/yolo26n.pt": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "runs/yolo/B02_yolo11s/seed42/weights/best.pt": "aa079248bd566b3adf8863e3b43dde93d3392307a3ef17107e4c126bf410936c",
+    "runs/yolo/B02_yolo11s/seed42/weights/last.pt": "1f1ce96cf729af3f998bf6f9d4b47a5b94782088b8569ccf1627f6ea656d5850",
+    "runs/yolo/B02_yolo11s/seed42/weights/yolo26n.pt": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef"
+  },
+  "schema_version": 1,
+  "source_commit": "7623c11d88e4502c879d6f0efa71aab4ae495839",
+  "verified_bundle_files": 61
+}

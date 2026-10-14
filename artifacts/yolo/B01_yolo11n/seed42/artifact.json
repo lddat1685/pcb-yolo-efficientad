@@ -1,0 +1,33 @@
+{
+  "checkpoint_best_sha256": "c0cfe917a685a9d20014d4ece0c0d012f2a8a4d53c100190d7961a3d5cd21b05",
+  "checkpoint_last_sha256": "4de28ac1fbb70c3243c33e97aec0f2fb3b99f09784cd257338ade41c4dfbbfad",
+  "class_order": [
+    "open_circuit",
+    "short",
+    "mouse_bite",
+    "spur",
+    "spurious_copper",
+    "pin_hole"
+  ],
+  "config_hash": "1361dcc44534ff23c52e97949271dab1aa755fe8a90e85874c962db2ac9482f1",
+  "created_by_git_commit": "7623c11d88e4502c879d6f0efa71aab4ae495839",
+  "inference_params": {
+    "agnostic_nms": false,
+    "conf_floor": 0.001,
+    "half": false,
+    "imgsz": 640,
+    "iou": 0.7,
+    "max_det": 300
+  },
+  "model_id": "B01_yolo11n",
+  "preprocessing_hash": "69e65565a2402077b41380b2d742ec989d939bf2cf6f3c7dbd80182fe177f770",
+  "preprocessing_version": "prep_v1",
+  "run_manifest": {
+    "path": "runs/yolo/B01_yolo11n/seed42/run_manifest.json",
+    "sha256": "0c94bb6ee08db432cf66d81c2dc57eee2f74b69ea1923e1d728522c5197a2e26"
+  },
+  "schema_version": 1,
+  "seed": 42,
+  "smoke": false,
+  "view_signature": "d4e75ccc65d3e3665ce5cd6fbe03c4788f5b9b69daba60ae515b31f2b69d6bd1"
+}

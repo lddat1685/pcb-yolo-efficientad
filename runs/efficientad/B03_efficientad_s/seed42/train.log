@@ -1,0 +1,17 @@
+normal_only_verified=true train_good=895 train_defect=0 tiles=8055
+map_norm_source=calibration good=230 defect=0; test_access=false
+Computing teacher statistics from train good
+epoch=1 steps=8055 mean_loss=13.80322101
+epoch=2 steps=8055 mean_loss=4.36420356
+epoch=3 steps=8055 mean_loss=2.91138754
+epoch=4 steps=8055 mean_loss=2.43451125
+epoch=5 steps=8055 mean_loss=2.17582443
+epoch=6 steps=8055 mean_loss=2.02582109
+epoch=7 steps=8055 mean_loss=1.90094706
+epoch=8 steps=8055 mean_loss=1.81112016
+epoch=9 steps=5560 mean_loss=1.77384825
+Reached max_steps=70000 (total optimizer_steps=70000) at epoch=9. Stopping training.
+Computing map normalization from calibration good only
+Reporting calibration good/defect scores with frozen normalization
+reload_map_max_abs=0.0 reload_score_abs=0.0
+Completed: /content/PCB_Lab_impl4/artifacts/efficientad/B03_efficientad_s/seed42

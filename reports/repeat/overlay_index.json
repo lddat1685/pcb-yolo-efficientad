@@ -1,0 +1,362 @@
+[
+  {
+    "class_name": "mouse_bite",
+    "partition": "calibration",
+    "path": "overlays/calibration/mouse_bite/deeppcb_13000019_defect_6e13f289.png",
+    "sample_id": "deeppcb_13000019_defect"
+  },
+  {
+    "class_name": "mouse_bite",
+    "partition": "calibration",
+    "path": "overlays/calibration/mouse_bite/deeppcb_13000028_defect_9cbea026.png",
+    "sample_id": "deeppcb_13000028_defect"
+  },
+  {
+    "class_name": "mouse_bite",
+    "partition": "calibration",
+    "path": "overlays/calibration/mouse_bite/deeppcb_13000037_defect_ae93478f.png",
+    "sample_id": "deeppcb_13000037_defect"
+  },
+  {
+    "class_name": "mouse_bite",
+    "partition": "calibration",
+    "path": "overlays/calibration/mouse_bite/deeppcb_13000062_defect_d865dd43.png",
+    "sample_id": "deeppcb_13000062_defect"
+  },
+  {
+    "class_name": "mouse_bite",
+    "partition": "calibration",
+    "path": "overlays/calibration/mouse_bite/deeppcb_13000081_defect_a505ebb0.png",
+    "sample_id": "deeppcb_13000081_defect"
+  },
+  {
+    "class_name": "open_circuit",
+    "partition": "calibration",
+    "path": "overlays/calibration/open_circuit/deeppcb_13000017_defect_9e229fed.png",
+    "sample_id": "deeppcb_13000017_defect"
+  },
+  {
+    "class_name": "open_circuit",
+    "partition": "calibration",
+    "path": "overlays/calibration/open_circuit/deeppcb_13000020_defect_df9f67ae.png",
+    "sample_id": "deeppcb_13000020_defect"
+  },
+  {
+    "class_name": "open_circuit",
+    "partition": "calibration",
+    "path": "overlays/calibration/open_circuit/deeppcb_13000027_defect_b5803463.png",
+    "sample_id": "deeppcb_13000027_defect"
+  },
+  {
+    "class_name": "open_circuit",
+    "partition": "calibration",
+    "path": "overlays/calibration/open_circuit/deeppcb_13000032_defect_c6844630.png",
+    "sample_id": "deeppcb_13000032_defect"
+  },
+  {
+    "class_name": "open_circuit",
+    "partition": "calibration",
+    "path": "overlays/calibration/open_circuit/deeppcb_13000085_defect_d8155abc.png",
+    "sample_id": "deeppcb_13000085_defect"
+  },
+  {
+    "class_name": "pin_hole",
+    "partition": "calibration",
+    "path": "overlays/calibration/pin_hole/deeppcb_13000017_defect_9e229fed.png",
+    "sample_id": "deeppcb_13000017_defect"
+  },
+  {
+    "class_name": "pin_hole",
+    "partition": "calibration",
+    "path": "overlays/calibration/pin_hole/deeppcb_13000022_defect_b09bfd8f.png",
+    "sample_id": "deeppcb_13000022_defect"
+  },
+  {
+    "class_name": "pin_hole",
+    "partition": "calibration",
+    "path": "overlays/calibration/pin_hole/deeppcb_13000025_defect_9efb5516.png",
+    "sample_id": "deeppcb_13000025_defect"
+  },
+  {
+    "class_name": "pin_hole",
+    "partition": "calibration",
+    "path": "overlays/calibration/pin_hole/deeppcb_13000034_defect_674f7e99.png",
+    "sample_id": "deeppcb_13000034_defect"
+  },
+  {
+    "class_name": "pin_hole",
+    "partition": "calibration",
+    "path": "overlays/calibration/pin_hole/deeppcb_13000036_defect_20c61363.png",
+    "sample_id": "deeppcb_13000036_defect"
+  },
+  {
+    "class_name": "short",
+    "partition": "calibration",
+    "path": "overlays/calibration/short/deeppcb_13000007_defect_334cc4db.png",
+    "sample_id": "deeppcb_13000007_defect"
+  },
+  {
+    "class_name": "short",
+    "partition": "calibration",
+    "path": "overlays/calibration/short/deeppcb_13000020_defect_df9f67ae.png",
+    "sample_id": "deeppcb_13000020_defect"
+  },
+  {
+    "class_name": "short",
+    "partition": "calibration",
+    "path": "overlays/calibration/short/deeppcb_13000024_defect_3b54ca18.png",
+    "sample_id": "deeppcb_13000024_defect"
+  },
+  {
+    "class_name": "short",
+    "partition": "calibration",
+    "path": "overlays/calibration/short/deeppcb_13000037_defect_ae93478f.png",
+    "sample_id": "deeppcb_13000037_defect"
+  },
+  {
+    "class_name": "short",
+    "partition": "calibration",
+    "path": "overlays/calibration/short/deeppcb_13000049_defect_5be162b6.png",
+    "sample_id": "deeppcb_13000049_defect"
+  },
+  {
+    "class_name": "spur",
+    "partition": "calibration",
+    "path": "overlays/calibration/spur/deeppcb_13000022_defect_b09bfd8f.png",
+    "sample_id": "deeppcb_13000022_defect"
+  },
+  {
+    "class_name": "spur",
+    "partition": "calibration",
+    "path": "overlays/calibration/spur/deeppcb_13000023_defect_59182046.png",
+    "sample_id": "deeppcb_13000023_defect"
+  },
+  {
+    "class_name": "spur",
+    "partition": "calibration",
+    "path": "overlays/calibration/spur/deeppcb_13000024_defect_3b54ca18.png",
+    "sample_id": "deeppcb_13000024_defect"
+  },
+  {
+    "class_name": "spur",
+    "partition": "calibration",
+    "path": "overlays/calibration/spur/deeppcb_13000025_defect_9efb5516.png",
+    "sample_id": "deeppcb_13000025_defect"
+  },
+  {
+    "class_name": "spur",
+    "partition": "calibration",
+    "path": "overlays/calibration/spur/deeppcb_13000028_defect_9cbea026.png",
+    "sample_id": "deeppcb_13000028_defect"
+  },
+  {
+    "class_name": "spurious_copper",
+    "partition": "calibration",
+    "path": "overlays/calibration/spurious_copper/deeppcb_13000019_defect_6e13f289.png",
+    "sample_id": "deeppcb_13000019_defect"
+  },
+  {
+    "class_name": "spurious_copper",
+    "partition": "calibration",
+    "path": "overlays/calibration/spurious_copper/deeppcb_13000023_defect_59182046.png",
+    "sample_id": "deeppcb_13000023_defect"
+  },
+  {
+    "class_name": "spurious_copper",
+    "partition": "calibration",
+    "path": "overlays/calibration/spurious_copper/deeppcb_13000030_defect_a8d4b6d6.png",
+    "sample_id": "deeppcb_13000030_defect"
+  },
+  {
+    "class_name": "spurious_copper",
+    "partition": "calibration",
+    "path": "overlays/calibration/spurious_copper/deeppcb_13000035_defect_d642eff2.png",
+    "sample_id": "deeppcb_13000035_defect"
+  },
+  {
+    "class_name": "spurious_copper",
+    "partition": "calibration",
+    "path": "overlays/calibration/spurious_copper/deeppcb_13000036_defect_20c61363.png",
+    "sample_id": "deeppcb_13000036_defect"
+  },
+  {
+    "class_name": "mouse_bite",
+    "partition": "train",
+    "path": "overlays/train/mouse_bite/deeppcb_20085005_defect_9e2f855c.png",
+    "sample_id": "deeppcb_20085005_defect"
+  },
+  {
+    "class_name": "mouse_bite",
+    "partition": "train",
+    "path": "overlays/train/mouse_bite/deeppcb_20085016_defect_8012dd82.png",
+    "sample_id": "deeppcb_20085016_defect"
+  },
+  {
+    "class_name": "mouse_bite",
+    "partition": "train",
+    "path": "overlays/train/mouse_bite/deeppcb_20085019_defect_81eb2c2c.png",
+    "sample_id": "deeppcb_20085019_defect"
+  },
+  {
+    "class_name": "mouse_bite",
+    "partition": "train",
+    "path": "overlays/train/mouse_bite/deeppcb_20085020_defect_7dda8a31.png",
+    "sample_id": "deeppcb_20085020_defect"
+  },
+  {
+    "class_name": "mouse_bite",
+    "partition": "train",
+    "path": "overlays/train/mouse_bite/deeppcb_20085022_defect_a53bfecc.png",
+    "sample_id": "deeppcb_20085022_defect"
+  },
+  {
+    "class_name": "open_circuit",
+    "partition": "train",
+    "path": "overlays/train/open_circuit/deeppcb_20085012_defect_5e7e5b0a.png",
+    "sample_id": "deeppcb_20085012_defect"
+  },
+  {
+    "class_name": "open_circuit",
+    "partition": "train",
+    "path": "overlays/train/open_circuit/deeppcb_20085014_defect_0a817f8b.png",
+    "sample_id": "deeppcb_20085014_defect"
+  },
+  {
+    "class_name": "open_circuit",
+    "partition": "train",
+    "path": "overlays/train/open_circuit/deeppcb_20085017_defect_60632220.png",
+    "sample_id": "deeppcb_20085017_defect"
+  },
+  {
+    "class_name": "open_circuit",
+    "partition": "train",
+    "path": "overlays/train/open_circuit/deeppcb_20085018_defect_412f4446.png",
+    "sample_id": "deeppcb_20085018_defect"
+  },
+  {
+    "class_name": "open_circuit",
+    "partition": "train",
+    "path": "overlays/train/open_circuit/deeppcb_20085022_defect_a53bfecc.png",
+    "sample_id": "deeppcb_20085022_defect"
+  },
+  {
+    "class_name": "pin_hole",
+    "partition": "train",
+    "path": "overlays/train/pin_hole/deeppcb_20085003_defect_5b351d3c.png",
+    "sample_id": "deeppcb_20085003_defect"
+  },
+  {
+    "class_name": "pin_hole",
+    "partition": "train",
+    "path": "overlays/train/pin_hole/deeppcb_20085006_defect_f4dce4fa.png",
+    "sample_id": "deeppcb_20085006_defect"
+  },
+  {
+    "class_name": "pin_hole",
+    "partition": "train",
+    "path": "overlays/train/pin_hole/deeppcb_20085016_defect_8012dd82.png",
+    "sample_id": "deeppcb_20085016_defect"
+  },
+  {
+    "class_name": "pin_hole",
+    "partition": "train",
+    "path": "overlays/train/pin_hole/deeppcb_20085021_defect_77f546ed.png",
+    "sample_id": "deeppcb_20085021_defect"
+  },
+  {
+    "class_name": "pin_hole",
+    "partition": "train",
+    "path": "overlays/train/pin_hole/deeppcb_20085023_defect_2180ed21.png",
+    "sample_id": "deeppcb_20085023_defect"
+  },
+  {
+    "class_name": "short",
+    "partition": "train",
+    "path": "overlays/train/short/deeppcb_20085017_defect_60632220.png",
+    "sample_id": "deeppcb_20085017_defect"
+  },
+  {
+    "class_name": "short",
+    "partition": "train",
+    "path": "overlays/train/short/deeppcb_20085018_defect_412f4446.png",
+    "sample_id": "deeppcb_20085018_defect"
+  },
+  {
+    "class_name": "short",
+    "partition": "train",
+    "path": "overlays/train/short/deeppcb_20085020_defect_7dda8a31.png",
+    "sample_id": "deeppcb_20085020_defect"
+  },
+  {
+    "class_name": "short",
+    "partition": "train",
+    "path": "overlays/train/short/deeppcb_20085022_defect_a53bfecc.png",
+    "sample_id": "deeppcb_20085022_defect"
+  },
+  {
+    "class_name": "short",
+    "partition": "train",
+    "path": "overlays/train/short/deeppcb_20085024_defect_5f726f06.png",
+    "sample_id": "deeppcb_20085024_defect"
+  },
+  {
+    "class_name": "spur",
+    "partition": "train",
+    "path": "overlays/train/spur/deeppcb_20085000_defect_0e81a48c.png",
+    "sample_id": "deeppcb_20085000_defect"
+  },
+  {
+    "class_name": "spur",
+    "partition": "train",
+    "path": "overlays/train/spur/deeppcb_20085018_defect_412f4446.png",
+    "sample_id": "deeppcb_20085018_defect"
+  },
+  {
+    "class_name": "spur",
+    "partition": "train",
+    "path": "overlays/train/spur/deeppcb_20085019_defect_81eb2c2c.png",
+    "sample_id": "deeppcb_20085019_defect"
+  },
+  {
+    "class_name": "spur",
+    "partition": "train",
+    "path": "overlays/train/spur/deeppcb_20085032_defect_41985492.png",
+    "sample_id": "deeppcb_20085032_defect"
+  },
+  {
+    "class_name": "spur",
+    "partition": "train",
+    "path": "overlays/train/spur/deeppcb_20085304_defect_d85b9e5f.png",
+    "sample_id": "deeppcb_20085304_defect"
+  },
+  {
+    "class_name": "spurious_copper",
+    "partition": "train",
+    "path": "overlays/train/spurious_copper/deeppcb_20085001_defect_0379c2e4.png",
+    "sample_id": "deeppcb_20085001_defect"
+  },
+  {
+    "class_name": "spurious_copper",
+    "partition": "train",
+    "path": "overlays/train/spurious_copper/deeppcb_20085002_defect_8931cada.png",
+    "sample_id": "deeppcb_20085002_defect"
+  },
+  {
+    "class_name": "spurious_copper",
+    "partition": "train",
+    "path": "overlays/train/spurious_copper/deeppcb_20085006_defect_f4dce4fa.png",
+    "sample_id": "deeppcb_20085006_defect"
+  },
+  {
+    "class_name": "spurious_copper",
+    "partition": "train",
+    "path": "overlays/train/spurious_copper/deeppcb_20085007_defect_785a0b62.png",
+    "sample_id": "deeppcb_20085007_defect"
+  },
+  {
+    "class_name": "spurious_copper",
+    "partition": "train",
+    "path": "overlays/train/spurious_copper/deeppcb_20085014_defect_0a817f8b.png",
+    "sample_id": "deeppcb_20085014_defect"
+  }
+]

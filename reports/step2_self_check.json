@@ -1,0 +1,145 @@
+{
+  "checks": [
+    "eight sizes: all pad modes, pixel reconstruction, constant, affine, unique coverage, finite edges, box round-trip",
+    "640 plan: row-major origins 0/224/448, nine tiles, 704 canvas",
+    "invalid size/stride rejected; additional valid strides keep constant and cover borders",
+    "conflicting constant tile maps: exact linear crossfade and no jump at overlap endpoints in both axes",
+    "box clipping drops padded/empty boxes; NMS strict > threshold and stable score ties",
+    "L/LA/RGB/RGBA: channel order, grayscale replication, alpha policy, NumPy/PIL parity",
+    "normalization float32, explicit metadata, double normalization and invalid std rejected",
+    "letterbox round-trip, bilinear map range, config hash key-order independence and parameter sensitivity",
+    "approved augmentation: all eight symmetries, exact bbox/pixels, reproducible seed, immutable inputs, train-only",
+    "real loader metadata with Pillow disabled: correct subsets, stable order, frozen Sample, aliases retained, test path/Sample gates",
+    "three real train samples x three modes: CLI metadata/digest equals direct API Sample and array",
+    "generated non-square image: all CLI/API modes and output boxes agree; explicit allow_test works only in synthetic check"
+  ],
+  "metrics": {
+    "crossfade_max_abs_error": 1.1536382871213391e-07,
+    "geometry": [
+      {
+        "affine_max_abs_error": 0.0,
+        "hw": [
+          640,
+          640
+        ],
+        "n_tiles": 9,
+        "single_coverage_pixels": 331776
+      },
+      {
+        "affine_max_abs_error": 0.0,
+        "hw": [
+          317,
+          509
+        ],
+        "n_tiles": 6,
+        "single_coverage_pixels": 126825
+      },
+      {
+        "affine_max_abs_error": 0.0,
+        "hw": [
+          257,
+          289
+        ],
+        "n_tiles": 4,
+        "single_coverage_pixels": 57825
+      },
+      {
+        "affine_max_abs_error": 0.0,
+        "hw": [
+          91,
+          103
+        ],
+        "n_tiles": 1,
+        "single_coverage_pixels": 9373
+      },
+      {
+        "affine_max_abs_error": 0.0,
+        "hw": [
+          1,
+          1
+        ],
+        "n_tiles": 1,
+        "single_coverage_pixels": 1
+      },
+      {
+        "affine_max_abs_error": 0.0,
+        "hw": [
+          1,
+          513
+        ],
+        "n_tiles": 3,
+        "single_coverage_pixels": 449
+      },
+      {
+        "affine_max_abs_error": 0.0,
+        "hw": [
+          513,
+          1
+        ],
+        "n_tiles": 3,
+        "single_coverage_pixels": 449
+      },
+      {
+        "affine_max_abs_error": 0.0,
+        "hw": [
+          777,
+          1003
+        ],
+        "n_tiles": 20,
+        "single_coverage_pixels": 595875
+      }
+    ],
+    "letterbox_round_trip_max_abs_error": 1.1368683772161603e-13,
+    "preview_records": [
+      {
+        "mode": "yolo",
+        "sample_id": "deeppcb_00041000_defect",
+        "sha256": "2c4dd5d90f6651566755ee6ca3adf0d520bfa1353575b7a8cffb09eee3a33086"
+      },
+      {
+        "mode": "ad_tile",
+        "sample_id": "deeppcb_00041000_defect",
+        "sha256": "4aac3e4314e7a60cc2fe9b869b606329af136d2724ddf73e422f9c63e2c32e1f"
+      },
+      {
+        "mode": "ad_resize",
+        "sample_id": "deeppcb_00041000_defect",
+        "sha256": "426758da84a2944f4ccd7bf2521bf63045753595af0821945fe08df11e8a4ee2"
+      },
+      {
+        "mode": "yolo",
+        "sample_id": "deeppcb_00041000_good",
+        "sha256": "f11258b69bce992da6bece65c62ba9e5bfa6d51fe4016785d676f30cc965e995"
+      },
+      {
+        "mode": "ad_tile",
+        "sample_id": "deeppcb_00041000_good",
+        "sha256": "a049e326230a63aa10bd0d3b221b756d9b5e270f3f7baf9f38a411712731f5ad"
+      },
+      {
+        "mode": "ad_resize",
+        "sample_id": "deeppcb_00041000_good",
+        "sha256": "487cd5c44fe45fd938a5b9c515c25d137390bde9b66a817bf5725fd6a63271b1"
+      },
+      {
+        "mode": "yolo",
+        "sample_id": "deeppcb_00041001_defect",
+        "sha256": "e9d769bc0e2e898f427e2cf97de3fc9cb05c08791a23c6f7ee8c5286ba74be35"
+      },
+      {
+        "mode": "ad_tile",
+        "sample_id": "deeppcb_00041001_defect",
+        "sha256": "dc6d206e26857cd9789666a0cae5df70648b5d0cf0480bee8afd087f326d9ec0"
+      },
+      {
+        "mode": "ad_resize",
+        "sample_id": "deeppcb_00041001_defect",
+        "sha256": "f64980f741f06dfeef539824c5b2713bbe76073c1f467fa69b7d213228aa68f2"
+      }
+    ],
+    "real_images_opened_in_process": 12,
+    "real_test_images_opened": 0
+  },
+  "overall": "PASS",
+  "preprocessing_hash": "69e65565a2402077b41380b2d742ec989d939bf2cf6f3c7dbd80182fe177f770"
+}

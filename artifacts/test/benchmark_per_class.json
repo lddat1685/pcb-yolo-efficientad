@@ -1,0 +1,146 @@
+[
+  {
+    "model_id": "B01",
+    "class_name": "open_circuit",
+    "gt_box_count": 298,
+    "detected_box_count": 406,
+    "ap_50": 0.8174585784341527,
+    "class_recall": 0.8758389261744967
+  },
+  {
+    "model_id": "B01",
+    "class_name": "short",
+    "gt_box_count": 215,
+    "detected_box_count": 237,
+    "ap_50": 0.8028904860075847,
+    "class_recall": 0.7906976744186046
+  },
+  {
+    "model_id": "B01",
+    "class_name": "mouse_bite",
+    "gt_box_count": 250,
+    "detected_box_count": 287,
+    "ap_50": 0.7529329218978447,
+    "class_recall": 0.768
+  },
+  {
+    "model_id": "B01",
+    "class_name": "spur",
+    "gt_box_count": 228,
+    "detected_box_count": 217,
+    "ap_50": 0.7357594535373058,
+    "class_recall": 0.7149122807017544
+  },
+  {
+    "model_id": "B01",
+    "class_name": "spurious_copper",
+    "gt_box_count": 194,
+    "detected_box_count": 225,
+    "ap_50": 0.8805850290163466,
+    "class_recall": 0.9072164948453608
+  },
+  {
+    "model_id": "B01",
+    "class_name": "pin_hole",
+    "gt_box_count": 222,
+    "detected_box_count": 415,
+    "ap_50": 0.7680178552035795,
+    "class_recall": 0.9054054054054054
+  },
+  {
+    "model_id": "B02",
+    "class_name": "open_circuit",
+    "gt_box_count": 298,
+    "detected_box_count": 345,
+    "ap_50": 0.8763882809948352,
+    "class_recall": 0.9228187919463087
+  },
+  {
+    "model_id": "B02",
+    "class_name": "short",
+    "gt_box_count": 215,
+    "detected_box_count": 195,
+    "ap_50": 0.873979373477784,
+    "class_recall": 0.8186046511627907
+  },
+  {
+    "model_id": "B02",
+    "class_name": "mouse_bite",
+    "gt_box_count": 250,
+    "detected_box_count": 242,
+    "ap_50": 0.8465440431600793,
+    "class_recall": 0.828
+  },
+  {
+    "model_id": "B02",
+    "class_name": "spur",
+    "gt_box_count": 228,
+    "detected_box_count": 190,
+    "ap_50": 0.7577615131446656,
+    "class_recall": 0.7149122807017544
+  },
+  {
+    "model_id": "B02",
+    "class_name": "spurious_copper",
+    "gt_box_count": 194,
+    "detected_box_count": 169,
+    "ap_50": 0.897387251589653,
+    "class_recall": 0.845360824742268
+  },
+  {
+    "model_id": "B02",
+    "class_name": "pin_hole",
+    "gt_box_count": 222,
+    "detected_box_count": 647,
+    "ap_50": 0.7824963377505957,
+    "class_recall": 0.972972972972973
+  },
+  {
+    "model_id": "H01",
+    "class_name": "open_circuit",
+    "gt_box_count": 298,
+    "detected_box_count": 406,
+    "ap_50": 0.8174585784341527,
+    "class_recall": 0.8758389261744967
+  },
+  {
+    "model_id": "H01",
+    "class_name": "short",
+    "gt_box_count": 215,
+    "detected_box_count": 237,
+    "ap_50": 0.8028904860075847,
+    "class_recall": 0.7906976744186046
+  },
+  {
+    "model_id": "H01",
+    "class_name": "mouse_bite",
+    "gt_box_count": 250,
+    "detected_box_count": 287,
+    "ap_50": 0.7529329218978447,
+    "class_recall": 0.768
+  },
+  {
+    "model_id": "H01",
+    "class_name": "spur",
+    "gt_box_count": 228,
+    "detected_box_count": 217,
+    "ap_50": 0.7357594535373058,
+    "class_recall": 0.7149122807017544
+  },
+  {
+    "model_id": "H01",
+    "class_name": "spurious_copper",
+    "gt_box_count": 194,
+    "detected_box_count": 225,
+    "ap_50": 0.8805850290163466,
+    "class_recall": 0.9072164948453608
+  },
+  {
+    "model_id": "H01",
+    "class_name": "pin_hole",
+    "gt_box_count": 222,
+    "detected_box_count": 415,
+    "ap_50": 0.7680178552035795,
+    "class_recall": 0.9054054054054054
+  }
+]

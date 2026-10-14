@@ -1,0 +1,688 @@
+{
+  "checks": [
+    {
+      "detail": "Finite positive boxes remain inside the image in both annotation formats.",
+      "id": "box_valid",
+      "n_violations": 3,
+      "status": "FAIL"
+    },
+    {
+      "detail": "YOLO and manifest class IDs/names match the class schema.",
+      "id": "class_id_valid",
+      "n_violations": 2,
+      "status": "FAIL"
+    },
+    {
+      "detail": "Every canonical image fully decodes.",
+      "id": "image_decode",
+      "n_violations": 1,
+      "status": "FAIL"
+    },
+    {
+      "detail": "Decoded dimensions match manifest; canonical images are RGB.",
+      "id": "image_metadata",
+      "n_violations": 1,
+      "status": "FAIL"
+    },
+    {
+      "detail": "Canonical file hashes match manifest.sha256.",
+      "id": "image_sha256",
+      "n_violations": 1,
+      "status": "FAIL"
+    },
+    {
+      "detail": "Every decoded image is 640 x 640.",
+      "id": "image_size_640",
+      "n_violations": 1,
+      "status": "FAIL"
+    },
+    {
+      "detail": "Defect labels and manifest boxes are nonempty.",
+      "id": "label_defect_nonempty",
+      "n_violations": 1,
+      "status": "FAIL"
+    },
+    {
+      "detail": "Good labels and manifest boxes are empty.",
+      "id": "label_good_empty",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "YOLO labels agree with manifest boxes (normalized tolerance 1e-9).",
+      "id": "label_manifest_match",
+      "n_violations": 2,
+      "status": "FAIL"
+    },
+    {
+      "detail": "Label file hashes match manifest.label_sha256.",
+      "id": "label_sha256",
+      "n_violations": 2,
+      "status": "FAIL"
+    },
+    {
+      "detail": "All partition pairs have disjoint recomputed file hashes.",
+      "id": "leak_image_hash",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "All partition pairs have disjoint unions of pair_ids.",
+      "id": "leak_pair",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "All partition pairs have disjoint recomputed RGB pixel hashes.",
+      "id": "leak_pixel_hash",
+      "n_violations": 1,
+      "status": "FAIL"
+    },
+    {
+      "detail": "All partition pairs have disjoint source groups.",
+      "id": "leak_source_group",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Canonical image and label paths exist inside dataset root.",
+      "id": "manifest_paths_exist",
+      "n_violations": 1,
+      "status": "FAIL"
+    },
+    {
+      "detail": "Individual manifest records have the required field types.",
+      "id": "manifest_schema",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Canonical sample IDs are unique.",
+      "id": "manifest_unique_ids",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Sample membership, groups and all pair aliases match holdout.",
+      "id": "partition_counts",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "RGB pixel hashes match manifest.pixel_sha256.",
+      "id": "pixel_sha256",
+      "n_violations": 1,
+      "status": "FAIL"
+    },
+    {
+      "detail": "Every release.files entry matches its SHA-256.",
+      "id": "release_sha256",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Development filenames expose labels; never use paths/IDs as model features.",
+      "id": "shortcut_filename",
+      "n_violations": 2,
+      "status": "WARN"
+    }
+  ],
+  "class_box_counts": {
+    "calibration": {
+      "mouse_bite": 0,
+      "open_circuit": 0,
+      "pin_hole": 0,
+      "short": 0,
+      "spur": 0,
+      "spurious_copper": 0
+    },
+    "fusion": {
+      "mouse_bite": 0,
+      "open_circuit": 0,
+      "pin_hole": 0,
+      "short": 0,
+      "spur": 0,
+      "spurious_copper": 0
+    },
+    "test": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    },
+    "train": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    }
+  },
+  "class_image_counts": {
+    "calibration": {
+      "mouse_bite": 0,
+      "open_circuit": 0,
+      "pin_hole": 0,
+      "short": 0,
+      "spur": 0,
+      "spurious_copper": 0
+    },
+    "fusion": {
+      "mouse_bite": 0,
+      "open_circuit": 0,
+      "pin_hole": 0,
+      "short": 0,
+      "spur": 0,
+      "spurious_copper": 0
+    },
+    "test": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    },
+    "train": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    }
+  },
+  "counts": {
+    "by_partition": {
+      "calibration": {
+        "defect": 1,
+        "good": 0,
+        "images": 1,
+        "source_groups": 1
+      },
+      "fusion": {
+        "defect": 1,
+        "good": 0,
+        "images": 1,
+        "source_groups": 1
+      },
+      "test": {
+        "defect": 1,
+        "good": 0,
+        "images": 1,
+        "source_groups": 1
+      },
+      "train": {
+        "defect": 1,
+        "good": 0,
+        "images": 1,
+        "source_groups": 1
+      }
+    },
+    "total": {
+      "defect": 4,
+      "good": 0,
+      "images": 4
+    }
+  },
+  "dataset_root": ".\\reports\\verification\\corrupt\\dataset",
+  "eda": {
+    "box_sizes": {
+      "mouse_bite": {
+        "area": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "height": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "short_side": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "width": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        }
+      },
+      "open_circuit": {
+        "area": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "height": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "short_side": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "width": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        }
+      },
+      "pin_hole": {
+        "area": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "height": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "short_side": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "width": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        }
+      },
+      "short": {
+        "area": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "height": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "short_side": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "width": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        }
+      },
+      "spur": {
+        "area": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "height": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "short_side": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "width": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        }
+      },
+      "spurious_copper": {
+        "area": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "height": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "short_side": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "width": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        }
+      }
+    },
+    "boxes_per_image": {
+      "calibration": {
+        "0": 1
+      },
+      "fusion": {},
+      "test": {
+        "6": 1
+      },
+      "train": {
+        "6": 1
+      }
+    },
+    "by_source_group": {
+      "calibration/group_1": {
+        "boxes": 0,
+        "defect": 1,
+        "good": 0,
+        "images": 1
+      },
+      "fusion/group_2": {
+        "boxes": 0,
+        "defect": 1,
+        "good": 0,
+        "images": 1
+      },
+      "test/group_3": {
+        "boxes": 6,
+        "defect": 1,
+        "good": 0,
+        "images": 1
+      },
+      "train/group_0": {
+        "boxes": 6,
+        "defect": 1,
+        "good": 0,
+        "images": 1
+      }
+    },
+    "filename_label_hints": 2,
+    "normal_evidence_development": {},
+    "partitions": [
+      "train",
+      "calibration"
+    ],
+    "small_defects": {
+      "mouse_bite": {
+        "fraction_short_side_lt_px": {
+          "16": null,
+          "32": null
+        },
+        "n": 0,
+        "resize_256_short_side": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "short_side": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "smallest_by_area": null
+      },
+      "pin_hole": {
+        "fraction_short_side_lt_px": {
+          "16": null,
+          "32": null
+        },
+        "n": 0,
+        "resize_256_short_side": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "short_side": {
+          "max": null,
+          "min": null,
+          "n": 0,
+          "p05": null,
+          "p50": null,
+          "p95": null
+        },
+        "smallest_by_area": null
+      }
+    },
+    "source_group_is_not_verified_board_or_design": null,
+    "source_modes_development": {
+      "unknown": 2
+    },
+    "transforms_development": {
+      "null": 2
+    },
+    "uniform_good_development": 0
+  },
+  "errors": [
+    {
+      "message": "Label line 2: nonfinite, nonpositive or out-of-bounds box",
+      "sample_id": "calibration_defect",
+      "stage": "box_valid"
+    },
+    {
+      "message": "Label line 3: nonfinite, nonpositive or out-of-bounds box",
+      "sample_id": "calibration_defect",
+      "stage": "box_valid"
+    },
+    {
+      "message": "Label line 1: invalid class ID 99",
+      "sample_id": "calibration_defect",
+      "stage": "class_id_valid"
+    },
+    {
+      "message": "Label rows and manifest boxes differ or contain invalid boxes",
+      "sample_id": "calibration_defect",
+      "stage": "label_manifest_match"
+    },
+    {
+      "message": "label SHA-256 differs from manifest",
+      "sample_id": "calibration_defect",
+      "stage": "label_sha256"
+    },
+    {
+      "message": "Cannot inspect label: Cannot read unavailable label",
+      "sample_id": "fusion_defect",
+      "stage": "box_valid"
+    },
+    {
+      "message": "Cannot inspect label: Cannot read unavailable label",
+      "sample_id": "fusion_defect",
+      "stage": "class_id_valid"
+    },
+    {
+      "message": "Cannot read unavailable label",
+      "sample_id": "fusion_defect",
+      "stage": "label_defect_nonempty"
+    },
+    {
+      "message": "Cannot inspect label: Cannot read unavailable label",
+      "sample_id": "fusion_defect",
+      "stage": "label_manifest_match"
+    },
+    {
+      "message": "Cannot hash unavailable label",
+      "sample_id": "fusion_defect",
+      "stage": "label_sha256"
+    },
+    {
+      "message": "Missing label file: labels/fusion_defect.txt",
+      "sample_id": "fusion_defect",
+      "stage": "manifest_paths_exist"
+    },
+    {
+      "message": "Cannot inspect image: cannot identify image file 'D:\\\\FPTU\\\\KLTN\\\\PCB_YOLO_EfficientAD_Lab\\\\reports\\\\verification\\\\corrupt\\\\dataset\\\\images\\\\train_defect.png'",
+      "sample_id": "train_defect",
+      "stage": "image_decode"
+    },
+    {
+      "message": "Cannot inspect image: cannot identify image file 'D:\\\\FPTU\\\\KLTN\\\\PCB_YOLO_EfficientAD_Lab\\\\reports\\\\verification\\\\corrupt\\\\dataset\\\\images\\\\train_defect.png'",
+      "sample_id": "train_defect",
+      "stage": "image_metadata"
+    },
+    {
+      "message": "image SHA-256 differs from manifest",
+      "sample_id": "train_defect",
+      "stage": "image_sha256"
+    },
+    {
+      "message": "Cannot inspect image: cannot identify image file 'D:\\\\FPTU\\\\KLTN\\\\PCB_YOLO_EfficientAD_Lab\\\\reports\\\\verification\\\\corrupt\\\\dataset\\\\images\\\\train_defect.png'",
+      "sample_id": "train_defect",
+      "stage": "image_size_640"
+    },
+    {
+      "message": "Cannot inspect image: cannot identify image file 'D:\\\\FPTU\\\\KLTN\\\\PCB_YOLO_EfficientAD_Lab\\\\reports\\\\verification\\\\corrupt\\\\dataset\\\\images\\\\train_defect.png'",
+      "sample_id": "train_defect",
+      "stage": "leak_pixel_hash"
+    },
+    {
+      "message": "Cannot inspect image: cannot identify image file 'D:\\\\FPTU\\\\KLTN\\\\PCB_YOLO_EfficientAD_Lab\\\\reports\\\\verification\\\\corrupt\\\\dataset\\\\images\\\\train_defect.png'",
+      "sample_id": "train_defect",
+      "stage": "pixel_sha256"
+    }
+  ],
+  "leakage": {
+    "pairs": [
+      {
+        "a": "train",
+        "b": "calibration",
+        "image_hash": 0,
+        "pair": 0,
+        "pixel_hash": 0,
+        "source_group": 0
+      },
+      {
+        "a": "train",
+        "b": "fusion",
+        "image_hash": 0,
+        "pair": 0,
+        "pixel_hash": 0,
+        "source_group": 0
+      },
+      {
+        "a": "train",
+        "b": "test",
+        "image_hash": 0,
+        "pair": 0,
+        "pixel_hash": 0,
+        "source_group": 0
+      },
+      {
+        "a": "calibration",
+        "b": "fusion",
+        "image_hash": 0,
+        "pair": 0,
+        "pixel_hash": 0,
+        "source_group": 0
+      },
+      {
+        "a": "calibration",
+        "b": "test",
+        "image_hash": 0,
+        "pair": 0,
+        "pixel_hash": 0,
+        "source_group": 0
+      },
+      {
+        "a": "fusion",
+        "b": "test",
+        "image_hash": 0,
+        "pair": 0,
+        "pixel_hash": 0,
+        "source_group": 0
+      }
+    ]
+  },
+  "overall": "FAIL",
+  "release": {
+    "mismatches": [],
+    "n_locked": 4,
+    "n_verified": 4
+  },
+  "schema_version": 1
+}

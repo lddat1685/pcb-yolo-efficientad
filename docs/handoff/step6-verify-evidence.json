@@ -1,0 +1,6362 @@
+{
+  "oracle": "stdlib only; independent Phase A formulas",
+  "label_source": "Validated upstream sample_id suffix; no dataset manifest read",
+  "sources": {
+    "yolo_n_calibration": {
+      "path": "artifacts/yolo/B01_yolo11n/seed42/preds_calibration.jsonl",
+      "rows": 460,
+      "sha256": "28de8c3bd95dcf5f9d81dff913379591c9d42ea9cc9223f77390a581c08a1941"
+    },
+    "yolo_n_fusion": {
+      "path": "artifacts/yolo/B01_yolo11n/seed42/preds_fusion.jsonl",
+      "rows": 306,
+      "sha256": "a3dfea548c3421ac05a5f343d1523edfcdc3b2f68324fa1aa8f60a6dbf0677b5"
+    },
+    "yolo_s_calibration": {
+      "path": "artifacts/yolo/B02_yolo11s/seed42/preds_calibration.jsonl",
+      "rows": 460,
+      "sha256": "2d8b410b766d2de50d5fdf8e154369f87503bd9f3ffe393bdda0b1c06e99effb"
+    },
+    "yolo_s_fusion": {
+      "path": "artifacts/yolo/B02_yolo11s/seed42/preds_fusion.jsonl",
+      "rows": 306,
+      "sha256": "29c72c0df08ab2ba2d8aab0cd7c1f85060e4930f4429f1a6af97ba295d2a96e6"
+    },
+    "ad_calibration": {
+      "path": "artifacts/efficientad/B03_efficientad_s/seed42/preds_calibration.jsonl",
+      "rows": 460,
+      "sha256": "080fb3e9614333e690e94023c2b7ce8c3b1a2a94a568e623beb2b1ed88d8bd24"
+    },
+    "ad_fusion": {
+      "path": "artifacts/efficientad/B03_efficientad_s/seed42/preds_fusion.jsonl",
+      "rows": 306,
+      "sha256": "506b8ff2615b9cbdc42ad37abc06dde65e12d9103479ef0d45115cb9c6b87edf"
+    }
+  },
+  "training_manifests": {
+    "yolo_n": {
+      "path": "runs/yolo/B01_yolo11n/seed42/run_manifest.json",
+      "sha256": "0c94bb6ee08db432cf66d81c2dc57eee2f74b69ea1923e1d728522c5197a2e26",
+      "train_time_s": 1260.5,
+      "gpu_run_elapsed_hours": 0.3501388888888889,
+      "device": "0",
+      "seed": 42
+    },
+    "yolo_s": {
+      "path": "runs/yolo/B02_yolo11s/seed42/run_manifest.json",
+      "sha256": "57139af843e514b6187b111261a64850a9775956c5a73fe9d2bd31541a0f5507",
+      "train_time_s": 1695.3,
+      "gpu_run_elapsed_hours": 0.47091666666666665,
+      "device": "0",
+      "seed": 42
+    },
+    "ad": {
+      "path": "runs/efficientad/B03_efficientad_s/seed42/run_manifest.json",
+      "sha256": "bb62a2bce9411321ab9626e0411ab4be359bc928ab1cefa6c6cd89158158bb9a",
+      "train_time_s": 4682.796126892999,
+      "gpu_run_elapsed_hours": 1.300776701914722,
+      "device": "cuda:0",
+      "seed": 42
+    }
+  },
+  "unique_gpu_run_elapsed_hours": 2.1218322574702775,
+  "expected_tables": {
+    "calibration": {
+      "B01": {
+        "tp": 230,
+        "tn": 219,
+        "fp": 11,
+        "fn": 0,
+        "balanced_accuracy": 0.9760869565217392,
+        "defect_recall": 1.0,
+        "defect_precision": 0.9543568464730291,
+        "frr": 0.04782608695652174,
+        "defect_to_good": 0.0,
+        "f1": 0.9766454352441614,
+        "mcc": 0.9532647549060325,
+        "ecpb": 0.04734782608695652,
+        "route_rate_total": 0.0,
+        "route_rate_good": 0.0,
+        "route_rate_defect": 0.0,
+        "rescued_defects": null,
+        "rescue_rate": null,
+        "added_false_rejects": null,
+        "unclassified_positive_rate": 0.0,
+        "total": 460,
+        "n_defect": 230,
+        "n_good": 230,
+        "tau_yolo": 0.14,
+        "tau_ad": null,
+        "route_rate": 0.0,
+        "mean_latency_ms": null
+      },
+      "B02": {
+        "tp": 230,
+        "tn": 219,
+        "fp": 11,
+        "fn": 0,
+        "balanced_accuracy": 0.9760869565217392,
+        "defect_recall": 1.0,
+        "defect_precision": 0.9543568464730291,
+        "frr": 0.04782608695652174,
+        "defect_to_good": 0.0,
+        "f1": 0.9766454352441614,
+        "mcc": 0.9532647549060325,
+        "ecpb": 0.04734782608695652,
+        "route_rate_total": 0.0,
+        "route_rate_good": 0.0,
+        "route_rate_defect": 0.0,
+        "rescued_defects": null,
+        "rescue_rate": null,
+        "added_false_rejects": null,
+        "unclassified_positive_rate": 0.0,
+        "total": 460,
+        "n_defect": 230,
+        "n_good": 230,
+        "tau_yolo": 0.38,
+        "tau_ad": null,
+        "route_rate": 0.0,
+        "mean_latency_ms": null
+      },
+      "B03": {
+        "tp": 53,
+        "tn": 230,
+        "fp": 0,
+        "fn": 177,
+        "balanced_accuracy": 0.6152173913043478,
+        "defect_recall": 0.23043478260869565,
+        "defect_precision": 1.0,
+        "frr": 0.0,
+        "defect_to_good": 0.7695652173913043,
+        "f1": 0.3745583038869258,
+        "mcc": 0.360861649695739,
+        "ecpb": 0.7695652173913043,
+        "route_rate_total": 1.0,
+        "route_rate_good": 1.0,
+        "route_rate_defect": 1.0,
+        "rescued_defects": null,
+        "rescue_rate": null,
+        "added_false_rejects": null,
+        "unclassified_positive_rate": 1.0,
+        "total": 460,
+        "n_defect": 230,
+        "n_good": 230,
+        "tau_yolo": null,
+        "tau_ad": 1.4598,
+        "route_rate": 1.0,
+        "mean_latency_ms": null
+      },
+      "H00": {
+        "tp": 230,
+        "tn": 219,
+        "fp": 11,
+        "fn": 0,
+        "balanced_accuracy": 0.9760869565217392,
+        "defect_recall": 1.0,
+        "defect_precision": 0.9543568464730291,
+        "frr": 0.04782608695652174,
+        "defect_to_good": 0.0,
+        "f1": 0.9766454352441614,
+        "mcc": 0.9532647549060325,
+        "ecpb": 0.04734782608695652,
+        "route_rate_total": 1.0,
+        "route_rate_good": 1.0,
+        "route_rate_defect": 1.0,
+        "rescued_defects": 0,
+        "rescue_rate": null,
+        "added_false_rejects": 0,
+        "unclassified_positive_rate": 0.0,
+        "total": 460,
+        "n_defect": 230,
+        "n_good": 230,
+        "tau_yolo": 0.14,
+        "tau_ad": 1.4598,
+        "route_rate": 1.0,
+        "mean_latency_ms": null,
+        "yolo_fn_count": 0
+      },
+      "H01": {
+        "tp": 230,
+        "tn": 219,
+        "fp": 11,
+        "fn": 0,
+        "balanced_accuracy": 0.9760869565217392,
+        "defect_recall": 1.0,
+        "defect_precision": 0.9543568464730291,
+        "frr": 0.04782608695652174,
+        "defect_to_good": 0.0,
+        "f1": 0.9766454352441614,
+        "mcc": 0.9532647549060325,
+        "ecpb": 0.04734782608695652,
+        "route_rate_total": 0.47608695652173916,
+        "route_rate_good": 0.9521739130434783,
+        "route_rate_defect": 0.0,
+        "rescued_defects": 0,
+        "rescue_rate": null,
+        "added_false_rejects": 0,
+        "unclassified_positive_rate": 0.0,
+        "total": 460,
+        "n_defect": 230,
+        "n_good": 230,
+        "tau_yolo": 0.14,
+        "tau_ad": 1.4598,
+        "route_rate": 0.47608695652173916,
+        "mean_latency_ms": null,
+        "yolo_fn_count": 0
+      },
+      "H02": {
+        "tp": 230,
+        "tn": 219,
+        "fp": 11,
+        "fn": 0,
+        "balanced_accuracy": 0.9760869565217392,
+        "defect_recall": 1.0,
+        "defect_precision": 0.9543568464730291,
+        "frr": 0.04782608695652174,
+        "defect_to_good": 0.0,
+        "f1": 0.9766454352441614,
+        "mcc": 0.9532647549060325,
+        "ecpb": 0.04734782608695652,
+        "route_rate_total": 0.47608695652173916,
+        "route_rate_good": 0.9521739130434783,
+        "route_rate_defect": 0.0,
+        "rescued_defects": 0,
+        "rescue_rate": null,
+        "added_false_rejects": 0,
+        "unclassified_positive_rate": 0.0,
+        "total": 460,
+        "n_defect": 230,
+        "n_good": 230,
+        "tau_yolo": 0.38,
+        "tau_ad": 1.4598,
+        "route_rate": 0.47608695652173916,
+        "mean_latency_ms": null,
+        "yolo_fn_count": 0,
+        "deltas_H02_minus_H00": {
+          "delta_recall": 0.0,
+          "delta_recall_H01_minus_H00": 0.0,
+          "delta_frr": 0.0,
+          "delta_FRR_H01_minus_H00": 0.0,
+          "delta_ecpb": 0.0,
+          "delta_ECPB_H01_minus_H00": 0.0,
+          "delta_latency_ms_H01_minus_H00": null
+        }
+      },
+      "H01_secondary": {
+        "tp": 230,
+        "tn": 228,
+        "fp": 2,
+        "fn": 0,
+        "balanced_accuracy": 0.9956521739130435,
+        "defect_recall": 1.0,
+        "defect_precision": 0.9913793103448276,
+        "frr": 0.008695652173913044,
+        "defect_to_good": 0.0,
+        "f1": 0.9956709956709957,
+        "mcc": 0.9913418283769,
+        "ecpb": 0.008608695652173913,
+        "route_rate_total": 0.4956521739130435,
+        "route_rate_good": 0.991304347826087,
+        "route_rate_defect": 0.0,
+        "rescued_defects": 0,
+        "rescue_rate": null,
+        "added_false_rejects": 0,
+        "unclassified_positive_rate": 0.0,
+        "total": 460,
+        "n_defect": 230,
+        "n_good": 230,
+        "tau_yolo": 0.48,
+        "tau_ad": 1.4598,
+        "route_rate": 0.4956521739130435,
+        "mean_latency_ms": null,
+        "yolo_fn_count": 0
+      },
+      "H00_secondary": {
+        "tp": 230,
+        "tn": 228,
+        "fp": 2,
+        "fn": 0,
+        "balanced_accuracy": 0.9956521739130435,
+        "defect_recall": 1.0,
+        "defect_precision": 0.9913793103448276,
+        "frr": 0.008695652173913044,
+        "defect_to_good": 0.0,
+        "f1": 0.9956709956709957,
+        "mcc": 0.9913418283769,
+        "ecpb": 0.008608695652173913,
+        "route_rate_total": 1.0,
+        "route_rate_good": 1.0,
+        "route_rate_defect": 1.0,
+        "rescued_defects": 0,
+        "rescue_rate": null,
+        "added_false_rejects": 0,
+        "unclassified_positive_rate": 0.0,
+        "total": 460,
+        "n_defect": 230,
+        "n_good": 230,
+        "tau_yolo": 0.48,
+        "tau_ad": 1.4598,
+        "route_rate": 1.0,
+        "mean_latency_ms": null,
+        "yolo_fn_count": 0
+      }
+    },
+    "fusion": {
+      "B01": {
+        "tp": 153,
+        "tn": 94,
+        "fp": 59,
+        "fn": 0,
+        "balanced_accuracy": 0.8071895424836601,
+        "defect_recall": 1.0,
+        "defect_precision": 0.7216981132075472,
+        "frr": 0.38562091503267976,
+        "defect_to_good": 0.0,
+        "f1": 0.8383561643835616,
+        "mcc": 0.6658800390574073,
+        "ecpb": 0.38176470588235295,
+        "route_rate_total": 0.0,
+        "route_rate_good": 0.0,
+        "route_rate_defect": 0.0,
+        "rescued_defects": null,
+        "rescue_rate": null,
+        "added_false_rejects": null,
+        "unclassified_positive_rate": 0.0,
+        "total": 306,
+        "n_defect": 153,
+        "n_good": 153,
+        "tau_yolo": 0.14,
+        "tau_ad": null,
+        "route_rate": 0.0,
+        "mean_latency_ms": null
+      },
+      "B02": {
+        "tp": 153,
+        "tn": 129,
+        "fp": 24,
+        "fn": 0,
+        "balanced_accuracy": 0.9215686274509804,
+        "defect_recall": 1.0,
+        "defect_precision": 0.864406779661017,
+        "frr": 0.1568627450980392,
+        "defect_to_good": 0.0,
+        "f1": 0.9272727272727272,
+        "mcc": 0.8537057803025782,
+        "ecpb": 0.15529411764705883,
+        "route_rate_total": 0.0,
+        "route_rate_good": 0.0,
+        "route_rate_defect": 0.0,
+        "rescued_defects": null,
+        "rescue_rate": null,
+        "added_false_rejects": null,
+        "unclassified_positive_rate": 0.0,
+        "total": 306,
+        "n_defect": 153,
+        "n_good": 153,
+        "tau_yolo": 0.38,
+        "tau_ad": null,
+        "route_rate": 0.0,
+        "mean_latency_ms": null
+      },
+      "B03": {
+        "tp": 44,
+        "tn": 153,
+        "fp": 0,
+        "fn": 109,
+        "balanced_accuracy": 0.6437908496732025,
+        "defect_recall": 0.2875816993464052,
+        "defect_precision": 1.0,
+        "frr": 0.0,
+        "defect_to_good": 0.7124183006535948,
+        "f1": 0.4467005076142132,
+        "mcc": 0.40980352767845946,
+        "ecpb": 0.7124183006535948,
+        "route_rate_total": 1.0,
+        "route_rate_good": 1.0,
+        "route_rate_defect": 1.0,
+        "rescued_defects": null,
+        "rescue_rate": null,
+        "added_false_rejects": null,
+        "unclassified_positive_rate": 1.0,
+        "total": 306,
+        "n_defect": 153,
+        "n_good": 153,
+        "tau_yolo": null,
+        "tau_ad": 1.4598,
+        "route_rate": 1.0,
+        "mean_latency_ms": null
+      },
+      "H00": {
+        "tp": 153,
+        "tn": 94,
+        "fp": 59,
+        "fn": 0,
+        "balanced_accuracy": 0.8071895424836601,
+        "defect_recall": 1.0,
+        "defect_precision": 0.7216981132075472,
+        "frr": 0.38562091503267976,
+        "defect_to_good": 0.0,
+        "f1": 0.8383561643835616,
+        "mcc": 0.6658800390574073,
+        "ecpb": 0.38176470588235295,
+        "route_rate_total": 1.0,
+        "route_rate_good": 1.0,
+        "route_rate_defect": 1.0,
+        "rescued_defects": 0,
+        "rescue_rate": null,
+        "added_false_rejects": 0,
+        "unclassified_positive_rate": 0.0,
+        "total": 306,
+        "n_defect": 153,
+        "n_good": 153,
+        "tau_yolo": 0.14,
+        "tau_ad": 1.4598,
+        "route_rate": 1.0,
+        "mean_latency_ms": null,
+        "yolo_fn_count": 0
+      },
+      "H01": {
+        "tp": 153,
+        "tn": 94,
+        "fp": 59,
+        "fn": 0,
+        "balanced_accuracy": 0.8071895424836601,
+        "defect_recall": 1.0,
+        "defect_precision": 0.7216981132075472,
+        "frr": 0.38562091503267976,
+        "defect_to_good": 0.0,
+        "f1": 0.8383561643835616,
+        "mcc": 0.6658800390574073,
+        "ecpb": 0.38176470588235295,
+        "route_rate_total": 0.30718954248366015,
+        "route_rate_good": 0.6143790849673203,
+        "route_rate_defect": 0.0,
+        "rescued_defects": 0,
+        "rescue_rate": null,
+        "added_false_rejects": 0,
+        "unclassified_positive_rate": 0.0,
+        "total": 306,
+        "n_defect": 153,
+        "n_good": 153,
+        "tau_yolo": 0.14,
+        "tau_ad": 1.4598,
+        "route_rate": 0.30718954248366015,
+        "mean_latency_ms": null,
+        "yolo_fn_count": 0
+      },
+      "H02": {
+        "tp": 153,
+        "tn": 129,
+        "fp": 24,
+        "fn": 0,
+        "balanced_accuracy": 0.9215686274509804,
+        "defect_recall": 1.0,
+        "defect_precision": 0.864406779661017,
+        "frr": 0.1568627450980392,
+        "defect_to_good": 0.0,
+        "f1": 0.9272727272727272,
+        "mcc": 0.8537057803025782,
+        "ecpb": 0.15529411764705883,
+        "route_rate_total": 0.4215686274509804,
+        "route_rate_good": 0.8431372549019608,
+        "route_rate_defect": 0.0,
+        "rescued_defects": 0,
+        "rescue_rate": null,
+        "added_false_rejects": 0,
+        "unclassified_positive_rate": 0.0,
+        "total": 306,
+        "n_defect": 153,
+        "n_good": 153,
+        "tau_yolo": 0.38,
+        "tau_ad": 1.4598,
+        "route_rate": 0.4215686274509804,
+        "mean_latency_ms": null,
+        "yolo_fn_count": 0,
+        "deltas_H02_minus_H00": {
+          "delta_recall": 0.0,
+          "delta_recall_H01_minus_H00": 0.0,
+          "delta_frr": -0.22875816993464054,
+          "delta_FRR_H01_minus_H00": -0.22875816993464054,
+          "delta_ecpb": -0.22647058823529412,
+          "delta_ECPB_H01_minus_H00": -0.22647058823529412,
+          "delta_latency_ms_H01_minus_H00": null
+        }
+      },
+      "H01_secondary": {
+        "tp": 153,
+        "tn": 127,
+        "fp": 26,
+        "fn": 0,
+        "balanced_accuracy": 0.9150326797385621,
+        "defect_recall": 1.0,
+        "defect_precision": 0.8547486033519553,
+        "frr": 0.16993464052287582,
+        "defect_to_good": 0.0,
+        "f1": 0.9216867469879518,
+        "mcc": 0.8423165715477232,
+        "ecpb": 0.16823529411764704,
+        "route_rate_total": 0.4150326797385621,
+        "route_rate_good": 0.8300653594771242,
+        "route_rate_defect": 0.0,
+        "rescued_defects": 0,
+        "rescue_rate": null,
+        "added_false_rejects": 0,
+        "unclassified_positive_rate": 0.0,
+        "total": 306,
+        "n_defect": 153,
+        "n_good": 153,
+        "tau_yolo": 0.48,
+        "tau_ad": 1.4598,
+        "route_rate": 0.4150326797385621,
+        "mean_latency_ms": null,
+        "yolo_fn_count": 0
+      },
+      "H00_secondary": {
+        "tp": 153,
+        "tn": 127,
+        "fp": 26,
+        "fn": 0,
+        "balanced_accuracy": 0.9150326797385621,
+        "defect_recall": 1.0,
+        "defect_precision": 0.8547486033519553,
+        "frr": 0.16993464052287582,
+        "defect_to_good": 0.0,
+        "f1": 0.9216867469879518,
+        "mcc": 0.8423165715477232,
+        "ecpb": 0.16823529411764704,
+        "route_rate_total": 1.0,
+        "route_rate_good": 1.0,
+        "route_rate_defect": 1.0,
+        "rescued_defects": 0,
+        "rescue_rate": null,
+        "added_false_rejects": 0,
+        "unclassified_positive_rate": 0.0,
+        "total": 306,
+        "n_defect": 153,
+        "n_good": 153,
+        "tau_yolo": 0.48,
+        "tau_ad": 1.4598,
+        "route_rate": 1.0,
+        "mean_latency_ms": null,
+        "yolo_fn_count": 0
+      }
+    }
+  },
+  "check_totals": {
+    "pass": 959
+  },
+  "checks": [
+    {
+      "path": "policy/source_checksums/yolo_n_calibration",
+      "actual": "28de8c3bd95dcf5f9d81dff913379591c9d42ea9cc9223f77390a581c08a1941",
+      "expected": "28de8c3bd95dcf5f9d81dff913379591c9d42ea9cc9223f77390a581c08a1941",
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/source_checksums/yolo_n_calibration",
+      "actual": "28de8c3bd95dcf5f9d81dff913379591c9d42ea9cc9223f77390a581c08a1941",
+      "expected": "28de8c3bd95dcf5f9d81dff913379591c9d42ea9cc9223f77390a581c08a1941",
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/counts/yolo_n_calibration",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "policy/source_checksums/yolo_n_fusion",
+      "actual": "a3dfea548c3421ac05a5f343d1523edfcdc3b2f68324fa1aa8f60a6dbf0677b5",
+      "expected": "a3dfea548c3421ac05a5f343d1523edfcdc3b2f68324fa1aa8f60a6dbf0677b5",
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/source_checksums/yolo_n_fusion",
+      "actual": "a3dfea548c3421ac05a5f343d1523edfcdc3b2f68324fa1aa8f60a6dbf0677b5",
+      "expected": "a3dfea548c3421ac05a5f343d1523edfcdc3b2f68324fa1aa8f60a6dbf0677b5",
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/counts/yolo_n_fusion",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "manifest/yolo_n/sha256",
+      "actual": "0c94bb6ee08db432cf66d81c2dc57eee2f74b69ea1923e1d728522c5197a2e26",
+      "expected": "0c94bb6ee08db432cf66d81c2dc57eee2f74b69ea1923e1d728522c5197a2e26",
+      "status": "pass"
+    },
+    {
+      "path": "policy/source_checksums/yolo_s_calibration",
+      "actual": "2d8b410b766d2de50d5fdf8e154369f87503bd9f3ffe393bdda0b1c06e99effb",
+      "expected": "2d8b410b766d2de50d5fdf8e154369f87503bd9f3ffe393bdda0b1c06e99effb",
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/source_checksums/yolo_s_calibration",
+      "actual": "2d8b410b766d2de50d5fdf8e154369f87503bd9f3ffe393bdda0b1c06e99effb",
+      "expected": "2d8b410b766d2de50d5fdf8e154369f87503bd9f3ffe393bdda0b1c06e99effb",
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/counts/yolo_s_calibration",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "policy/source_checksums/yolo_s_fusion",
+      "actual": "29c72c0df08ab2ba2d8aab0cd7c1f85060e4930f4429f1a6af97ba295d2a96e6",
+      "expected": "29c72c0df08ab2ba2d8aab0cd7c1f85060e4930f4429f1a6af97ba295d2a96e6",
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/source_checksums/yolo_s_fusion",
+      "actual": "29c72c0df08ab2ba2d8aab0cd7c1f85060e4930f4429f1a6af97ba295d2a96e6",
+      "expected": "29c72c0df08ab2ba2d8aab0cd7c1f85060e4930f4429f1a6af97ba295d2a96e6",
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/counts/yolo_s_fusion",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "manifest/yolo_s/sha256",
+      "actual": "57139af843e514b6187b111261a64850a9775956c5a73fe9d2bd31541a0f5507",
+      "expected": "57139af843e514b6187b111261a64850a9775956c5a73fe9d2bd31541a0f5507",
+      "status": "pass"
+    },
+    {
+      "path": "policy/source_checksums/ad_calibration",
+      "actual": "080fb3e9614333e690e94023c2b7ce8c3b1a2a94a568e623beb2b1ed88d8bd24",
+      "expected": "080fb3e9614333e690e94023c2b7ce8c3b1a2a94a568e623beb2b1ed88d8bd24",
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/source_checksums/ad_calibration",
+      "actual": "080fb3e9614333e690e94023c2b7ce8c3b1a2a94a568e623beb2b1ed88d8bd24",
+      "expected": "080fb3e9614333e690e94023c2b7ce8c3b1a2a94a568e623beb2b1ed88d8bd24",
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/counts/ad_calibration",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "policy/source_checksums/ad_fusion",
+      "actual": "506b8ff2615b9cbdc42ad37abc06dde65e12d9103479ef0d45115cb9c6b87edf",
+      "expected": "506b8ff2615b9cbdc42ad37abc06dde65e12d9103479ef0d45115cb9c6b87edf",
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/source_checksums/ad_fusion",
+      "actual": "506b8ff2615b9cbdc42ad37abc06dde65e12d9103479ef0d45115cb9c6b87edf",
+      "expected": "506b8ff2615b9cbdc42ad37abc06dde65e12d9103479ef0d45115cb9c6b87edf",
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/counts/ad_fusion",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "manifest/ad/sha256",
+      "actual": "bb62a2bce9411321ab9626e0411ab4be359bc928ab1cefa6c6cd89158158bb9a",
+      "expected": "bb62a2bce9411321ab9626e0411ab4be359bc928ab1cefa6c6cd89158158bb9a",
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/budget/B01",
+      "actual": 0.35,
+      "expected": 0.35,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/budget/B02",
+      "actual": 0.47,
+      "expected": 0.47,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/budget/B03",
+      "actual": 1.3,
+      "expected": 1.3,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/tp",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/tn",
+      "actual": 219,
+      "expected": 219,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/fp",
+      "actual": 11,
+      "expected": 11,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/total",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/n_defect",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/n_good",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/balanced_accuracy",
+      "actual": 0.9760869565217392,
+      "expected": 0.9760869565217392,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/defect_precision",
+      "actual": 0.9543568464730291,
+      "expected": 0.9543568464730291,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/frr",
+      "actual": 0.04782608695652174,
+      "expected": 0.04782608695652174,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/f1",
+      "actual": 0.9766454352441614,
+      "expected": 0.9766454352441614,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/mcc",
+      "actual": 0.9532647549060325,
+      "expected": 0.9532647549060325,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/ecpb",
+      "actual": 0.04734782608695653,
+      "expected": 0.04734782608695652,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/tau_yolo",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/tau_ad",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/route_rate_total",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/route_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/route_rate_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/rescued_defects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/added_false_rejects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B01/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/tp",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/tn",
+      "actual": 219,
+      "expected": 219,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/fp",
+      "actual": 11,
+      "expected": 11,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/total",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/n_defect",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/n_good",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/balanced_accuracy",
+      "actual": 0.9760869565217392,
+      "expected": 0.9760869565217392,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/defect_precision",
+      "actual": 0.9543568464730291,
+      "expected": 0.9543568464730291,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/frr",
+      "actual": 0.04782608695652174,
+      "expected": 0.04782608695652174,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/f1",
+      "actual": 0.9766454352441614,
+      "expected": 0.9766454352441614,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/mcc",
+      "actual": 0.9532647549060325,
+      "expected": 0.9532647549060325,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/ecpb",
+      "actual": 0.04734782608695653,
+      "expected": 0.04734782608695652,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/tau_yolo",
+      "actual": 0.38,
+      "expected": 0.38,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/tau_ad",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/route_rate_total",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/route_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/route_rate_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/rescued_defects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/added_false_rejects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B02/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/tp",
+      "actual": 53,
+      "expected": 53,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/tn",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/fp",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/fn",
+      "actual": 177,
+      "expected": 177,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/total",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/n_defect",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/n_good",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/balanced_accuracy",
+      "actual": 0.6152173913043478,
+      "expected": 0.6152173913043478,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/defect_recall",
+      "actual": 0.23043478260869565,
+      "expected": 0.23043478260869565,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/defect_precision",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/frr",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/defect_to_good",
+      "actual": 0.7695652173913043,
+      "expected": 0.7695652173913043,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/f1",
+      "actual": 0.3745583038869258,
+      "expected": 0.3745583038869258,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/mcc",
+      "actual": 0.360861649695739,
+      "expected": 0.360861649695739,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/ecpb",
+      "actual": 0.7695652173913043,
+      "expected": 0.7695652173913043,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/tau_yolo",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/route_rate_total",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/route_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/route_rate_good",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/route_rate_defect",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/rescued_defects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/added_false_rejects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/unclassified_positive_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/B03/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/tp",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/tn",
+      "actual": 219,
+      "expected": 219,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/fp",
+      "actual": 11,
+      "expected": 11,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/total",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/n_defect",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/n_good",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/balanced_accuracy",
+      "actual": 0.9760869565217392,
+      "expected": 0.9760869565217392,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/defect_precision",
+      "actual": 0.9543568464730291,
+      "expected": 0.9543568464730291,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/frr",
+      "actual": 0.04782608695652174,
+      "expected": 0.04782608695652174,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/f1",
+      "actual": 0.9766454352441614,
+      "expected": 0.9766454352441614,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/mcc",
+      "actual": 0.9532647549060325,
+      "expected": 0.9532647549060325,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/ecpb",
+      "actual": 0.04734782608695653,
+      "expected": 0.04734782608695652,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/route_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/route_rate_good",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/route_rate_defect",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/tau_yolo",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00/route_rate_total",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/tp",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/tn",
+      "actual": 219,
+      "expected": 219,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/fp",
+      "actual": 11,
+      "expected": 11,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/total",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/n_defect",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/n_good",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/balanced_accuracy",
+      "actual": 0.9760869565217392,
+      "expected": 0.9760869565217392,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/defect_precision",
+      "actual": 0.9543568464730291,
+      "expected": 0.9543568464730291,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/frr",
+      "actual": 0.04782608695652174,
+      "expected": 0.04782608695652174,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/f1",
+      "actual": 0.9766454352441614,
+      "expected": 0.9766454352441614,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/mcc",
+      "actual": 0.9532647549060325,
+      "expected": 0.9532647549060325,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/ecpb",
+      "actual": 0.04734782608695653,
+      "expected": 0.04734782608695652,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/route_rate",
+      "actual": 0.47608695652173916,
+      "expected": 0.47608695652173916,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/route_rate_good",
+      "actual": 0.9521739130434783,
+      "expected": 0.9521739130434783,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/tau_yolo",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01/route_rate_total",
+      "actual": 0.47608695652173916,
+      "expected": 0.47608695652173916,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/tp",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/tn",
+      "actual": 219,
+      "expected": 219,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/fp",
+      "actual": 11,
+      "expected": 11,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/total",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/n_defect",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/n_good",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/balanced_accuracy",
+      "actual": 0.9760869565217392,
+      "expected": 0.9760869565217392,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/defect_precision",
+      "actual": 0.9543568464730291,
+      "expected": 0.9543568464730291,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/frr",
+      "actual": 0.04782608695652174,
+      "expected": 0.04782608695652174,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/f1",
+      "actual": 0.9766454352441614,
+      "expected": 0.9766454352441614,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/mcc",
+      "actual": 0.9532647549060325,
+      "expected": 0.9532647549060325,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/ecpb",
+      "actual": 0.04734782608695653,
+      "expected": 0.04734782608695652,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/route_rate",
+      "actual": 0.47608695652173916,
+      "expected": 0.47608695652173916,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/route_rate_good",
+      "actual": 0.9521739130434783,
+      "expected": 0.9521739130434783,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/tau_yolo",
+      "actual": 0.38,
+      "expected": 0.38,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/route_rate_total",
+      "actual": 0.47608695652173916,
+      "expected": 0.47608695652173916,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/deltas_H02_minus_H00/delta_recall",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/deltas_H02_minus_H00/delta_frr",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/deltas_H02_minus_H00/delta_ecpb",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/deltas_H02_minus_H00/delta_recall_H01_minus_H00",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/deltas_H02_minus_H00/delta_FRR_H01_minus_H00",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/deltas_H02_minus_H00/delta_ECPB_H01_minus_H00",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H02/deltas_H02_minus_H00/delta_latency_ms_H01_minus_H00",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/tp",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/tn",
+      "actual": 228,
+      "expected": 228,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/fp",
+      "actual": 2,
+      "expected": 2,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/total",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/n_defect",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/n_good",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/balanced_accuracy",
+      "actual": 0.9956521739130435,
+      "expected": 0.9956521739130435,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/defect_precision",
+      "actual": 0.9913793103448276,
+      "expected": 0.9913793103448276,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/frr",
+      "actual": 0.008695652173913044,
+      "expected": 0.008695652173913044,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/f1",
+      "actual": 0.9956709956709957,
+      "expected": 0.9956709956709957,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/mcc",
+      "actual": 0.9913418283769,
+      "expected": 0.9913418283769,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/ecpb",
+      "actual": 0.008608695652173913,
+      "expected": 0.008608695652173913,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/route_rate",
+      "actual": 0.4956521739130435,
+      "expected": 0.4956521739130435,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/route_rate_good",
+      "actual": 0.991304347826087,
+      "expected": 0.991304347826087,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/tau_yolo",
+      "actual": 0.48,
+      "expected": 0.48,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H01_secondary/route_rate_total",
+      "actual": 0.4956521739130435,
+      "expected": 0.4956521739130435,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/tp",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/tn",
+      "actual": 228,
+      "expected": 228,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/fp",
+      "actual": 2,
+      "expected": 2,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/total",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/n_defect",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/n_good",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/balanced_accuracy",
+      "actual": 0.9956521739130435,
+      "expected": 0.9956521739130435,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/defect_precision",
+      "actual": 0.9913793103448276,
+      "expected": 0.9913793103448276,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/frr",
+      "actual": 0.008695652173913044,
+      "expected": 0.008695652173913044,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/f1",
+      "actual": 0.9956709956709957,
+      "expected": 0.9956709956709957,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/mcc",
+      "actual": 0.9913418283769,
+      "expected": 0.9913418283769,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/ecpb",
+      "actual": 0.008608695652173913,
+      "expected": 0.008608695652173913,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/route_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/route_rate_good",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/route_rate_defect",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/tau_yolo",
+      "actual": 0.48,
+      "expected": 0.48,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/calibration/H00_secondary/route_rate_total",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/tp",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/tn",
+      "actual": 94,
+      "expected": 94,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/fp",
+      "actual": 59,
+      "expected": 59,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/total",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/n_defect",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/n_good",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/balanced_accuracy",
+      "actual": 0.8071895424836601,
+      "expected": 0.8071895424836601,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/defect_precision",
+      "actual": 0.7216981132075472,
+      "expected": 0.7216981132075472,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/frr",
+      "actual": 0.38562091503267976,
+      "expected": 0.38562091503267976,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/f1",
+      "actual": 0.8383561643835616,
+      "expected": 0.8383561643835616,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/mcc",
+      "actual": 0.6658800390574073,
+      "expected": 0.6658800390574073,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/ecpb",
+      "actual": 0.38176470588235295,
+      "expected": 0.38176470588235295,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/tau_yolo",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/tau_ad",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/route_rate_total",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/route_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/route_rate_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/rescued_defects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/added_false_rejects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B01/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/tp",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/tn",
+      "actual": 129,
+      "expected": 129,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/fp",
+      "actual": 24,
+      "expected": 24,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/total",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/n_defect",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/n_good",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/balanced_accuracy",
+      "actual": 0.9215686274509804,
+      "expected": 0.9215686274509804,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/defect_precision",
+      "actual": 0.864406779661017,
+      "expected": 0.864406779661017,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/frr",
+      "actual": 0.1568627450980392,
+      "expected": 0.1568627450980392,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/f1",
+      "actual": 0.9272727272727274,
+      "expected": 0.9272727272727272,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/mcc",
+      "actual": 0.8537057803025782,
+      "expected": 0.8537057803025782,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/ecpb",
+      "actual": 0.15529411764705883,
+      "expected": 0.15529411764705883,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/tau_yolo",
+      "actual": 0.38,
+      "expected": 0.38,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/tau_ad",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/route_rate_total",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/route_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/route_rate_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/rescued_defects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/added_false_rejects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B02/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/tp",
+      "actual": 44,
+      "expected": 44,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/tn",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/fp",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/fn",
+      "actual": 109,
+      "expected": 109,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/total",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/n_defect",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/n_good",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/balanced_accuracy",
+      "actual": 0.6437908496732025,
+      "expected": 0.6437908496732025,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/defect_recall",
+      "actual": 0.2875816993464052,
+      "expected": 0.2875816993464052,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/defect_precision",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/frr",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/defect_to_good",
+      "actual": 0.7124183006535948,
+      "expected": 0.7124183006535948,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/f1",
+      "actual": 0.4467005076142132,
+      "expected": 0.4467005076142132,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/mcc",
+      "actual": 0.40980352767845946,
+      "expected": 0.40980352767845946,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/ecpb",
+      "actual": 0.7124183006535948,
+      "expected": 0.7124183006535948,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/tau_yolo",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/route_rate_total",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/route_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/route_rate_good",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/route_rate_defect",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/rescued_defects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/added_false_rejects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/unclassified_positive_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/B03/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/tp",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/tn",
+      "actual": 94,
+      "expected": 94,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/fp",
+      "actual": 59,
+      "expected": 59,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/total",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/n_defect",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/n_good",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/balanced_accuracy",
+      "actual": 0.8071895424836601,
+      "expected": 0.8071895424836601,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/defect_precision",
+      "actual": 0.7216981132075472,
+      "expected": 0.7216981132075472,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/frr",
+      "actual": 0.38562091503267976,
+      "expected": 0.38562091503267976,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/f1",
+      "actual": 0.8383561643835616,
+      "expected": 0.8383561643835616,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/mcc",
+      "actual": 0.6658800390574073,
+      "expected": 0.6658800390574073,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/ecpb",
+      "actual": 0.38176470588235295,
+      "expected": 0.38176470588235295,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/route_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/route_rate_good",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/route_rate_defect",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/tau_yolo",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00/route_rate_total",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/tp",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/tn",
+      "actual": 94,
+      "expected": 94,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/fp",
+      "actual": 59,
+      "expected": 59,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/total",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/n_defect",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/n_good",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/balanced_accuracy",
+      "actual": 0.8071895424836601,
+      "expected": 0.8071895424836601,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/defect_precision",
+      "actual": 0.7216981132075472,
+      "expected": 0.7216981132075472,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/frr",
+      "actual": 0.38562091503267976,
+      "expected": 0.38562091503267976,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/f1",
+      "actual": 0.8383561643835616,
+      "expected": 0.8383561643835616,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/mcc",
+      "actual": 0.6658800390574073,
+      "expected": 0.6658800390574073,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/ecpb",
+      "actual": 0.38176470588235295,
+      "expected": 0.38176470588235295,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/route_rate",
+      "actual": 0.30718954248366015,
+      "expected": 0.30718954248366015,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/route_rate_good",
+      "actual": 0.6143790849673203,
+      "expected": 0.6143790849673203,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/tau_yolo",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01/route_rate_total",
+      "actual": 0.30718954248366015,
+      "expected": 0.30718954248366015,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/tp",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/tn",
+      "actual": 129,
+      "expected": 129,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/fp",
+      "actual": 24,
+      "expected": 24,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/total",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/n_defect",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/n_good",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/balanced_accuracy",
+      "actual": 0.9215686274509804,
+      "expected": 0.9215686274509804,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/defect_precision",
+      "actual": 0.864406779661017,
+      "expected": 0.864406779661017,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/frr",
+      "actual": 0.1568627450980392,
+      "expected": 0.1568627450980392,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/f1",
+      "actual": 0.9272727272727274,
+      "expected": 0.9272727272727272,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/mcc",
+      "actual": 0.8537057803025782,
+      "expected": 0.8537057803025782,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/ecpb",
+      "actual": 0.15529411764705883,
+      "expected": 0.15529411764705883,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/route_rate",
+      "actual": 0.4215686274509804,
+      "expected": 0.4215686274509804,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/route_rate_good",
+      "actual": 0.8431372549019608,
+      "expected": 0.8431372549019608,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/tau_yolo",
+      "actual": 0.38,
+      "expected": 0.38,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/route_rate_total",
+      "actual": 0.4215686274509804,
+      "expected": 0.4215686274509804,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/deltas_H02_minus_H00/delta_recall",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/deltas_H02_minus_H00/delta_frr",
+      "actual": -0.22875816993464054,
+      "expected": -0.22875816993464054,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/deltas_H02_minus_H00/delta_ecpb",
+      "actual": -0.22647058823529412,
+      "expected": -0.22647058823529412,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/deltas_H02_minus_H00/delta_recall_H01_minus_H00",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/deltas_H02_minus_H00/delta_FRR_H01_minus_H00",
+      "actual": -0.22875816993464054,
+      "expected": -0.22875816993464054,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/deltas_H02_minus_H00/delta_ECPB_H01_minus_H00",
+      "actual": -0.22647058823529412,
+      "expected": -0.22647058823529412,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H02/deltas_H02_minus_H00/delta_latency_ms_H01_minus_H00",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/tp",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/tn",
+      "actual": 127,
+      "expected": 127,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/fp",
+      "actual": 26,
+      "expected": 26,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/total",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/n_defect",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/n_good",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/balanced_accuracy",
+      "actual": 0.9150326797385622,
+      "expected": 0.9150326797385621,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/defect_precision",
+      "actual": 0.8547486033519553,
+      "expected": 0.8547486033519553,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/frr",
+      "actual": 0.16993464052287582,
+      "expected": 0.16993464052287582,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/f1",
+      "actual": 0.9216867469879518,
+      "expected": 0.9216867469879518,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/mcc",
+      "actual": 0.8423165715477232,
+      "expected": 0.8423165715477232,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/ecpb",
+      "actual": 0.16823529411764707,
+      "expected": 0.16823529411764704,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/route_rate",
+      "actual": 0.4150326797385621,
+      "expected": 0.4150326797385621,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/route_rate_good",
+      "actual": 0.8300653594771242,
+      "expected": 0.8300653594771242,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/tau_yolo",
+      "actual": 0.48,
+      "expected": 0.48,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H01_secondary/route_rate_total",
+      "actual": 0.4150326797385621,
+      "expected": 0.4150326797385621,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/tp",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/tn",
+      "actual": 127,
+      "expected": 127,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/fp",
+      "actual": 26,
+      "expected": 26,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/total",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/n_defect",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/n_good",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/balanced_accuracy",
+      "actual": 0.9150326797385622,
+      "expected": 0.9150326797385621,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/defect_precision",
+      "actual": 0.8547486033519553,
+      "expected": 0.8547486033519553,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/frr",
+      "actual": 0.16993464052287582,
+      "expected": 0.16993464052287582,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/f1",
+      "actual": 0.9216867469879518,
+      "expected": 0.9216867469879518,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/mcc",
+      "actual": 0.8423165715477232,
+      "expected": 0.8423165715477232,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/ecpb",
+      "actual": 0.16823529411764707,
+      "expected": 0.16823529411764704,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/route_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/route_rate_good",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/route_rate_defect",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/tau_yolo",
+      "actual": 0.48,
+      "expected": 0.48,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/json/fusion/H00_secondary/route_rate_total",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/row_count",
+      "actual": 12,
+      "expected": 12,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/tp",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/tn",
+      "actual": 219,
+      "expected": 219,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/fp",
+      "actual": 11,
+      "expected": 11,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/total",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/n_defect",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/n_good",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/balanced_accuracy",
+      "actual": 0.9760869565217392,
+      "expected": 0.9760869565217392,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/defect_precision",
+      "actual": 0.9543568464730291,
+      "expected": 0.9543568464730291,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/frr",
+      "actual": 0.04782608695652174,
+      "expected": 0.04782608695652174,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/f1",
+      "actual": 0.9766454352441614,
+      "expected": 0.9766454352441614,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/mcc",
+      "actual": 0.9532647549060325,
+      "expected": 0.9532647549060325,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/ecpb",
+      "actual": 0.04734782608695653,
+      "expected": 0.04734782608695652,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/tau_yolo",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/tau_ad",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/route_rate_total",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/route_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/route_rate_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/rescued_defects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/added_false_rejects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B01/yolo_fn_count",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/tp",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/tn",
+      "actual": 219,
+      "expected": 219,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/fp",
+      "actual": 11,
+      "expected": 11,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/total",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/n_defect",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/n_good",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/balanced_accuracy",
+      "actual": 0.9760869565217392,
+      "expected": 0.9760869565217392,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/defect_precision",
+      "actual": 0.9543568464730291,
+      "expected": 0.9543568464730291,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/frr",
+      "actual": 0.04782608695652174,
+      "expected": 0.04782608695652174,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/f1",
+      "actual": 0.9766454352441614,
+      "expected": 0.9766454352441614,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/mcc",
+      "actual": 0.9532647549060325,
+      "expected": 0.9532647549060325,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/ecpb",
+      "actual": 0.04734782608695653,
+      "expected": 0.04734782608695652,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/tau_yolo",
+      "actual": 0.38,
+      "expected": 0.38,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/tau_ad",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/route_rate_total",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/route_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/route_rate_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/rescued_defects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/added_false_rejects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B02/yolo_fn_count",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/tp",
+      "actual": 53,
+      "expected": 53,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/tn",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/fp",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/fn",
+      "actual": 177,
+      "expected": 177,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/total",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/n_defect",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/n_good",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/balanced_accuracy",
+      "actual": 0.6152173913043478,
+      "expected": 0.6152173913043478,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/defect_recall",
+      "actual": 0.23043478260869565,
+      "expected": 0.23043478260869565,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/defect_precision",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/frr",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/defect_to_good",
+      "actual": 0.7695652173913043,
+      "expected": 0.7695652173913043,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/f1",
+      "actual": 0.3745583038869258,
+      "expected": 0.3745583038869258,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/mcc",
+      "actual": 0.360861649695739,
+      "expected": 0.360861649695739,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/ecpb",
+      "actual": 0.7695652173913043,
+      "expected": 0.7695652173913043,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/tau_yolo",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/route_rate_total",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/route_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/route_rate_good",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/route_rate_defect",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/rescued_defects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/added_false_rejects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/unclassified_positive_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/B03/yolo_fn_count",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/tp",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/tn",
+      "actual": 219,
+      "expected": 219,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/fp",
+      "actual": 11,
+      "expected": 11,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/total",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/n_defect",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/n_good",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/balanced_accuracy",
+      "actual": 0.9760869565217392,
+      "expected": 0.9760869565217392,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/defect_precision",
+      "actual": 0.9543568464730291,
+      "expected": 0.9543568464730291,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/frr",
+      "actual": 0.04782608695652174,
+      "expected": 0.04782608695652174,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/f1",
+      "actual": 0.9766454352441614,
+      "expected": 0.9766454352441614,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/mcc",
+      "actual": 0.9532647549060325,
+      "expected": 0.9532647549060325,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/ecpb",
+      "actual": 0.04734782608695653,
+      "expected": 0.04734782608695652,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/tau_yolo",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/route_rate_total",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/route_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/route_rate_good",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/route_rate_defect",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H00/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/tp",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/tn",
+      "actual": 219,
+      "expected": 219,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/fp",
+      "actual": 11,
+      "expected": 11,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/total",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/n_defect",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/n_good",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/balanced_accuracy",
+      "actual": 0.9760869565217392,
+      "expected": 0.9760869565217392,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/defect_precision",
+      "actual": 0.9543568464730291,
+      "expected": 0.9543568464730291,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/frr",
+      "actual": 0.04782608695652174,
+      "expected": 0.04782608695652174,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/f1",
+      "actual": 0.9766454352441614,
+      "expected": 0.9766454352441614,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/mcc",
+      "actual": 0.9532647549060325,
+      "expected": 0.9532647549060325,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/ecpb",
+      "actual": 0.04734782608695653,
+      "expected": 0.04734782608695652,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/tau_yolo",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/route_rate_total",
+      "actual": 0.47608695652173916,
+      "expected": 0.47608695652173916,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/route_rate",
+      "actual": 0.47608695652173916,
+      "expected": 0.47608695652173916,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/route_rate_good",
+      "actual": 0.9521739130434783,
+      "expected": 0.9521739130434783,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H01/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/tp",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/tn",
+      "actual": 219,
+      "expected": 219,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/fp",
+      "actual": 11,
+      "expected": 11,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/total",
+      "actual": 460,
+      "expected": 460,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/n_defect",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/n_good",
+      "actual": 230,
+      "expected": 230,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/balanced_accuracy",
+      "actual": 0.9760869565217392,
+      "expected": 0.9760869565217392,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/defect_precision",
+      "actual": 0.9543568464730291,
+      "expected": 0.9543568464730291,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/frr",
+      "actual": 0.04782608695652174,
+      "expected": 0.04782608695652174,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/f1",
+      "actual": 0.9766454352441614,
+      "expected": 0.9766454352441614,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/mcc",
+      "actual": 0.9532647549060325,
+      "expected": 0.9532647549060325,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/ecpb",
+      "actual": 0.04734782608695653,
+      "expected": 0.04734782608695652,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/tau_yolo",
+      "actual": 0.38,
+      "expected": 0.38,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/route_rate_total",
+      "actual": 0.47608695652173916,
+      "expected": 0.47608695652173916,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/route_rate",
+      "actual": 0.47608695652173916,
+      "expected": 0.47608695652173916,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/route_rate_good",
+      "actual": 0.9521739130434783,
+      "expected": 0.9521739130434783,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/calibration/H02/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/tp",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/tn",
+      "actual": 94,
+      "expected": 94,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/fp",
+      "actual": 59,
+      "expected": 59,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/total",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/n_defect",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/n_good",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/balanced_accuracy",
+      "actual": 0.8071895424836601,
+      "expected": 0.8071895424836601,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/defect_precision",
+      "actual": 0.7216981132075472,
+      "expected": 0.7216981132075472,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/frr",
+      "actual": 0.38562091503267976,
+      "expected": 0.38562091503267976,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/f1",
+      "actual": 0.8383561643835616,
+      "expected": 0.8383561643835616,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/mcc",
+      "actual": 0.6658800390574073,
+      "expected": 0.6658800390574073,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/ecpb",
+      "actual": 0.38176470588235295,
+      "expected": 0.38176470588235295,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/tau_yolo",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/tau_ad",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/route_rate_total",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/route_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/route_rate_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/rescued_defects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/added_false_rejects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B01/yolo_fn_count",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/tp",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/tn",
+      "actual": 129,
+      "expected": 129,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/fp",
+      "actual": 24,
+      "expected": 24,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/total",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/n_defect",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/n_good",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/balanced_accuracy",
+      "actual": 0.9215686274509804,
+      "expected": 0.9215686274509804,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/defect_precision",
+      "actual": 0.864406779661017,
+      "expected": 0.864406779661017,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/frr",
+      "actual": 0.1568627450980392,
+      "expected": 0.1568627450980392,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/f1",
+      "actual": 0.9272727272727274,
+      "expected": 0.9272727272727272,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/mcc",
+      "actual": 0.8537057803025782,
+      "expected": 0.8537057803025782,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/ecpb",
+      "actual": 0.15529411764705883,
+      "expected": 0.15529411764705883,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/tau_yolo",
+      "actual": 0.38,
+      "expected": 0.38,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/tau_ad",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/route_rate_total",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/route_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/route_rate_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/rescued_defects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/added_false_rejects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B02/yolo_fn_count",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/tp",
+      "actual": 44,
+      "expected": 44,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/tn",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/fp",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/fn",
+      "actual": 109,
+      "expected": 109,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/total",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/n_defect",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/n_good",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/balanced_accuracy",
+      "actual": 0.6437908496732025,
+      "expected": 0.6437908496732025,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/defect_recall",
+      "actual": 0.2875816993464052,
+      "expected": 0.2875816993464052,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/defect_precision",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/frr",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/defect_to_good",
+      "actual": 0.7124183006535948,
+      "expected": 0.7124183006535948,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/f1",
+      "actual": 0.4467005076142132,
+      "expected": 0.4467005076142132,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/mcc",
+      "actual": 0.40980352767845946,
+      "expected": 0.40980352767845946,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/ecpb",
+      "actual": 0.7124183006535948,
+      "expected": 0.7124183006535948,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/tau_yolo",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/route_rate_total",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/route_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/route_rate_good",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/route_rate_defect",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/rescued_defects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/added_false_rejects",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/unclassified_positive_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/B03/yolo_fn_count",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/tp",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/tn",
+      "actual": 94,
+      "expected": 94,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/fp",
+      "actual": 59,
+      "expected": 59,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/total",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/n_defect",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/n_good",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/balanced_accuracy",
+      "actual": 0.8071895424836601,
+      "expected": 0.8071895424836601,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/defect_precision",
+      "actual": 0.7216981132075472,
+      "expected": 0.7216981132075472,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/frr",
+      "actual": 0.38562091503267976,
+      "expected": 0.38562091503267976,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/f1",
+      "actual": 0.8383561643835616,
+      "expected": 0.8383561643835616,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/mcc",
+      "actual": 0.6658800390574073,
+      "expected": 0.6658800390574073,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/ecpb",
+      "actual": 0.38176470588235295,
+      "expected": 0.38176470588235295,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/tau_yolo",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/route_rate_total",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/route_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/route_rate_good",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/route_rate_defect",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H00/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/tp",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/tn",
+      "actual": 94,
+      "expected": 94,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/fp",
+      "actual": 59,
+      "expected": 59,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/total",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/n_defect",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/n_good",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/balanced_accuracy",
+      "actual": 0.8071895424836601,
+      "expected": 0.8071895424836601,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/defect_precision",
+      "actual": 0.7216981132075472,
+      "expected": 0.7216981132075472,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/frr",
+      "actual": 0.38562091503267976,
+      "expected": 0.38562091503267976,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/f1",
+      "actual": 0.8383561643835616,
+      "expected": 0.8383561643835616,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/mcc",
+      "actual": 0.6658800390574073,
+      "expected": 0.6658800390574073,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/ecpb",
+      "actual": 0.38176470588235295,
+      "expected": 0.38176470588235295,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/tau_yolo",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/route_rate_total",
+      "actual": 0.30718954248366015,
+      "expected": 0.30718954248366015,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/route_rate",
+      "actual": 0.30718954248366015,
+      "expected": 0.30718954248366015,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/route_rate_good",
+      "actual": 0.6143790849673203,
+      "expected": 0.6143790849673203,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H01/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/tp",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/tn",
+      "actual": 129,
+      "expected": 129,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/fp",
+      "actual": 24,
+      "expected": 24,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/total",
+      "actual": 306,
+      "expected": 306,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/n_defect",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/n_good",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/balanced_accuracy",
+      "actual": 0.9215686274509804,
+      "expected": 0.9215686274509804,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/defect_precision",
+      "actual": 0.864406779661017,
+      "expected": 0.864406779661017,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/frr",
+      "actual": 0.1568627450980392,
+      "expected": 0.1568627450980392,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/defect_to_good",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/f1",
+      "actual": 0.9272727272727274,
+      "expected": 0.9272727272727272,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/mcc",
+      "actual": 0.8537057803025782,
+      "expected": 0.8537057803025782,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/ecpb",
+      "actual": 0.15529411764705883,
+      "expected": 0.15529411764705883,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/tau_yolo",
+      "actual": 0.38,
+      "expected": 0.38,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/route_rate_total",
+      "actual": 0.4215686274509804,
+      "expected": 0.4215686274509804,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/route_rate",
+      "actual": 0.4215686274509804,
+      "expected": 0.4215686274509804,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/route_rate_good",
+      "actual": 0.8431372549019608,
+      "expected": 0.8431372549019608,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/route_rate_defect",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/rescue_rate",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/added_false_rejects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/unclassified_positive_rate",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/mean_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "benchmark/csv/fusion/H02/yolo_fn_count",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/comparison",
+      "actual": "B02 (YOLO11s) minus B01 (YOLO11n), single-model, fusion split",
+      "expected": "B02 (YOLO11s) minus B01 (YOLO11n), single-model, fusion split",
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/tau_yolo_B01",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/tau_yolo_B02",
+      "actual": 0.38,
+      "expected": 0.38,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/delta_recall",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/delta_frr",
+      "actual": -0.22875816993464054,
+      "expected": -0.22875816993464054,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/delta_balanced_accuracy",
+      "actual": 0.1143790849673203,
+      "expected": 0.1143790849673203,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/delta_ecpb",
+      "actual": -0.22647058823529412,
+      "expected": -0.22647058823529412,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/delta_mcc",
+      "actual": 0.18782574124517082,
+      "expected": 0.18782574124517082,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B01/balanced_accuracy",
+      "actual": 0.8071895424836601,
+      "expected": 0.8071895424836601,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B01/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B01/defect_precision",
+      "actual": 0.7216981132075472,
+      "expected": 0.7216981132075472,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B01/frr",
+      "actual": 0.38562091503267976,
+      "expected": 0.38562091503267976,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B01/f1",
+      "actual": 0.8383561643835616,
+      "expected": 0.8383561643835616,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B01/mcc",
+      "actual": 0.6658800390574073,
+      "expected": 0.6658800390574073,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B01/ecpb",
+      "actual": 0.38176470588235295,
+      "expected": 0.38176470588235295,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B01/tp",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B01/tn",
+      "actual": 94,
+      "expected": 94,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B01/fp",
+      "actual": 59,
+      "expected": 59,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B01/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B02/balanced_accuracy",
+      "actual": 0.9215686274509804,
+      "expected": 0.9215686274509804,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B02/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B02/defect_precision",
+      "actual": 0.864406779661017,
+      "expected": 0.864406779661017,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B02/frr",
+      "actual": 0.1568627450980392,
+      "expected": 0.1568627450980392,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B02/f1",
+      "actual": 0.9272727272727274,
+      "expected": 0.9272727272727272,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B02/mcc",
+      "actual": 0.8537057803025782,
+      "expected": 0.8537057803025782,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B02/ecpb",
+      "actual": 0.15529411764705883,
+      "expected": 0.15529411764705883,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B02/tp",
+      "actual": 153,
+      "expected": 153,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B02/tn",
+      "actual": 129,
+      "expected": 129,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B02/fp",
+      "actual": 24,
+      "expected": 24,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A1_detector_capacity_B01_vs_B02/B02/fn",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/comparison",
+      "actual": "H01 (cascade) minus H00 (OR), same operating point, fusion split",
+      "expected": "H01 (cascade) minus H00 (OR), same operating point, fusion split",
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/tau_yolo",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/delta_recall",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/delta_frr",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/delta_ecpb",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/delta_balanced_accuracy",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/delta_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/route_rate_H01",
+      "actual": 0.30718954248366015,
+      "expected": 0.30718954248366015,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/route_rate_H00",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/saving_rate_early_exit",
+      "actual": 0.6928104575163399,
+      "expected": 0.6928104575163399,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/route_rate_good_H01",
+      "actual": 0.6143790849673203,
+      "expected": 0.6143790849673203,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/route_rate_defect_H01",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/rescued_defects_H01",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/rescue_rate_H01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A2_fusion_logic_H00_vs_H01/added_false_rejects_H01",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/comparison",
+      "actual": "H01 secondary (FRR<=1%) minus H01 primary (FRR<=5%), fusion split",
+      "expected": "H01 secondary (FRR<=1%) minus H01 primary (FRR<=5%), fusion split",
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/primary/tau_yolo",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/primary/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/secondary/tau_yolo",
+      "actual": 0.48,
+      "expected": 0.48,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/secondary/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/delta_recall",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/delta_frr",
+      "actual": -0.21568627450980393,
+      "expected": -0.21568627450980393,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/delta_ecpb",
+      "actual": -0.21352941176470588,
+      "expected": -0.2135294117647059,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/delta_balanced_accuracy",
+      "actual": 0.10784313725490202,
+      "expected": 0.10784313725490191,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_primary_fusion/balanced_accuracy",
+      "actual": 0.8071895424836601,
+      "expected": 0.8071895424836601,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_primary_fusion/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_primary_fusion/defect_precision",
+      "actual": 0.7216981132075472,
+      "expected": 0.7216981132075472,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_primary_fusion/frr",
+      "actual": 0.38562091503267976,
+      "expected": 0.38562091503267976,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_primary_fusion/f1",
+      "actual": 0.8383561643835616,
+      "expected": 0.8383561643835616,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_primary_fusion/mcc",
+      "actual": 0.6658800390574073,
+      "expected": 0.6658800390574073,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_primary_fusion/ecpb",
+      "actual": 0.38176470588235295,
+      "expected": 0.38176470588235295,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_primary_fusion/route_rate",
+      "actual": 0.30718954248366015,
+      "expected": 0.30718954248366015,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_secondary_fusion/balanced_accuracy",
+      "actual": 0.9150326797385622,
+      "expected": 0.9150326797385621,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_secondary_fusion/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_secondary_fusion/defect_precision",
+      "actual": 0.8547486033519553,
+      "expected": 0.8547486033519553,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_secondary_fusion/frr",
+      "actual": 0.16993464052287582,
+      "expected": 0.16993464052287582,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_secondary_fusion/f1",
+      "actual": 0.9216867469879518,
+      "expected": 0.9216867469879518,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_secondary_fusion/mcc",
+      "actual": 0.8423165715477232,
+      "expected": 0.8423165715477232,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_secondary_fusion/ecpb",
+      "actual": 0.16823529411764707,
+      "expected": 0.16823529411764704,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_secondary_fusion/route_rate",
+      "actual": 0.4150326797385621,
+      "expected": 0.4150326797385621,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_primary_calibration/balanced_accuracy",
+      "actual": 0.9760869565217392,
+      "expected": 0.9760869565217392,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_primary_calibration/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_primary_calibration/frr",
+      "actual": 0.04782608695652174,
+      "expected": 0.04782608695652174,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_primary_calibration/ecpb",
+      "actual": 0.04734782608695653,
+      "expected": 0.04734782608695652,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_primary_calibration/route_rate",
+      "actual": 0.47608695652173916,
+      "expected": 0.47608695652173916,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_secondary_calibration/balanced_accuracy",
+      "actual": 0.9956521739130435,
+      "expected": 0.9956521739130435,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_secondary_calibration/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_secondary_calibration/frr",
+      "actual": 0.008695652173913044,
+      "expected": 0.008695652173913044,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_secondary_calibration/ecpb",
+      "actual": 0.008608695652173913,
+      "expected": 0.008608695652173913,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/json/A3_operating_threshold_primary_vs_secondary/H01_secondary_calibration/route_rate",
+      "actual": 0.4956521739130435,
+      "expected": 0.4956521739130435,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/row_count",
+      "actual": 3,
+      "expected": 3,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/comparison",
+      "actual": "B02 (YOLO11s) minus B01 (YOLO11n), single-model, fusion split",
+      "expected": "B02 (YOLO11s) minus B01 (YOLO11n), single-model, fusion split",
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/tau_yolo_B01",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/tau_yolo_B02",
+      "actual": 0.38,
+      "expected": 0.38,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/delta_recall",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/delta_frr",
+      "actual": -0.22875816993464054,
+      "expected": -0.22875816993464054,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/delta_balanced_accuracy",
+      "actual": 0.1143790849673203,
+      "expected": 0.1143790849673203,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/delta_ecpb",
+      "actual": -0.22647058823529412,
+      "expected": -0.22647058823529412,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/delta_mcc",
+      "actual": 0.18782574124517082,
+      "expected": 0.18782574124517082,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/tau_yolo",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/tau_ad",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/delta_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/route_rate_H01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/route_rate_H00",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/saving_rate_early_exit",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/route_rate_good_H01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/route_rate_defect_H01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/rescued_defects_H01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/rescue_rate_H01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A1_detector_capacity_B01_vs_B02/added_false_rejects_H01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/comparison",
+      "actual": "H01 (cascade) minus H00 (OR), same operating point, fusion split",
+      "expected": "H01 (cascade) minus H00 (OR), same operating point, fusion split",
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/tau_yolo_B01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/tau_yolo_B02",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/delta_recall",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/delta_frr",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/delta_balanced_accuracy",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/delta_ecpb",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/delta_mcc",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/tau_yolo",
+      "actual": 0.14,
+      "expected": 0.14,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/tau_ad",
+      "actual": 1.4598,
+      "expected": 1.4598,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/delta_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/route_rate_H01",
+      "actual": 0.30718954248366015,
+      "expected": 0.30718954248366015,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/route_rate_H00",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/saving_rate_early_exit",
+      "actual": 0.6928104575163399,
+      "expected": 0.6928104575163399,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/route_rate_good_H01",
+      "actual": 0.6143790849673203,
+      "expected": 0.6143790849673203,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/route_rate_defect_H01",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/rescued_defects_H01",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/rescue_rate_H01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A2_fusion_logic_H00_vs_H01/added_false_rejects_H01",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/comparison",
+      "actual": "H01 secondary (FRR<=1%) minus H01 primary (FRR<=5%), fusion split",
+      "expected": "H01 secondary (FRR<=1%) minus H01 primary (FRR<=5%), fusion split",
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/tau_yolo_B01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/tau_yolo_B02",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/delta_recall",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/delta_frr",
+      "actual": -0.21568627450980393,
+      "expected": -0.21568627450980393,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/delta_balanced_accuracy",
+      "actual": 0.10784313725490202,
+      "expected": 0.10784313725490191,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/delta_ecpb",
+      "actual": -0.21352941176470588,
+      "expected": -0.2135294117647059,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/delta_mcc",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/tau_yolo",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/tau_ad",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/delta_latency_ms",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/route_rate_H01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/route_rate_H00",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/saving_rate_early_exit",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/route_rate_good_H01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/route_rate_defect_H01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/rescued_defects_H01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/rescue_rate_H01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "ablation/csv/A3_operating_threshold_primary_vs_secondary/added_false_rejects_H01",
+      "actual": null,
+      "expected": null,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/B01/selection_metrics/balanced_accuracy",
+      "actual": 0.8071895424836601,
+      "expected": 0.8071895424836601,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/B01/selection_metrics/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/B01/selection_metrics/defect_precision",
+      "actual": 0.7216981132075472,
+      "expected": 0.7216981132075472,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/B01/selection_metrics/frr",
+      "actual": 0.38562091503267976,
+      "expected": 0.38562091503267976,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/B01/selection_metrics/ecpb",
+      "actual": 0.38176470588235295,
+      "expected": 0.38176470588235295,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/B03/selection_metrics/balanced_accuracy",
+      "actual": 0.6437908496732025,
+      "expected": 0.6437908496732025,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/B03/selection_metrics/defect_recall",
+      "actual": 0.2875816993464052,
+      "expected": 0.2875816993464052,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/B03/selection_metrics/defect_precision",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/B03/selection_metrics/frr",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/B03/selection_metrics/ecpb",
+      "actual": 0.7124183006535948,
+      "expected": 0.7124183006535948,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H00/selection_metrics/balanced_accuracy",
+      "actual": 0.8071895424836601,
+      "expected": 0.8071895424836601,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H00/selection_metrics/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H00/selection_metrics/defect_precision",
+      "actual": 0.7216981132075472,
+      "expected": 0.7216981132075472,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H00/selection_metrics/frr",
+      "actual": 0.38562091503267976,
+      "expected": 0.38562091503267976,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H00/selection_metrics/ecpb",
+      "actual": 0.38176470588235295,
+      "expected": 0.38176470588235295,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H00/selection_metrics/route_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H01/selection_metrics/balanced_accuracy",
+      "actual": 0.8071895424836601,
+      "expected": 0.8071895424836601,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H01/selection_metrics/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H01/selection_metrics/defect_precision",
+      "actual": 0.7216981132075472,
+      "expected": 0.7216981132075472,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H01/selection_metrics/frr",
+      "actual": 0.38562091503267976,
+      "expected": 0.38562091503267976,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H01/selection_metrics/ecpb",
+      "actual": 0.38176470588235295,
+      "expected": 0.38176470588235295,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H01/selection_metrics/route_rate",
+      "actual": 0.30718954248366015,
+      "expected": 0.30718954248366015,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H01/selection_metrics/rescued_defects",
+      "actual": 0,
+      "expected": 0,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H01/selection_metrics/saving_rate",
+      "actual": 0.6928104575163399,
+      "expected": 0.6928104575163399,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H02/selection_metrics/balanced_accuracy",
+      "actual": 0.9215686274509804,
+      "expected": 0.9215686274509804,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H02/selection_metrics/defect_recall",
+      "actual": 1.0,
+      "expected": 1.0,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H02/selection_metrics/defect_precision",
+      "actual": 0.864406779661017,
+      "expected": 0.864406779661017,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H02/selection_metrics/frr",
+      "actual": 0.1568627450980392,
+      "expected": 0.1568627450980392,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H02/selection_metrics/ecpb",
+      "actual": 0.15529411764705883,
+      "expected": 0.15529411764705883,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H02/selection_metrics/route_rate",
+      "actual": 0.4215686274509804,
+      "expected": 0.4215686274509804,
+      "status": "pass"
+    },
+    {
+      "path": "shortlist/H02/selection_metrics/saving_rate",
+      "actual": 0.5784313725490196,
+      "expected": 0.5784313725490196,
+      "status": "pass"
+    }
+  ],
+  "replay_identical": {
+    "development_summary.json": true,
+    "development_summary.csv": true,
+    "ablation_summary.json": true,
+    "ablation_summary.csv": true,
+    "shortlist.json": true
+  },
+  "pytest": {
+    "targeted": {
+      "tests": 45,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failed_tests": [],
+      "skip_reasons": {}
+    },
+    "full": {
+      "tests": 396,
+      "failures": 9,
+      "errors": 0,
+      "skipped": 35,
+      "failed_tests": [
+        "tests.test_yolo_adversarial::test_existing_empty_run_directory_rejected",
+        "tests.test_yolo_adversarial::test_extra_checkpoint_class_is_rejected",
+        "tests.test_yolo_adversarial::test_resume_is_forwarded_to_actual_trainer",
+        "tests.test_yolo_config::test_trainer_rejects_unknown_keys[train]",
+        "tests.test_yolo_config::test_trainer_rejects_unknown_keys[selection]",
+        "tests.test_yolo_config::test_trainer_rejects_unknown_keys[infer]",
+        "tests.test_yolo_extract::test_extract_complete_deterministic_and_preserves_errors[False]",
+        "tests.test_yolo_extract::test_extract_complete_deterministic_and_preserves_errors[True]",
+        "tests.test_yolo_view::test_view_limit_selects_first_ids_and_rebuild_removes_stale"
+      ],
+      "skip_reasons": {
+        "augment chưa merge: pcb_lab.data.augment không có entry point dự kiến": 9,
+        "Set STEP4_ARTIFACT_DIR for real B03 artifact acceptance; no fake PASS": 5,
+        "DATASET_ROOT không được đặt hoặc không trỏ tới dataset hợp lệ": 12,
+        "STEP3_ARTIFACT_DIR is not set": 9
+      }
+    },
+    "legacy_baseline": {
+      "tests": 9,
+      "failures": 9,
+      "errors": 0,
+      "skipped": 0,
+      "failed_tests": [
+        "tests.test_yolo_adversarial::test_existing_empty_run_directory_rejected",
+        "tests.test_yolo_adversarial::test_extra_checkpoint_class_is_rejected",
+        "tests.test_yolo_adversarial::test_resume_is_forwarded_to_actual_trainer",
+        "tests.test_yolo_config::test_trainer_rejects_unknown_keys[train]",
+        "tests.test_yolo_config::test_trainer_rejects_unknown_keys[selection]",
+        "tests.test_yolo_config::test_trainer_rejects_unknown_keys[infer]",
+        "tests.test_yolo_extract::test_extract_complete_deterministic_and_preserves_errors[False]",
+        "tests.test_yolo_extract::test_extract_complete_deterministic_and_preserves_errors[True]",
+        "tests.test_yolo_view::test_view_limit_selects_first_ids_and_rebuild_removes_stale"
+      ],
+      "skip_reasons": {}
+    }
+  }
+}

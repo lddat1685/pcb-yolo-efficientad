@@ -1,0 +1,103 @@
+sssssssss............................................................... [ 15%]
+.........ss.........s................................................... [ 31%]
+..........s...ss........................................................ [ 47%]
+........................................................................ [ 63%]
+........................................................................ [ 79%]
+.........................................sssssssss...................... [ 95%]
+...........F..........                                                   [100%]
+================================== FAILURES ===================================
+__________ test_one_epoch_cpu_train_reload_and_no_official_artifact ___________
+
+step3_cpu_dependencies = (<module 'torch' from 'D:\\FPTU\\KLTN\\PCB_YOLO_EfficientAD_Lab\\.venv\\Lib\\site-packages\\torch\\__init__.py'>, <module 'ultralytics' from 'D:\\FPTU\\KLTN\\PCB_YOLO_EfficientAD_Lab\\.venv\\Lib\\site-packages\\ultralytics\\__init__.py'>)
+real_dataset_root = WindowsPath('D:/FPTU/KLTN/DatasetVer4_Public')
+tmp_path = WindowsPath('C:/Users/ASUS/AppData/Local/Temp/pytest-of-ASUS/pytest-88/test_one_epoch_cpu_train_reloa0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002938ABB4E90>
+
+    def test_one_epoch_cpu_train_reload_and_no_official_artifact(
+        step3_cpu_dependencies, real_dataset_root, tmp_path, monkeypatch
+    ):
+        # Protect plan §5 Bước 3/§11 reload and contract train smoke: CPU, one epoch, tiny view, no artifacts/.
+        import numpy as np
+        import shutil
+        from pcb_lab.data.samples import ManifestDataset
+        from pcb_lab.inference.preprocessing import prepare_input
+        from pcb_lab.models.yolo.adapter import YoloDetector
+        from pcb_lab.models.yolo.train import train_yolo
+        torch, ultralytics = step3_cpu_dependencies
+        monkeypatch.setenv("DATASET_ROOT", str(real_dataset_root))
+        config = approved_test_config()
+        # Missing pretrained proves smoke initializes architecture, never fetches pretrained weights.
+        config["pretrained"] = str(tmp_path / "intentionally-absent-weights.pt")
+        config_path = write_config(tmp_path / "config", config)
+        out = tmp_path / "output"
+        def official_snapshot():
+            root = REPO_ROOT / "artifacts"
+            return {path.relative_to(root).as_posix(): (path.stat().st_mtime_ns, sha256(path))
+                    for path in root.rglob("*") if path.is_file()} if root.exists() else None
+        official_before = official_snapshot()
+        before = dataset_snapshot(real_dataset_root)
+        try:
+>           train_yolo(config_path, seed=42, out_root=out, device="cpu", smoke=True, allow_download=False)
+
+tests\test_yolo_smoke.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\pcb_lab\models\yolo\train.py:537: in train_yolo
+    trainer.train()
+src\pcb_lab\models\yolo\train.py:246: in train
+    super().train()
+.venv\Lib\site-packages\ultralytics\engine\trainer.py:211: in train
+    self._do_train(world_size)
+.venv\Lib\site-packages\ultralytics\engine\trainer.py:327: in _do_train
+    self._setup_train(world_size)
+.venv\Lib\site-packages\ultralytics\engine\trainer.py:291: in _setup_train
+    self.train_loader = self.get_dataloader(self.trainset, batch_size=batch_size, rank=LOCAL_RANK, mode="train")
+src\pcb_lab\models\yolo\train.py:222: in get_dataloader
+    dataset = self.build_dataset(dataset_path, mode, batch_size)
+src\pcb_lab\models\yolo\train.py:187: in build_dataset
+    gs = max(int(self.unwrap_stride()), 32)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <pcb_lab.models.yolo.train._PCBDetectionTrainer object at 0x000002939425A9D0>
+
+    def unwrap_stride(self):
+>       from ultralytics.utils.torch_utils import unwrap_model
+E       ImportError: cannot import name 'unwrap_model' from 'ultralytics.utils.torch_utils' (D:\FPTU\KLTN\PCB_YOLO_EfficientAD_Lab\.venv\Lib\site-packages\ultralytics\utils\torch_utils.py)
+
+src\pcb_lab\models\yolo\train.py:199: ImportError
+---------------------------- Captured stdout call -----------------------------
+Ultralytics 8.3.100 🚀 Python-3.11.16 torch-2.6.0+cpu CPU (Intel Core(TM) Ultra 7 155H)
+[34m[1mengine\trainer: [0mtask=detect, mode=train, model=yolo11n.yaml, data=C:\Users\ASUS\AppData\Local\Temp\pytest-of-ASUS\pytest-88\test_one_epoch_cpu_train_reloa0\output\data_refs\smoke_view\B01_yolo11n\data.yaml, epochs=1, time=None, patience=20, batch=2, imgsz=640, save=True, save_period=-1, cache=False, device=cpu, workers=0, project=C:\Users\ASUS\AppData\Local\Temp\pytest-of-ASUS\pytest-88\test_one_epoch_cpu_train_reloa0\output\runs\smoke\B01_yolo11n, name=seed42, exist_ok=True, pretrained=True, optimizer=AdamW, verbose=False, seed=42, deterministic=True, single_cls=False, rect=False, cos_lr=False, close_mosaic=0, resume=False, amp=False, fraction=1.0, profile=False, freeze=None, multi_scale=False, overlap_mask=True, mask_ratio=4, dropout=0.0, val=True, split=val, save_json=False, save_hybrid=False, conf=0.001, iou=0.7, max_det=300, half=False, dnn=False, plots=True, source=None, vid_stride=1, stream_buffer=False, visualize=False, augment=False, agnostic_nms=False, classes=None, retina_masks=False, embed=None, show=False, save_frames=False, save_txt=False, save_conf=False, save_crop=False, show_labels=True, show_conf=True, show_boxes=True, line_width=None, format=torchscript, keras=False, optimize=False, int8=False, dynamic=False, simplify=True, opset=None, workspace=None, nms=False, lr0=0.001, lrf=0.01, momentum=0.937, weight_decay=0.0005, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=7.5, cls=0.5, dfl=1.5, pose=12.0, kobj=1.0, nbs=2, hsv_h=0.0, hsv_s=0.0, hsv_v=0.0, degrees=0.0, translate=0.0, scale=0.0, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, bgr=0.0, mosaic=0.0, mixup=0.0, copy_paste=0.0, copy_paste_mode=flip, auto_augment=randaugment, erasing=0.4, crop_fraction=1.0, cfg=None, tracker=botsort.yaml, save_dir=C:\Users\ASUS\AppData\Local\Temp\pytest-of-ASUS\pytest-88\test_one_epoch_cpu_train_reloa0\output\runs\smoke\B01_yolo11n\seed42
+Overriding model.yaml nc=80 with nc=6
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5]                 
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    111296  ultralytics.nn.modules.block.C3k2            [384, 128, 1, False]          
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     32096  ultralytics.nn.modules.block.C3k2            [256, 64, 1, False]           
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     86720  ultralytics.nn.modules.block.C3k2            [192, 128, 1, False]          
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    378880  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True]           
+ 23        [16, 19, 22]  1    431842  ultralytics.nn.modules.head.Detect           [6, [64, 128, 256]]           
+YOLO11n summary: 181 layers, 2,591,010 parameters, 2,590,994 gradients, 6.4 GFLOPs
+
+Freezing layer 'model.23.dfl.conv.weight'
+- generated xml file: D:\FPTU\KLTN\PCB_YOLO_EfficientAD_Lab\reports\portable_verification\20260930_231517_572224\pytest.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_yolo_smoke.py::test_one_epoch_cpu_train_reload_and_no_official_artifact
+1 failed, 429 passed, 24 skipped in 301.89s (0:05:01)

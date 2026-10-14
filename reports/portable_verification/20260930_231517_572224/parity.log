@@ -1,0 +1,15 @@
+2026-09-30 23:20:22.345 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+Creating new Ultralytics Settings v0.0.6 file ✅ 
+View Ultralytics Settings with 'yolo settings' or at 'D:\FPTU\KLTN\PCB_YOLO_EfficientAD_Lab\.cache\step8-ultralytics\settings.json'
+Update Settings with 'yolo settings key=value', i.e. 'yolo settings runs_dir=path/to/dir'. For help see https://docs.ultralytics.com/quickstart/#ultralytics-settings.
+{"model": "B01", "sample_id": "deeppcb_12000001_defect", "decision": "DEFECT", "early_exit": false, "ad_executed": false, "yolo_score": 0.8993626236915588, "ad_score": null, "boxes": 20, "exact_fields": 15}
+{"model": "B02", "sample_id": "deeppcb_12000001_defect", "decision": "DEFECT", "early_exit": false, "ad_executed": false, "yolo_score": 0.9105978012084961, "ad_score": null, "boxes": 21, "exact_fields": 15}
+{"model": "B03", "sample_id": "deeppcb_12000001_defect", "decision": "GOOD", "early_exit": false, "ad_executed": true, "yolo_score": null, "ad_score": 0.404594749212265, "boxes": 0, "exact_fields": 15}
+{"model": "H00", "sample_id": "deeppcb_12000001_defect", "decision": "DEFECT", "early_exit": false, "ad_executed": true, "yolo_score": 0.8993626236915588, "ad_score": 0.404594749212265, "boxes": 20, "exact_fields": 15}
+{"model": "H01", "sample_id": "deeppcb_12000001_defect", "decision": "DEFECT", "early_exit": true, "ad_executed": false, "yolo_score": 0.8993626236915588, "ad_score": null, "boxes": 20, "exact_fields": 15}
+{"model": "H02", "sample_id": "deeppcb_12000001_defect", "decision": "DEFECT", "early_exit": true, "ad_executed": false, "yolo_score": 0.9105978012084961, "ad_score": null, "boxes": 21, "exact_fields": 15}
+{"model": "H01_sec", "sample_id": "deeppcb_12000001_defect", "decision": "DEFECT", "early_exit": true, "ad_executed": false, "yolo_score": 0.8993626236915588, "ad_score": null, "boxes": 16, "exact_fields": 15}
+{"model": "H01", "sample_id": "deeppcb_12000001_good", "decision": "DEFECT", "early_exit": true, "ad_executed": false, "yolo_score": 0.43485668301582336, "ad_score": null, "boxes": 5, "exact_fields": 15}
+{"model": "B03", "sample_id": "deeppcb_12000052_defect", "decision": "DEFECT", "early_exit": false, "ad_executed": true, "yolo_score": null, "ad_score": 1.9171160459518433, "boxes": 0, "exact_fields": 15}
+{"model": "H01", "sample_id": "deeppcb_12000038_good", "decision": "GOOD", "early_exit": false, "ad_executed": true, "yolo_score": 0.0012245220132172108, "ad_score": 0.11631742119789124, "boxes": 0, "exact_fields": 15}
+{"status": "PASS", "cases": 10, "comparison": "exact equality; timings/run IDs excluded"}

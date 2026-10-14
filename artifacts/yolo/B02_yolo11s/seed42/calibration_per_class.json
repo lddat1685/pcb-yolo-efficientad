@@ -1,0 +1,78 @@
+{
+  "infer_params": {
+    "agnostic_nms": false,
+    "conf_floor": 0.001,
+    "half": false,
+    "imgsz": 640,
+    "iou": 0.7,
+    "max_det": 300
+  },
+  "n_images": 460,
+  "overall": {
+    "map50": 0.9408849607293804,
+    "map50_95": 0.7392858571501647,
+    "pr_conf": 0.5795795795795796,
+    "pr_definition": "Ultralytics F1-optimal confidence (not operating threshold)",
+    "precision": 0.910859149909308,
+    "recall": 0.9197194136460188
+  },
+  "per_class": {
+    "mouse_bite": {
+      "ap50": 0.9685997069734623,
+      "ap50_95": 0.7710773840783082,
+      "n_gt_boxes": 339,
+      "precision": 0.9552543990145346,
+      "recall": 0.9446283486875141
+    },
+    "open_circuit": {
+      "ap50": 0.9909022013046781,
+      "ap50_95": 0.6936441548516169,
+      "n_gt_boxes": 234,
+      "precision": 0.97032823562929,
+      "recall": 0.9914529914529915
+    },
+    "pin_hole": {
+      "ap50": 0.831403758424777,
+      "ap50_95": 0.7537212621248008,
+      "n_gt_boxes": 265,
+      "precision": 0.6085728377218853,
+      "recall": 0.8566037735849057
+    },
+    "short": {
+      "ap50": 0.9343414545671933,
+      "ap50_95": 0.6207301791238156,
+      "n_gt_boxes": 160,
+      "precision": 0.9603912764208942,
+      "recall": 0.90625
+    },
+    "spur": {
+      "ap50": 0.9787033241992871,
+      "ap50_95": 0.73931783716583,
+      "n_gt_boxes": 277,
+      "precision": 0.9747941192983912,
+      "recall": 0.9350180505415162
+    },
+    "spurious_copper": {
+      "ap50": 0.9413593189068845,
+      "ap50_95": 0.8572243255566161,
+      "n_gt_boxes": 269,
+      "precision": 0.9958140313708532,
+      "recall": 0.8843633176091859
+    }
+  },
+  "source": "ultralytics validate on calibration (rect=False; metadata refresh without training)",
+  "split": "calibration",
+  "ultralytics_version": "8.4.161",
+  "validation_context": {
+    "batch": 16,
+    "checkpoint_sha256": "aa079248bd566b3adf8863e3b43dde93d3392307a3ef17107e4c126bf410936c",
+    "device": "cpu",
+    "half": false,
+    "imgsz": 640,
+    "python": "3.14.7",
+    "rect": false,
+    "split": "calibration",
+    "torch_version": "2.14.0+cpu",
+    "ultralytics_version": "8.4.161"
+  }
+}

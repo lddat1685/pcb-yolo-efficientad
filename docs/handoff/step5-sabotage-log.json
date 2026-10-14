@@ -1,0 +1,152 @@
+{
+  "synthetic_only": true,
+  "real_test_access": false,
+  "cases": [
+    {
+      "case": "predict_cascade: test in yolo; yolo=0.1",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not process test partition",
+      "passed": true
+    },
+    {
+      "case": "predict_cascade: test in yolo; yolo=0.9",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not process test partition",
+      "passed": true
+    },
+    {
+      "case": "predict_cascade: test in ad; yolo=0.1",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not process test partition",
+      "passed": true
+    },
+    {
+      "case": "predict_cascade: test in ad; yolo=0.9",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not process test partition",
+      "passed": true
+    },
+    {
+      "case": "predict_cascade: test in both; yolo=0.1",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not process test partition",
+      "passed": true
+    },
+    {
+      "case": "predict_cascade: test in both; yolo=0.9",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not process test partition",
+      "passed": true
+    },
+    {
+      "case": "predict_cascade: swap sample_id",
+      "expected": "ValueError",
+      "observed": "ValueError",
+      "message": "Sample ID mismatch: synthetic vs mismatched-synthetic-id",
+      "passed": true
+    },
+    {
+      "case": "predict_or: test in yolo; yolo=0.1",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not process test partition",
+      "passed": true
+    },
+    {
+      "case": "predict_or: test in yolo; yolo=0.9",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not process test partition",
+      "passed": true
+    },
+    {
+      "case": "predict_or: test in ad; yolo=0.1",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not process test partition",
+      "passed": true
+    },
+    {
+      "case": "predict_or: test in ad; yolo=0.9",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not process test partition",
+      "passed": true
+    },
+    {
+      "case": "predict_or: test in both; yolo=0.1",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not process test partition",
+      "passed": true
+    },
+    {
+      "case": "predict_or: test in both; yolo=0.9",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not process test partition",
+      "passed": true
+    },
+    {
+      "case": "predict_or: swap sample_id",
+      "expected": "ValueError",
+      "observed": "ValueError",
+      "message": "Sample ID mismatch: synthetic vs mismatched-synthetic-id",
+      "passed": true
+    },
+    {
+      "case": "grid: test in yolo",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not access test partition",
+      "passed": true
+    },
+    {
+      "case": "evaluate: test in yolo",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not access test partition",
+      "passed": true
+    },
+    {
+      "case": "grid: test in ad",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not access test partition",
+      "passed": true
+    },
+    {
+      "case": "evaluate: test in ad",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Step 5 fusion must not access test partition",
+      "passed": true
+    },
+    {
+      "case": "numeric AD score on an unrouted cascade decision",
+      "expected": "AssertionError",
+      "observed": "AssertionError",
+      "message": "Unrouted AD score must be None",
+      "passed": true
+    },
+    {
+      "case": "failed prediction is rejected",
+      "expected": "ValueError",
+      "observed": "ValueError",
+      "message": "YOLO inference error: synthetic inference failure",
+      "passed": true
+    }
+  ],
+  "hybrid_contract_call": {
+    "expected_rescue_rate": 0.5,
+    "actual_rescue_rate": 0.5,
+    "expected_added_false_rejects": 1,
+    "actual_added_false_rejects": 1
+  }
+}

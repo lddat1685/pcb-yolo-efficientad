@@ -1,0 +1,10 @@
+# Keep recorded SHA-256 values valid after Windows/Linux checkouts.
+runs/yolo/**/run_manifest.json text eol=lf
+artifacts/yolo/**/*.json text eol=lf
+artifacts/yolo/**/model_card.md text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf
+artifacts/test/frozen_evaluation.json text eol=lf
+
+# Preserve exact handoff bytes and recorded checksums on every platform.
+* -text

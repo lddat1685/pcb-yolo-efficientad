@@ -1,0 +1,3 @@
+-r step1.txt
+# Arrays, native tiling, map blending and geometric transforms on CPU.
+numpy==2.4.3

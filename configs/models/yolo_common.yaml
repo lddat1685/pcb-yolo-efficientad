@@ -1,0 +1,2 @@
+# Shared base for YOLO model configs. Merged first, then the model-specific file.
+# Only keys in the Step 3 contract are allowed; unknown keys raise ConfigError.

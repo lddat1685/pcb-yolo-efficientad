@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "selection_split": "fusion",
+  "test_access": false,
+  "ablations": {
+    "A1_detector_capacity_B01_vs_B02": {
+      "comparison": "B02 (YOLO11s) minus B01 (YOLO11n), single-model, fusion split",
+      "tau_yolo_B01": 0.14,
+      "tau_yolo_B02": 0.38,
+      "delta_recall": 0.0,
+      "delta_frr": -0.22875816993464054,
+      "delta_balanced_accuracy": 0.1143790849673203,
+      "delta_ecpb": -0.22647058823529412,
+      "delta_mcc": 0.18782574124517082,
+      "B01": {
+        "balanced_accuracy": 0.8071895424836601,
+        "defect_recall": 1.0,
+        "defect_precision": 0.7216981132075472,
+        "frr": 0.38562091503267976,
+        "f1": 0.8383561643835616,
+        "mcc": 0.6658800390574073,
+        "ecpb": 0.38176470588235295,
+        "tp": 153,
+        "tn": 94,
+        "fp": 59,
+        "fn": 0
+      },
+      "B02": {
+        "balanced_accuracy": 0.9215686274509804,
+        "defect_recall": 1.0,
+        "defect_precision": 0.864406779661017,
+        "frr": 0.1568627450980392,
+        "f1": 0.9272727272727274,
+        "mcc": 0.8537057803025782,
+        "ecpb": 0.15529411764705883,
+        "tp": 153,
+        "tn": 129,
+        "fp": 24,
+        "fn": 0
+      }
+    },
+    "A2_fusion_logic_H00_vs_H01": {
+      "comparison": "H01 (cascade) minus H00 (OR), same operating point, fusion split",
+      "tau_yolo": 0.14,
+      "tau_ad": 1.4598,
+      "delta_recall": 0.0,
+      "delta_frr": 0.0,
+      "delta_ecpb": 0.0,
+      "delta_balanced_accuracy": 0.0,
+      "delta_latency_ms": null,
+      "route_rate_H01": 0.30718954248366015,
+      "route_rate_H00": 1.0,
+      "saving_rate_early_exit": 0.6928104575163399,
+      "route_rate_good_H01": 0.6143790849673203,
+      "route_rate_defect_H01": 0.0,
+      "rescued_defects_H01": 0,
+      "rescue_rate_H01": null,
+      "added_false_rejects_H01": 0
+    },
+    "A3_operating_threshold_primary_vs_secondary": {
+      "comparison": "H01 secondary (FRR<=1%) minus H01 primary (FRR<=5%), fusion split",
+      "primary": {
+        "tau_yolo": 0.14,
+        "tau_ad": 1.4598
+      },
+      "secondary": {
+        "tau_yolo": 0.48,
+        "tau_ad": 1.4598
+      },
+      "delta_recall": 0.0,
+      "delta_frr": -0.21568627450980393,
+      "delta_ecpb": -0.21352941176470588,
+      "delta_balanced_accuracy": 0.10784313725490202,
+      "H01_primary_fusion": {
+        "balanced_accuracy": 0.8071895424836601,
+        "defect_recall": 1.0,
+        "defect_precision": 0.7216981132075472,
+        "frr": 0.38562091503267976,
+        "f1": 0.8383561643835616,
+        "mcc": 0.6658800390574073,
+        "ecpb": 0.38176470588235295,
+        "route_rate": 0.30718954248366015
+      },
+      "H01_secondary_fusion": {
+        "balanced_accuracy": 0.9150326797385622,
+        "defect_recall": 1.0,
+        "defect_precision": 0.8547486033519553,
+        "frr": 0.16993464052287582,
+        "f1": 0.9216867469879518,
+        "mcc": 0.8423165715477232,
+        "ecpb": 0.16823529411764707,
+        "route_rate": 0.4150326797385621
+      },
+      "H01_primary_calibration": {
+        "balanced_accuracy": 0.9760869565217392,
+        "defect_recall": 1.0,
+        "frr": 0.04782608695652174,
+        "ecpb": 0.04734782608695653,
+        "route_rate": 0.47608695652173916
+      },
+      "H01_secondary_calibration": {
+        "balanced_accuracy": 0.9956521739130435,
+        "defect_recall": 1.0,
+        "frr": 0.008695652173913044,
+        "ecpb": 0.008608695652173913,
+        "route_rate": 0.4956521739130435
+      }
+    }
+  },
+  "notes": [
+    "Latency deltas are null: prediction files are static with timing_ms=null.",
+    "Saving rate = 1 - route_rate(H01 cascade): share of images skipping EfficientAD.",
+    "Ablation tile-256 vs resize-256 (PLAN R7/V2) not feasible: only tile-256 B03 preds exist."
+  ]
+}

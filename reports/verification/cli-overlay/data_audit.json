@@ -1,0 +1,637 @@
+{
+  "checks": [
+    {
+      "detail": "Finite positive boxes remain inside the image in both annotation formats.",
+      "id": "box_valid",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "YOLO and manifest class IDs/names match the class schema.",
+      "id": "class_id_valid",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Every canonical image fully decodes.",
+      "id": "image_decode",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Decoded dimensions match manifest; canonical images are RGB.",
+      "id": "image_metadata",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Canonical file hashes match manifest.sha256.",
+      "id": "image_sha256",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Every decoded image is 640 x 640.",
+      "id": "image_size_640",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Defect labels and manifest boxes are nonempty.",
+      "id": "label_defect_nonempty",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Good labels and manifest boxes are empty.",
+      "id": "label_good_empty",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "YOLO labels agree with manifest boxes (normalized tolerance 1e-9).",
+      "id": "label_manifest_match",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Label file hashes match manifest.label_sha256.",
+      "id": "label_sha256",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "All partition pairs have disjoint recomputed file hashes.",
+      "id": "leak_image_hash",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "All partition pairs have disjoint unions of pair_ids.",
+      "id": "leak_pair",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "All partition pairs have disjoint recomputed RGB pixel hashes.",
+      "id": "leak_pixel_hash",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "All partition pairs have disjoint source groups.",
+      "id": "leak_source_group",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Canonical image and label paths exist inside dataset root.",
+      "id": "manifest_paths_exist",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Individual manifest records have the required field types.",
+      "id": "manifest_schema",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Canonical sample IDs are unique.",
+      "id": "manifest_unique_ids",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Up to five examples per class per development partition.",
+      "id": "overlay_coverage",
+      "n_violations": 12,
+      "status": "WARN"
+    },
+    {
+      "detail": "Development overlay coverage and rendering.",
+      "id": "overlay_render",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Sample membership, groups and all pair aliases match holdout.",
+      "id": "partition_counts",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "RGB pixel hashes match manifest.pixel_sha256.",
+      "id": "pixel_sha256",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Every release.files entry matches its SHA-256.",
+      "id": "release_sha256",
+      "n_violations": 0,
+      "status": "PASS"
+    },
+    {
+      "detail": "Development filenames expose labels; never use paths/IDs as model features.",
+      "id": "shortcut_filename",
+      "n_violations": 2,
+      "status": "WARN"
+    }
+  ],
+  "class_box_counts": {
+    "calibration": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    },
+    "fusion": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    },
+    "test": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    },
+    "train": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    }
+  },
+  "class_image_counts": {
+    "calibration": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    },
+    "fusion": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    },
+    "test": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    },
+    "train": {
+      "mouse_bite": 1,
+      "open_circuit": 1,
+      "pin_hole": 1,
+      "short": 1,
+      "spur": 1,
+      "spurious_copper": 1
+    }
+  },
+  "counts": {
+    "by_partition": {
+      "calibration": {
+        "defect": 1,
+        "good": 0,
+        "images": 1,
+        "source_groups": 1
+      },
+      "fusion": {
+        "defect": 1,
+        "good": 0,
+        "images": 1,
+        "source_groups": 1
+      },
+      "test": {
+        "defect": 1,
+        "good": 0,
+        "images": 1,
+        "source_groups": 1
+      },
+      "train": {
+        "defect": 1,
+        "good": 0,
+        "images": 1,
+        "source_groups": 1
+      }
+    },
+    "total": {
+      "defect": 4,
+      "good": 0,
+      "images": 4
+    }
+  },
+  "dataset_root": ".\\reports\\verification\\valid\\dataset",
+  "eda": {
+    "box_sizes": {
+      "mouse_bite": {
+        "area": {
+          "max": 1024.0,
+          "min": 1024.0,
+          "n": 2,
+          "p05": 1024.0,
+          "p50": 1024.0,
+          "p95": 1024.0
+        },
+        "height": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "width": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        }
+      },
+      "open_circuit": {
+        "area": {
+          "max": 1024.0,
+          "min": 1024.0,
+          "n": 2,
+          "p05": 1024.0,
+          "p50": 1024.0,
+          "p95": 1024.0
+        },
+        "height": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "width": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        }
+      },
+      "pin_hole": {
+        "area": {
+          "max": 1024.0,
+          "min": 1024.0,
+          "n": 2,
+          "p05": 1024.0,
+          "p50": 1024.0,
+          "p95": 1024.0
+        },
+        "height": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "width": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        }
+      },
+      "short": {
+        "area": {
+          "max": 1024.0,
+          "min": 1024.0,
+          "n": 2,
+          "p05": 1024.0,
+          "p50": 1024.0,
+          "p95": 1024.0
+        },
+        "height": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "width": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        }
+      },
+      "spur": {
+        "area": {
+          "max": 1024.0,
+          "min": 1024.0,
+          "n": 2,
+          "p05": 1024.0,
+          "p50": 1024.0,
+          "p95": 1024.0
+        },
+        "height": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "width": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        }
+      },
+      "spurious_copper": {
+        "area": {
+          "max": 1024.0,
+          "min": 1024.0,
+          "n": 2,
+          "p05": 1024.0,
+          "p50": 1024.0,
+          "p95": 1024.0
+        },
+        "height": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "width": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        }
+      }
+    },
+    "boxes_per_image": {
+      "calibration": {
+        "6": 1
+      },
+      "fusion": {
+        "6": 1
+      },
+      "test": {
+        "6": 1
+      },
+      "train": {
+        "6": 1
+      }
+    },
+    "by_source_group": {
+      "calibration/group_1": {
+        "boxes": 6,
+        "defect": 1,
+        "good": 0,
+        "images": 1
+      },
+      "fusion/group_2": {
+        "boxes": 6,
+        "defect": 1,
+        "good": 0,
+        "images": 1
+      },
+      "test/group_3": {
+        "boxes": 6,
+        "defect": 1,
+        "good": 0,
+        "images": 1
+      },
+      "train/group_0": {
+        "boxes": 6,
+        "defect": 1,
+        "good": 0,
+        "images": 1
+      }
+    },
+    "filename_label_hints": 2,
+    "normal_evidence_development": {},
+    "partitions": [
+      "train",
+      "calibration"
+    ],
+    "small_defects": {
+      "mouse_bite": {
+        "fraction_short_side_lt_px": {
+          "16": 0.0,
+          "32": 0.0
+        },
+        "n": 2,
+        "resize_256_short_side": {
+          "max": 12.8,
+          "min": 12.8,
+          "n": 2,
+          "p05": 12.8,
+          "p50": 12.8,
+          "p95": 12.8
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "smallest_by_area": {
+          "area": 1024.0,
+          "height": 32.0,
+          "partition": "calibration",
+          "sample_id": "calibration_defect",
+          "short_side": 32.0,
+          "width": 32.0
+        }
+      },
+      "pin_hole": {
+        "fraction_short_side_lt_px": {
+          "16": 0.0,
+          "32": 0.0
+        },
+        "n": 2,
+        "resize_256_short_side": {
+          "max": 12.8,
+          "min": 12.8,
+          "n": 2,
+          "p05": 12.8,
+          "p50": 12.8,
+          "p95": 12.8
+        },
+        "short_side": {
+          "max": 32.0,
+          "min": 32.0,
+          "n": 2,
+          "p05": 32.0,
+          "p50": 32.0,
+          "p95": 32.0
+        },
+        "smallest_by_area": {
+          "area": 1024.0,
+          "height": 32.0,
+          "partition": "calibration",
+          "sample_id": "calibration_defect",
+          "short_side": 32.0,
+          "width": 32.0
+        }
+      }
+    },
+    "source_group_is_not_verified_board_or_design": null,
+    "source_modes_development": {
+      "unknown": 2
+    },
+    "transforms_development": {
+      "null": 2
+    },
+    "uniform_good_development": 0
+  },
+  "errors": [],
+  "leakage": {
+    "pairs": [
+      {
+        "a": "train",
+        "b": "calibration",
+        "image_hash": 0,
+        "pair": 0,
+        "pixel_hash": 0,
+        "source_group": 0
+      },
+      {
+        "a": "train",
+        "b": "fusion",
+        "image_hash": 0,
+        "pair": 0,
+        "pixel_hash": 0,
+        "source_group": 0
+      },
+      {
+        "a": "train",
+        "b": "test",
+        "image_hash": 0,
+        "pair": 0,
+        "pixel_hash": 0,
+        "source_group": 0
+      },
+      {
+        "a": "calibration",
+        "b": "fusion",
+        "image_hash": 0,
+        "pair": 0,
+        "pixel_hash": 0,
+        "source_group": 0
+      },
+      {
+        "a": "calibration",
+        "b": "test",
+        "image_hash": 0,
+        "pair": 0,
+        "pixel_hash": 0,
+        "source_group": 0
+      },
+      {
+        "a": "fusion",
+        "b": "test",
+        "image_hash": 0,
+        "pair": 0,
+        "pixel_hash": 0,
+        "source_group": 0
+      }
+    ]
+  },
+  "overall": "PASS",
+  "overlays": {
+    "n_rendered": 12,
+    "partitions": [
+      "train",
+      "calibration"
+    ]
+  },
+  "release": {
+    "mismatches": [],
+    "n_locked": 4,
+    "n_verified": 4
+  },
+  "schema_version": 1
+}

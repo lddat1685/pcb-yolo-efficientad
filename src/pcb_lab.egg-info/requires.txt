@@ -1,0 +1,15 @@
+torch==2.6.0
+torchvision==0.21.0
+ultralytics==8.4.161
+streamlit==1.55.0
+altair==6.0.0
+pandas==2.2.3
+opencv-python-headless==4.11.0.86
+opencv-python==4.11.0.86
+Pillow==12.1.1
+numpy==2.1.1
+PyYAML==6.0.3
+psutil==7.2.2
+pytest==8.3.5
+
+[ui]

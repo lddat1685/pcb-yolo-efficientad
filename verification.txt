@@ -1,0 +1,62 @@
+[PASS   ] frozen file sha256 - 038aa4a39ba5…
+[PASS   ] frozen test_split_sha256 - 440-image canonical test split
+[PASS   ] frozen checkpoint SHAs - B01/B02/B03 entries
+[PASS   ] frozen operating points - H01 0.14/1.4598, H01_sec 0.48
+[PASS   ] checkpoint B01 best.pt - c0cfe917a685…
+[PASS   ] checkpoint B02 best.pt - aa079248bd56…
+[PASS   ] checkpoint B03 model.pt - 9453bc2c740e…
+[PASS   ] sidecar artifacts/yolo/B01_yolo11n/seed42/artifact.json - checkpoint_best_sha256 matches
+[PASS   ] sidecar artifacts/yolo/B02_yolo11s/seed42/artifact.json - checkpoint_best_sha256 matches
+[PASS   ] file artifacts/test/frozen_evaluation.json - 1551 bytes
+[PASS   ] file artifacts/test/benchmark_summary.csv - 1571 bytes
+[PASS   ] file artifacts/test/benchmark_summary.json - 4419 bytes
+[PASS   ] file artifacts/test/benchmark_per_group.csv - 1169 bytes
+[PASS   ] file artifacts/test/benchmark_per_group.json - 4303 bytes
+[PASS   ] file artifacts/test/benchmark_per_class.csv - 1127 bytes
+[PASS   ] file artifacts/test/benchmark_per_class.json - 3542 bytes
+[PASS   ] file artifacts/test/predictions_test.jsonl - 874593 bytes
+[PASS   ] file artifacts/benchmark/development_summary.csv - 4848 bytes
+[PASS   ] file artifacts/benchmark/ablation_summary.csv - 897 bytes
+[PASS   ] file artifacts/benchmark/shortlist.json - 5842 bytes
+[PASS   ] file artifacts/fusion/thresholds.json - 8922 bytes
+[PASS   ] file artifacts/fusion/routing_policy.json - 927 bytes
+[PASS   ] file artifacts/runtime/B01/profile.json - 418984 bytes
+[PASS   ] file artifacts/runtime/B01/profile.csv - 966 bytes
+[PASS   ] file artifacts/runtime/B01/export_report.json - 35595 bytes
+[PASS   ] file artifacts/runtime/B03/profile.json - 428897 bytes
+[PASS   ] file artifacts/runtime/B03/export_report.json - 36412 bytes
+[PASS   ] file artifacts/runtime/H01/profile.json - 458277 bytes
+[PASS   ] file artifacts/runtime/H01/export_report.json - 36961 bytes
+[PASS   ] file artifacts/runtime/H00/profile_20.json - 26118 bytes
+[PASS   ] file artifacts/runtime/H00/export_report.json - 40402 bytes
+[PASS   ] file reports/data_audit.json - 16348 bytes
+[PASS   ] file reports/data_profile.md - 9884 bytes
+[PASS   ] file reports/step5_calibration_fusion_report.md - 2830 bytes
+[PASS   ] file reports/step6_baseline_benchmark_report.md - 6366 bytes
+[PASS   ] file reports/step7_final_test_evaluation_report.md - 6558 bytes
+[PASS   ] file reports/step9_runtime_optimization_report.md - 16941 bytes
+[PASS   ] file README.md - 16510 bytes
+[PASS   ] file docs/MODEL_CARD.md - 9702 bytes
+[PASS   ] file docs/DATASET_CARD.md - 6093 bytes
+[PASS   ] file docs/LIMITATIONS.md - 8162 bytes
+[PASS   ] file docs/REPRODUCIBILITY.md - 7748 bytes
+[PASS   ] file exports/thesis/overall_comparison.md - 1083 bytes
+[PASS   ] file exports/thesis/overall_comparison.tex - 1170 bytes
+[PASS   ] file exports/thesis/per_group_breakdown.md - 1010 bytes
+[PASS   ] file exports/thesis/per_group_breakdown.tex - 1117 bytes
+[PASS   ] file exports/thesis/per_class_detection.md - 1189 bytes
+[PASS   ] file exports/thesis/per_class_detection.tex - 1232 bytes
+[PASS   ] file exports/thesis/latency_memory.md - 620 bytes
+[PASS   ] file exports/thesis/latency_memory.tex - 675 bytes
+[PASS   ] file exports/thesis/confusion_counts.md - 336 bytes
+[PASS   ] file exports/thesis/confusion_counts.tex - 414 bytes
+[PASS   ] file exports/thesis/README.md - 893 bytes
+[PASS   ] benchmark models - B01/B02/B03/H00/H01/H02/H01_sec
+[PASS   ] benchmark ranges - BalAcc/FRR in [0,1]
+[PASS   ] benchmark H01 spot-check - BalAcc 0.95, recall 1.0
+[PASS   ] parity B01 - maxDelta=0.0, matches=20/20
+[PASS   ] parity B03 - maxDelta=0.0, matches=20/20
+[PASS   ] parity H00 - maxDelta=0.0, matches=20/20
+[PASS   ] parity H01 - maxDelta=0.0, matches=20/20
+
+[verify] 60 PASS, 0 FAIL, 0 MISSING / 60 checks

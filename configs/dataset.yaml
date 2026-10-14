@@ -1,0 +1,9 @@
+# DATASET_ROOT environment variable overrides this setting.
+# auto: <repo>/data if present, otherwise <repo>/../DatasetVer4_Public.
+# Custom relative paths below are resolved against this configs/ directory.
+DATASET_ROOT: auto
+manifest: benchmarks/deeppcb/manifests/samples.jsonl
+holdout: benchmarks/deeppcb/splits/holdout.json
+classes: benchmarks/deeppcb/configs/classes.json
+protocol: benchmarks/deeppcb/configs/protocol.json
+release: benchmarks/deeppcb/release.json

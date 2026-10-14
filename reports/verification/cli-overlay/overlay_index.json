@@ -1,0 +1,74 @@
+[
+  {
+    "class_name": "mouse_bite",
+    "partition": "calibration",
+    "path": "overlays/calibration/mouse_bite/calibration_defect_2a0e52b9.png",
+    "sample_id": "calibration_defect"
+  },
+  {
+    "class_name": "open_circuit",
+    "partition": "calibration",
+    "path": "overlays/calibration/open_circuit/calibration_defect_2a0e52b9.png",
+    "sample_id": "calibration_defect"
+  },
+  {
+    "class_name": "pin_hole",
+    "partition": "calibration",
+    "path": "overlays/calibration/pin_hole/calibration_defect_2a0e52b9.png",
+    "sample_id": "calibration_defect"
+  },
+  {
+    "class_name": "short",
+    "partition": "calibration",
+    "path": "overlays/calibration/short/calibration_defect_2a0e52b9.png",
+    "sample_id": "calibration_defect"
+  },
+  {
+    "class_name": "spur",
+    "partition": "calibration",
+    "path": "overlays/calibration/spur/calibration_defect_2a0e52b9.png",
+    "sample_id": "calibration_defect"
+  },
+  {
+    "class_name": "spurious_copper",
+    "partition": "calibration",
+    "path": "overlays/calibration/spurious_copper/calibration_defect_2a0e52b9.png",
+    "sample_id": "calibration_defect"
+  },
+  {
+    "class_name": "mouse_bite",
+    "partition": "train",
+    "path": "overlays/train/mouse_bite/train_defect_8c18776e.png",
+    "sample_id": "train_defect"
+  },
+  {
+    "class_name": "open_circuit",
+    "partition": "train",
+    "path": "overlays/train/open_circuit/train_defect_8c18776e.png",
+    "sample_id": "train_defect"
+  },
+  {
+    "class_name": "pin_hole",
+    "partition": "train",
+    "path": "overlays/train/pin_hole/train_defect_8c18776e.png",
+    "sample_id": "train_defect"
+  },
+  {
+    "class_name": "short",
+    "partition": "train",
+    "path": "overlays/train/short/train_defect_8c18776e.png",
+    "sample_id": "train_defect"
+  },
+  {
+    "class_name": "spur",
+    "partition": "train",
+    "path": "overlays/train/spur/train_defect_8c18776e.png",
+    "sample_id": "train_defect"
+  },
+  {
+    "class_name": "spurious_copper",
+    "partition": "train",
+    "path": "overlays/train/spurious_copper/train_defect_8c18776e.png",
+    "sample_id": "train_defect"
+  }
+]

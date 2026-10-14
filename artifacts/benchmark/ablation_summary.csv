@@ -1,0 +1,4 @@
+ablation,comparison,tau_yolo_B01,tau_yolo_B02,delta_recall,delta_frr,delta_balanced_accuracy,delta_ecpb,delta_mcc,tau_yolo,tau_ad,delta_latency_ms,route_rate_H01,route_rate_H00,saving_rate_early_exit,route_rate_good_H01,route_rate_defect_H01,rescued_defects_H01,rescue_rate_H01,added_false_rejects_H01
+A1_detector_capacity_B01_vs_B02,"B02 (YOLO11s) minus B01 (YOLO11n), single-model, fusion split",0.14,0.38,0.0,-0.22875816993464054,0.1143790849673203,-0.22647058823529412,0.18782574124517082,,,,,,,,,,,
+A2_fusion_logic_H00_vs_H01,"H01 (cascade) minus H00 (OR), same operating point, fusion split",,,0.0,0.0,0.0,0.0,,0.14,1.4598,,0.30718954248366015,1.0,0.6928104575163399,0.6143790849673203,0.0,0,,0
+A3_operating_threshold_primary_vs_secondary,"H01 secondary (FRR<=1%) minus H01 primary (FRR<=5%), fusion split",,,0.0,-0.21568627450980393,0.10784313725490202,-0.21352941176470588,,,,,,,,,,,,

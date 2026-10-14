@@ -1,0 +1,148 @@
+{
+  "synthetic_only": true,
+  "real_test_access": false,
+  "observations": 20,
+  "passed": 20,
+  "cases": [
+    {
+      "case": "test row: B01/calibration",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Test split detected at ..\\PCB_Lab_verify6\\.cache\\step6-sabotage-cases\\case-4wbw9neq\\artifacts\\yolo\\B01_yolo11n\\seed42\\preds_calibration.jsonl:1; Step 6 must not access test (test_access: False)",
+      "passed": true
+    },
+    {
+      "case": "test row: B01/fusion",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Test split detected at ..\\PCB_Lab_verify6\\.cache\\step6-sabotage-cases\\case-e1bjrzmb\\artifacts\\yolo\\B01_yolo11n\\seed42\\preds_fusion.jsonl:1; Step 6 must not access test (test_access: False)",
+      "passed": true
+    },
+    {
+      "case": "wrong model ID: B01",
+      "expected": "ValueError",
+      "observed": "ValueError",
+      "message": "Model ID prefix mismatch: expected B01, got WRONG_MODEL",
+      "passed": true
+    },
+    {
+      "case": "wrong checkpoint: B01",
+      "expected": "ValueError",
+      "observed": "ValueError",
+      "message": "Checkpoint sha256 mismatch for B01_yolo11n",
+      "passed": true
+    },
+    {
+      "case": "test row: B02/calibration",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Test split detected at ..\\PCB_Lab_verify6\\.cache\\step6-sabotage-cases\\case-j5dt6bac\\artifacts\\yolo\\B02_yolo11s\\seed42\\preds_calibration.jsonl:1; Step 6 must not access test (test_access: False)",
+      "passed": true
+    },
+    {
+      "case": "test row: B02/fusion",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Test split detected at ..\\PCB_Lab_verify6\\.cache\\step6-sabotage-cases\\case-dr0i1q0g\\artifacts\\yolo\\B02_yolo11s\\seed42\\preds_fusion.jsonl:1; Step 6 must not access test (test_access: False)",
+      "passed": true
+    },
+    {
+      "case": "wrong model ID: B02",
+      "expected": "ValueError",
+      "observed": "ValueError",
+      "message": "Model ID prefix mismatch: expected B02, got WRONG_MODEL",
+      "passed": true
+    },
+    {
+      "case": "wrong checkpoint: B02",
+      "expected": "ValueError",
+      "observed": "ValueError",
+      "message": "Checkpoint sha256 mismatch for B02_yolo11s",
+      "passed": true
+    },
+    {
+      "case": "test row: B03/calibration",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Test split detected at ..\\PCB_Lab_verify6\\.cache\\step6-sabotage-cases\\case-i3pzz3aj\\artifacts\\efficientad\\B03_efficientad_s\\seed42\\preds_calibration.jsonl:1; Step 6 must not access test (test_access: False)",
+      "passed": true
+    },
+    {
+      "case": "test row: B03/fusion",
+      "expected": "PermissionError",
+      "observed": "PermissionError",
+      "message": "Test split detected at ..\\PCB_Lab_verify6\\.cache\\step6-sabotage-cases\\case-4ybt2w7u\\artifacts\\efficientad\\B03_efficientad_s\\seed42\\preds_fusion.jsonl:1; Step 6 must not access test (test_access: False)",
+      "passed": true
+    },
+    {
+      "case": "wrong model ID: B03",
+      "expected": "ValueError",
+      "observed": "ValueError",
+      "message": "Model ID prefix mismatch: expected B03, got WRONG_MODEL",
+      "passed": true
+    },
+    {
+      "case": "wrong checkpoint: B03",
+      "expected": "ValueError",
+      "observed": "ValueError",
+      "message": "Checkpoint sha256 mismatch for B03_efficientad_s",
+      "passed": true
+    },
+    {
+      "case": "invalid training budget: -1.0",
+      "expected": "ValueError",
+      "observed": "ValueError",
+      "message": "Invalid train_time_s in ..\\PCB_Lab_verify6\\.cache\\step6-sabotage-cases\\case-pm2q30nd\\runs\\yolo\\B01_yolo11n\\seed42\\run_manifest.json: -3600.0",
+      "passed": true
+    },
+    {
+      "case": "invalid training budget: nan",
+      "expected": "ValueError",
+      "observed": "ValueError",
+      "message": "Invalid train_time_s in ..\\PCB_Lab_verify6\\.cache\\step6-sabotage-cases\\case-ih039jnu\\runs\\yolo\\B01_yolo11n\\seed42\\run_manifest.json: nan",
+      "passed": true
+    },
+    {
+      "case": "invalid training budget: inf",
+      "expected": "ValueError",
+      "observed": "ValueError",
+      "message": "Invalid train_time_s in ..\\PCB_Lab_verify6\\.cache\\step6-sabotage-cases\\case-ip8zndil\\runs\\yolo\\B01_yolo11n\\seed42\\run_manifest.json: inf",
+      "passed": true
+    },
+    {
+      "case": "changed valid training budget",
+      "expected": "source-derived B01 gpu_hours=2.0",
+      "observed": "accepted",
+      "value": 2.0,
+      "passed": true
+    },
+    {
+      "case": "policy missing",
+      "expected": "FileNotFoundError",
+      "observed": "FileNotFoundError",
+      "message": "Policy file missing: ..\\PCB_Lab_verify6\\.cache\\step6-sabotage-cases\\case-tcbr8c1d\\missing-policy.json",
+      "passed": true
+    },
+    {
+      "case": "policy checksum",
+      "expected": "ValueError",
+      "observed": "ValueError",
+      "message": "Checksum mismatch for ad_fusion: policy=0000000000000000000000000000000000000000000000000000000000000000, actual=9abd34f6775345c9fa275e622cf2814fccd703b6688ca82d93dd3a0f67711676",
+      "passed": true
+    },
+    {
+      "case": "policy threshold",
+      "expected": "ValueError",
+      "observed": "ValueError",
+      "message": "Policy tau_yolo (0.99) does not match thresholds.json (0.5)",
+      "passed": true
+    },
+    {
+      "case": "policy test_access",
+      "expected": "ValueError",
+      "observed": "ValueError",
+      "message": "Policy has test_access enabled; Step 6 requires test_access: False",
+      "passed": true
+    }
+  ]
+}

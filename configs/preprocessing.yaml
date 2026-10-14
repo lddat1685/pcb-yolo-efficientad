@@ -1,0 +1,12 @@
+preprocessing_version: prep_v1
+canonical: {color: rgb, dtype: uint8, layout: HWC}
+yolo: {imgsz: 640, pad_value: 114}
+ad:
+  tile: {size: 256, stride: 224, pad_mode: reflect, blend: linear, global_nms_iou: 0.45}
+  resize: {size: 256, interpolation: bilinear}
+partition_alias: {development_selection: fusion}
+augment:
+  recipe_id: aug_v1
+  rotations_ccw: [0, 90, 180, 270]
+  horizontal_flip_probability: 0.5
+  photometric: false

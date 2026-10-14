@@ -1,0 +1,10 @@
+# Standalone EfficientAD-S. CPU: install torch/torchvision from PyTorch CPU index.
+# CUDA: same versions, cu124 wheels; see docs/RUN_GPU.md.
+torch==2.6.0
+torchvision==0.21.0
+numpy==2.2.6
+pillow==12.1.1
+pyyaml==6.0.3
+opencv-python-headless==4.11.0.86
+psutil==7.0.0
+pytest==8.3.5

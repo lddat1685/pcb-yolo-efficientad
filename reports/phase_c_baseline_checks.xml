@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="5" time="7.820" timestamp="2026-09-27T01:15:54.108466+07:00" hostname="DESKTOP-3KG68FF"><testcase classname="tests.test_yolo_view" name="test_view_limit_selects_first_ids_and_rebuild_removes_stale" time="1.573"><failure message="AssertionError: assert {'39a4c4ce17a...62757c6fab5c'} == {'39a4c4ce17a...db901d7188f5'}&#10;  &#10;  Extra items in the left set:&#10;  'd68ed6490828911823acb0a3c5a7e710a63fae1a4c47888468d162757c6fab5c'&#10;  Use -v to get more diff">..\PCB_Lab_verify3\tests\test_yolo_view.py:72: in test_view_limit_selects_first_ids_and_rebuild_removes_stale
+    assert {sha256(p) for p in (out / "images" / part).iterdir()} == {r["sha256"] for r in selected}
+E   AssertionError: assert {'39a4c4ce17a...62757c6fab5c'} == {'39a4c4ce17a...db901d7188f5'}
+E
+E     Extra items in the left set:
+E     'd68ed6490828911823acb0a3c5a7e710a63fae1a4c47888468d162757c6fab5c'
+E     Use -v to get more diff</failure></testcase><testcase classname="tests.test_yolo_config" name="test_trainer_rejects_unknown_keys[None]" time="1.483" /><testcase classname="tests.test_yolo_config" name="test_trainer_rejects_unknown_keys[train]" time="1.440"><failure message="Failed: Trainer reached model creation instead of raising ConfigError">..\PCB_Lab_verify3\tests\test_yolo_config.py:43: in test_trainer_rejects_unknown_keys
+    assert_error_name("ConfigError", lambda: train_yolo(
+..\PCB_Lab_verify3\tests\helpers\step3_spec.py:165: in assert_error_name
+    call()
+..\PCB_Lab_verify3\tests\test_yolo_config.py:43: in &lt;lambda&gt;
+    assert_error_name("ConfigError", lambda: train_yolo(
+src\pcb_lab\models\yolo\train.py:404: in train_yolo
+    common = config_path.parent / "yolo_common.yaml"
+                ^^^^^^^^^^^^^^^
+..\PCB_Lab_verify3\tests\test_yolo_config.py:15: in forbidden
+    pytest.fail("Trainer reached model creation instead of raising ConfigError")
+E   Failed: Trainer reached model creation instead of raising ConfigError</failure></testcase><testcase classname="tests.test_yolo_config" name="test_trainer_rejects_unknown_keys[selection]" time="1.593"><failure message="Failed: Trainer reached model creation instead of raising ConfigError">..\PCB_Lab_verify3\tests\test_yolo_config.py:43: in test_trainer_rejects_unknown_keys
+    assert_error_name("ConfigError", lambda: train_yolo(
+..\PCB_Lab_verify3\tests\helpers\step3_spec.py:165: in assert_error_name
+    call()
+..\PCB_Lab_verify3\tests\test_yolo_config.py:43: in &lt;lambda&gt;
+    assert_error_name("ConfigError", lambda: train_yolo(
+src\pcb_lab\models\yolo\train.py:404: in train_yolo
+    common = config_path.parent / "yolo_common.yaml"
+                ^^^^^^^^^^^^^^^
+..\PCB_Lab_verify3\tests\test_yolo_config.py:15: in forbidden
+    pytest.fail("Trainer reached model creation instead of raising ConfigError")
+E   Failed: Trainer reached model creation instead of raising ConfigError</failure></testcase><testcase classname="tests.test_yolo_config" name="test_trainer_rejects_unknown_keys[infer]" time="1.506"><failure message="Failed: Trainer reached model creation instead of raising ConfigError">..\PCB_Lab_verify3\tests\test_yolo_config.py:43: in test_trainer_rejects_unknown_keys
+    assert_error_name("ConfigError", lambda: train_yolo(
+..\PCB_Lab_verify3\tests\helpers\step3_spec.py:165: in assert_error_name
+    call()
+..\PCB_Lab_verify3\tests\test_yolo_config.py:43: in &lt;lambda&gt;
+    assert_error_name("ConfigError", lambda: train_yolo(
+src\pcb_lab\models\yolo\train.py:404: in train_yolo
+    common = config_path.parent / "yolo_common.yaml"
+                ^^^^^^^^^^^^^^^
+..\PCB_Lab_verify3\tests\test_yolo_config.py:15: in forbidden
+    pytest.fail("Trainer reached model creation instead of raising ConfigError")
+E   Failed: Trainer reached model creation instead of raising ConfigError</failure></testcase></testsuite></testsuites>

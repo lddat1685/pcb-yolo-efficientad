@@ -1,0 +1,60 @@
+%% PIPELINE_SIMPLE.mmd — Sơ đồ pipeline gọn (cascade + đối chứng OR).
+%% Nguồn: PLAN.md §3 và docs/diagrams/PLAN_OVERVIEW.mmd.
+%% Chú giải: nét liền = luồng inference cascade chính; nét đứt (-.->) = huấn luyện / hiệu chỉnh / so sánh, không phải luồng inference chính. decision_source = YOLO / EFFICIENTAD / OR.
+flowchart TD
+  IMG["Ảnh PCB 640x640"]
+  PRE["Tiền xử lý (prepare_input)"]
+  YOLO["YOLO (6 loại lỗi)"]
+  DECY{"Có box đạt tau_yolo?"}
+  DEFY["DEFECT (box + loại lỗi YOLO)"]
+  LOCK["EfficientAD KHÔNG chạy (kể cả false positive)"]
+  AD["EfficientAD trên tile 256"]
+  STITCH["Ghép heatmap (TileManager)"]
+  DECAD{"score >= tau_ad?"}
+  DEFAD["DEFECT (bất thường, chưa rõ loại)"]
+  GOOD["GOOD (chưa phát hiện bất thường)"]
+  REC["Kết quả + timing từng tầng"]
+  EVAL["evaluator / benchmark"]
+  UICLI["UI và CLI (chung core InferenceService)"]
+  subgraph DATA["Dữ liệu (4 partition)"]
+    direction TB
+    TR["train: YOLO học good + defect; EfficientAD chỉ học good"]
+    CA["calibration: chọn checkpoint và ngưỡng"]
+    FU["fusion / development_selection: chọn cấu hình"]
+    TE["test: chỉ đánh giá cuối"]
+  end
+  H00["H00 luật OR: chạy cả hai mọi ảnh (so sánh)"]
+
+  IMG --> PRE
+  PRE --> YOLO
+  YOLO --> DECY
+  DECY -- "Có" --> DEFY
+  DEFY --> REC
+  DEFY --- LOCK
+  DECY -- "Không" --> AD
+  AD --> STITCH
+  STITCH --> DECAD
+  DECAD -- "Có" --> DEFAD
+  DEFAD --> REC
+  DECAD -- "Không" --> GOOD
+  GOOD --> REC
+  REC --> EVAL
+  EVAL --> UICLI
+  TR --> CA
+  CA --> FU
+  FU --> TE
+  TR -. "huấn luyện" .-> YOLO
+  TR -. "huấn luyện good-only" .-> AD
+  CA -. "tau_yolo, tau_ad" .-> DECY
+  CA -. "tau_yolo, tau_ad" .-> DECAD
+  FU -. "chọn cấu hình" .-> EVAL
+  TE -. "đánh giá cuối" .-> EVAL
+  PRE -. "nhánh so sánh" .-> H00
+  H00 -. "OR mọi ảnh" .-> EVAL
+
+  classDef data fill:#e9f2ff,stroke:#4c78a8,color:#172b4d;
+  classDef model fill:#eaf5e9,stroke:#548b56,color:#183e20;
+  classDef decide fill:#fff3cd,stroke:#b58516,color:#4a390f;
+  class TR,CA,FU,TE data;
+  class IMG,PRE,YOLO,AD,STITCH,DEFY,DEFAD,GOOD,REC,EVAL,UICLI,H00 model;
+  class DECY,DECAD,LOCK decide;

@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "selection_split": "fusion",
+  "test_access": false,
+  "shortlist": [
+    {
+      "model_id": "B01_yolo11n",
+      "role": "Primary Baseline Detector",
+      "tau_yolo": 0.14,
+      "tau_ad": null,
+      "selection_metrics": {
+        "balanced_accuracy": 0.8071895424836601,
+        "defect_recall": 1.0,
+        "defect_precision": 0.7216981132075472,
+        "frr": 0.38562091503267976,
+        "ecpb": 0.38176470588235295
+      },
+      "rationale": "YOLO11n baseline: 100.00% recall, FRR=38.56%, ECPB=0.3818. Calibration 460 samples; fusion 306 samples. Fastest single-stage detector in baseline set.",
+      "gpu_hours": 0.35,
+      "tuning_items": [
+        "AdamW lr=1e-3, batch=16, imgsz=640, epochs=100 patience=20",
+        "pretrained yolo11n.pt",
+        "seed 42, 33 epochs (best epoch 13), train_time 1260.5s"
+      ]
+    },
+    {
+      "model_id": "B03_efficientad_s",
+      "role": "Primary Baseline Anomaly Detector",
+      "tau_yolo": null,
+      "tau_ad": 1.4598,
+      "selection_metrics": {
+        "balanced_accuracy": 0.6437908496732025,
+        "defect_recall": 0.2875816993464052,
+        "defect_precision": 1.0,
+        "frr": 0.0,
+        "ecpb": 0.7124183006535948
+      },
+      "rationale": "EfficientAD-S baseline: 28.76% recall, FRR=0.00%, precision=100.00%. Tile 256x256, stride 224, detector-only anomaly score. 70k optimizer steps, no ImageNette penalty.",
+      "gpu_hours": 1.3,
+      "gpu_hours_note": "measured from run_manifest (1.30 GPU-h); 70000 optimizer steps on Colab GPU",
+      "tuning_items": [
+        "70000 optimizer steps, tile 256/stride 224",
+        "pretrained PDN-S frozen teacher, AdamW",
+        "no ImageNette penalty; tile params reflect inference"
+      ]
+    },
+    {
+      "model_id": "H00_yolo11n_or_efficientad_s",
+      "role": "Hybrid OR Rule",
+      "tau_yolo": 0.14,
+      "tau_ad": 1.4598,
+      "selection_metrics": {
+        "balanced_accuracy": 0.8071895424836601,
+        "defect_recall": 1.0,
+        "defect_precision": 0.7216981132075472,
+        "frr": 0.38562091503267976,
+        "ecpb": 0.38176470588235295,
+        "route_rate": 1.0
+      },
+      "rationale": "OR-rule hybrid: 100.00% recall at H01 operating point, ECPB=0.3818. Full parallel evaluation (route_rate=1.0), no early-exit benefit. Serves as upper bound for cascade comparison.",
+      "gpu_hours": null,
+      "gpu_hours_note": "reuses B01 (0.35 GPU-h) + B03 (1.30 GPU-h) training; no extra training cost",
+      "tuning_items": [
+        "Same operating point as H01 (tau_yolo=0.14, tau_ad=1.4598)",
+        "Full evaluation of both detectors; ECPB reflects both inference costs."
+      ]
+    },
+    {
+      "model_id": "H01_cascade_yolo11n_efficientad_s",
+      "role": "Primary Hybrid Cascade",
+      "tau_yolo": 0.14,
+      "tau_ad": 1.4598,
+      "selection_metrics": {
+        "balanced_accuracy": 0.8071895424836601,
+        "defect_recall": 1.0,
+        "defect_precision": 0.7216981132075472,
+        "frr": 0.38562091503267976,
+        "ecpb": 0.38176470588235295,
+        "route_rate": 0.30718954248366015,
+        "rescued_defects": 0,
+        "saving_rate": 0.6928104575163399
+      },
+      "rationale": "Cascade hybrid (YOLO11n -> EfficientAD-S): 100.00% defect recall at FRR=38.56%, ECPB=0.3818. Early-exit saves 69.3% of AD compute (route_rate=30.7% routed). Identical metrics to H00 at locked point (deltas=0), benefits from compute savings only.",
+      "gpu_hours": null,
+      "gpu_hours_note": "reuses B01 (0.35 GPU-h) + B03 (1.30 GPU-h) training; grid search CPU <1 min",
+      "tuning_items": [
+        "Grid search 2050 pts, selected for FRR<=5% (primary constraint)",
+        "Early-exit routing: YOLO score >= 0.14 -> DEFECT skip AD"
+      ]
+    },
+    {
+      "model_id": "H02_cascade_yolo11s_efficientad_s",
+      "role": "Secondary Hybrid Cascade",
+      "tau_yolo": 0.38,
+      "tau_ad": 1.4598,
+      "selection_metrics": {
+        "balanced_accuracy": 0.9215686274509804,
+        "defect_recall": 1.0,
+        "defect_precision": 0.864406779661017,
+        "frr": 0.1568627450980392,
+        "ecpb": 0.15529411764705883,
+        "route_rate": 0.4215686274509804,
+        "saving_rate": 0.5784313725490196
+      },
+      "rationale": "Cascade hybrid (YOLO11s -> EfficientAD-S): 100.00% defect recall at FRR=15.69% on fusion, BalAcc=92.16%, ECPB=0.1553. Higher tau_yolo (0.38) reduces false positives vs H01, but calibration FRR=4.78% already constrains choice.",
+      "gpu_hours": null,
+      "gpu_hours_note": "reuses B02 (0.47 GPU-h) + B03 (1.30 GPU-h) training; grid search CPU <1 min",
+      "tuning_items": [
+        "YOLO11s same recipe as B01; 43 epochs (best epoch 23), train_time 1695.3s",
+        "tau_yolo=0.38 balances recall vs FRR on fusion"
+      ]
+    }
+  ],
+  "budget_summary": {
+    "gpu_hours": "B01 0.35 + B02 0.47 + B03 1.30 GPU-h measured (total 2.12 GPU-h); hybrids reuse training",
+    "tuning_budget": "Step 5 grid search: 2050 pts/grid x 2 grids (H01/H02), CPU <60s, calibration-only; no extra fitting in Step 6",
+    "total_gpu_hours_measured": 2.12,
+    "total_gpu_hours_measured_yolo": 0.82,
+    "total_gpu_hours_note": "B01 0.35 + B02 0.47 + B03 1.30 GPU-h measured; hybrids H00/H01/H02 reuse B01/B02/B03 training, no extra training cost",
+    "yolo_b01_gpu_hours": 0.35,
+    "yolo_b02_gpu_hours": 0.47,
+    "efficientad_b03_gpu_hours": 1.3,
+    "efficientad_b03_gpu_hours_note": "measured from run_manifest (1.30 GPU-h); 70000 optimizer steps on Colab GPU",
+    "tuning_budget_calibration": "Included in above",
+    "tuning_grid_points": 2050,
+    "tuning_time_seconds": "<60",
+    "seeds_used": [
+      42
+    ],
+    "seeds_planned": [
+      43,
+      44
+    ]
+  }
+}

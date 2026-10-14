@@ -1,0 +1,62 @@
+[
+  {
+    "message": "train/open_circuit: requested 5, rendered 1",
+    "sample_id": null,
+    "stage": "overlay_coverage"
+  },
+  {
+    "message": "train/short: requested 5, rendered 1",
+    "sample_id": null,
+    "stage": "overlay_coverage"
+  },
+  {
+    "message": "train/mouse_bite: requested 5, rendered 1",
+    "sample_id": null,
+    "stage": "overlay_coverage"
+  },
+  {
+    "message": "train/spur: requested 5, rendered 1",
+    "sample_id": null,
+    "stage": "overlay_coverage"
+  },
+  {
+    "message": "train/spurious_copper: requested 5, rendered 1",
+    "sample_id": null,
+    "stage": "overlay_coverage"
+  },
+  {
+    "message": "train/pin_hole: requested 5, rendered 1",
+    "sample_id": null,
+    "stage": "overlay_coverage"
+  },
+  {
+    "message": "calibration/open_circuit: requested 5, rendered 1",
+    "sample_id": null,
+    "stage": "overlay_coverage"
+  },
+  {
+    "message": "calibration/short: requested 5, rendered 1",
+    "sample_id": null,
+    "stage": "overlay_coverage"
+  },
+  {
+    "message": "calibration/mouse_bite: requested 5, rendered 1",
+    "sample_id": null,
+    "stage": "overlay_coverage"
+  },
+  {
+    "message": "calibration/spur: requested 5, rendered 1",
+    "sample_id": null,
+    "stage": "overlay_coverage"
+  },
+  {
+    "message": "calibration/spurious_copper: requested 5, rendered 1",
+    "sample_id": null,
+    "stage": "overlay_coverage"
+  },
+  {
+    "message": "calibration/pin_hole: requested 5, rendered 1",
+    "sample_id": null,
+    "stage": "overlay_coverage"
+  }
+]

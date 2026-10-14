@@ -1,0 +1,297 @@
+%% Một sơ đồ tổng thể duy nhất; nguồn và xung đột: NOTES.md; kiểm kê: INVENTORY.md.
+%% Cạnh chỉ rõ dữ liệu / lời gọi / điều kiện; vị trí làn không thay thế điều kiện thực thi.
+%%{init: {"theme":"base","flowchart":{"htmlLabels":true,"curve":"linear","nodeSpacing":30,"rankSpacing":70},"themeVariables":{"fontFamily":"Arial, sans-serif","fontSize":"14px","primaryTextColor":"#172b4d","lineColor":"#52687b"}}}%%
+flowchart LR
+
+  subgraph LANE_DATA["Dữ liệu và partition — §1"]
+    direction TB
+    SOURCE["<b>Nguồn dữ liệu canonical</b><br/><i>§1.1; §4.2–4.3</i><br/>• DATASET_ROOT = D:/FPTU/KLTN/DatasetVer4_Public; chỉ đọc<br/>• DeepPCB: 2.998 ảnh RGB/grayscale 640×640; 1.498 good + 1.500 defect; 11 source groups<br/>• README, DATASET_CARD, status.json; manifest samples.jsonl; classes.json; holdout.json;<br/>protocol.json<br/>• build_summary.json, verification.json, release.json; 18/18 tệp release đã kiểm SHA-256 trong<br/>plan<br/>• Không glob, không chia ngẫu nhiên theo ảnh; không tự ghép template; hash ảnh/pixel/group/pair<br/>không giao partition<br/>• Không sửa protocol/release nguồn; output, cache và YAML nằm trong dự án riêng"]
+    TR["<b>Partition train</b><br/><i>§1.2; §5 Bước 2</i><br/>• 1.792 ảnh = 895 good + 897 defect; 5 nhóm nguồn<br/>• YoloTrainSet: toàn bộ train; AdTrainSet: chỉ 895 good<br/>• Đọc manifest, sắp sample_id tất định; mọi tile của cùng ảnh giữ cùng partition"]
+    CA["<b>Partition calibration</b><br/><i>§1.2; §5 Bước 3–5</i><br/>• 460 ảnh = 230 good + 230 defect; 2 nhóm nguồn<br/>• Chọn checkpoint và ngưỡng; 230 good để chuẩn hóa map AD<br/>• Toàn bộ 230 defect đi qua AD độc lập để hiệu chỉnh tau_ad; không chỉ mẫu routed"]
+    FU["<b>Partition fusion</b><br/><i>§1.2; §5 Bước 5–6</i><br/>• 306 ảnh = 153 good + 153 defect; 2 nhóm nguồn<br/>• Alias development_selection; cùng mẫu và cùng thứ tự<br/>• So sánh, chọn cấu hình sau calibration; không fit logistic fusion head trong baseline"]
+    CLASSES["<b>Taxonomy sáu lớp</b><br/><i>§1.3</i><br/>• 0 open_circuit — đứt mạch; bbox train/final: 1.216/298<br/>• 1 short — chập mạch; bbox train/final: 973/215<br/>• 2 mouse_bite — khuyết mép; bbox train/final: 1.228/250<br/>• 3 spur — gai đồng; bbox train/final: 981/228<br/>• 4 spurious_copper — đồng thừa; bbox train/final: 884/194<br/>• 5 pin_hole — lỗ nhỏ; bbox train/final: 865/222<br/>• Đa box, đa lớp trong một ảnh; pin_hole không đồng nhất missing_hole PKU"]
+    LIMITS["<b>Giới hạn dữ liệu và kết luận</b><br/><i>§1.4; §7.6; §11.2</i><br/>• Chỉ bbox, không mask chuẩn: pixel AUROC / Dice / IoU segmentation / AUPRO không được công bố<br/>• Good template đã làm sạch, defect có bổ sung thủ công; kiểm shortcut và dấu vết xử lý<br/>• source_group chưa xác minh là bo/design vật lý; đơn vị kết quả là ảnh/crop<br/>• N=2 nhóm cho mỗi tập ngoài train; dedicated line, không universal zero-shot AOI<br/>• Bootstrap không chứng minh domain shift; không LOGO-CV 11 groups<br/>• Hybrid chưa chứng minh tốt hơn YOLO đơn"]
+    AUDIT["<b>Bước 1 — Audit và EDA</b><br/><i>§5 Bước 1</i><br/>• Vào: manifest + release + ảnh/nhãn phát triển; holdout cuối chỉ metadata<br/>• Kiểm decode/hash/kích thước, ID lớp, bbox, nhãn good rỗng, giao group/pair/hash mọi cặp<br/>partition<br/>• Thống kê ảnh/box/lớp/số lỗi/kích thước/nhóm/tỷ lệ; đo pin_hole và mouse_bite thực tế<br/>• Overlay train/calibration đủ sáu lớp, lỗi nhỏ và biên; giữ good nền trắng hợp lệ<br/>• Không dùng filename/split làm feature; không suy luận nhãn từ cặp template/test nguồn<br/>• Ra: reports/data_audit.json, reports/data_profile.md, overlay phát triển<br/>• Lỗi nghiêm trọng hoặc thay dữ liệu: tạo phiên bản dữ liệu mới trước khi tiếp tục"]
+  end
+
+  subgraph LANE_PREP["Tiền xử lý và TileManager — §4.4; §5 Bước 2"]
+    direction TB
+    SAMPLE["<b>Sample và loader chuẩn</b><br/><i>§4.4; §5 Bước 2; contract Step 2</i><br/>• Sample frozen: sample_id, source_group, pair_id, partition, image_path, width, height, is_defect<br/>• boxes[Box(class_id,class_name,xyxy)], mask_status, sha256; load_image trả RGB uint8 HWC<br/>• ManifestDataset / YoloTrainSet / AdTrainSet / EvalSet; mỗi ảnh một lần<br/>• allow_test=false: metadata được đọc, truy cập pixel partition cuối bị PermissionError"]
+    PRE["<b>Bước 2 — Tiền xử lý chung</b><br/><i>§5 Bước 2; contract Step 2</i><br/>• Vào: Sample / ảnh canonical; L, LA, RGBA chuyển RGB nhất quán, không lẫn BGR<br/>• prepare_input: yolo / ad_tile / ad_resize; PreparedInput.pixels uint8<br/>• meta: preprocessing_version/hash, mode, orig_hw, scale/pad hoặc tile_specs, color_order,<br/>normalized<br/>• normalize float32 đúng một lần; gọi lại dữ liệu normalized thì ValueError<br/>• Ra: configs/preprocessing.yaml (prep_v1), adapter, TileManager, reports/loader_check.json<br/>• check_loaders.py kiểm n_samples/shape/dtype/min/max/color/normalized/hash; prep_preview.py khớp<br/>API/CLI"]
+    LETTER["<b>Nhánh YOLO 640</b><br/><i>§4.4; §5 Bước 2; contract Step 2–3</i><br/>• Letterbox target=640, pad_value=114; lưu scale, pad_left/top, orig_w/h<br/>• Ảnh 640×640: scale=1, pad=0; unletterbox_boxes + clip về ảnh gốc<br/>• Round-trip tọa độ sai số không quá 1 px"]
+    TILE["<b>Nhánh AD native tile-256</b><br/><i>§4.4; §5 Bước 2,4; contract Step 2–4</i><br/>• TileManager: tile_size=256, stride=224, overlap=32, pad_mode=reflect; không tile-320<br/>• Số bước: H lớn hơn 256 thì ceil((H−256)/224)+1; còn lại 1<br/>• 640×640 thành 9 tile; x0/y0 = 0,224,448; row-major; canvas 704×704, đệm phải/dưới<br/>• TileSpec: tile_id,row,col,x0,y0,size; split giữ nguyên pixel vùng không đệm<br/>• AdTrainSet.num_tiles theo plan hình học: 895 × 9 = 8.055 tile<br/>• Engine RGB uint8 [N,256,256,3]; dataset tensor [9,3,256,256]"]
+    STITCH["<b>TileManager hậu xử lý</b><br/><i>§4.4; §7.7; contract Step 2–4</i><br/>• stitch float32 tile maps: Linear Blending / feathering, tổng trọng số=1, không chia 0<br/>• Crop padding: anomaly_map float32 trở về 640×640; image score = max(stitched map)<br/>• boxes_to_global: cộng offset, clip, bỏ box rỗng, giữ score<br/>• Global NMS IoU=0.45; loại khi IoU lớn hơn ngưỡng; thứ tự score giảm dần"]
+    AUG["<b>Augmentation chỉ train</b><br/><i>§5 Bước 2; contract Step 2–3</i><br/>• Recipe aug_v1 / yolo_aug_v1 có phiên bản; nhẹ và phù hợp PCB, không phá bản chất lỗi<br/>• Seed tất định; biến đổi bbox đồng bộ ảnh; không mutate input; split khác bị từ chối<br/>• Thay recipe chỉ qua ablation có tên"]
+    RESIZE["<b>Nhánh ablation resize-256</b><br/><i>§5 Bước 2; §9; contract Step 2</i><br/>• resize_for_ad bilinear 256; upsample_map bilinear không overshoot<br/>• Bắt buộc đối chứng tile-256 vs resize-256; không thay luồng B03 native"]
+    IMAGEAPI["<b>Nguồn ảnh và interface chung</b><br/><i>§4.4; §8; contract Step 3–4</i><br/>• BaseImageSource.get_frame trả (sample_id,image); FileImageSource / DirectoryWatcherSource /<br/>MockFrameGrabber<br/>• BaseDetector / BaseAnomalyDetector: load(artifact), predict(image), describe()<br/>• Detection: class_id, class_name, confidence, xyxy_original<br/>• EfficientAdResult: anomaly_score, anomaly_map, boxes; AD class_id=None<br/>• CLI / UI gọi cùng InferenceService; evaluator chỉ nhận output chuẩn, GT không vào inference"]
+  end
+
+  subgraph LANE_TRAIN["Huấn luyện baseline và cấu trúc mô hình — §5 Bước 3–4; §7.1"]
+    direction TB
+    YOLOTRAIN["<b>Bước 3 — Baseline YOLO</b><br/><i>§5 Bước 3; contract Step 3</i><br/>• Vào: train good + defect bbox; calibration chọn checkpoint bằng ultralytics_fitness<br/>• Pretrained phổ thông có nguồn/phiên bản/SHA-256; YOLO11n trước, YOLO11s đối chứng dung lượng<br/>• imgsz=640, epochs=100, patience=20, AdamW; batch theo VRAM, seed=42 ở vòng đầu<br/>• B01/B02 cùng recipe, chỉ khác model_id/architecture/pretrained; khác batch phải ghi lý do<br/>• Null lr0/batch/workers/augment hoặc khóa lạ: ConfigError; resume rõ ràng, không ghi đè run<br/>• YOLO view: train + calibration, hardlink/copy; labels từ manifest, good rỗng, data.yaml không có<br/>test<br/>• Ra: best.pt + last.pt, artifact.json, model_card.md, calibration_per_class.json, validation.md;<br/>log loss/mAP/recall từng lớp<br/>• Validation precision/recall tại confidence tối đa F1 có pr_definition/pr_conf; không nhầm ngưỡng<br/>vận hành"]
+    B01["<b>B01 — YOLO11n</b><br/><i>§7.1; §5 Bước 3</i><br/>• Detector sáu lớp, supervision good + defect bbox; baseline nhanh bắt buộc<br/>• Checkpoint B01 dùng lại cho H00 và H01, không train lại để đổi đối chứng"]
+    B02["<b>B02 — YOLO11s</b><br/><i>§7.1; §5 Bước 3</i><br/>• Detector sáu lớp, supervision good + defect bbox; bắt buộc vòng sàng lọc<br/>• Checkpoint B02 dùng lại cho H02"]
+    ADTRAIN["<b>Bước 4 — B03 EfficientAD-S</b><br/><i>§5 Bước 4; §7.1; contract Step 4</i><br/>• Vào: chỉ 895 train good, 0 defect; DataLeakError nếu lẫn defect<br/>• Teacher pretrained + student + autoencoder; học sai khác đặc trưng và tái tạo<br/>• PyTorch; anomalib hoặc standalone; model_size=small, batch=1, 70 epoch tham khảo, AdamW<br/>• Teacher mean/std chỉ train good; map quantiles 0.90/0.995 chỉ 230 calibration good<br/>• Không chuẩn hóa ImageNet hai lần; tắt auto-threshold / auto-split / cập nhật ngưỡng tự động<br/>• Null lr/weight_decay/device chưa duyệt hoặc khóa lạ: từ chối; seed=42, deterministic=true<br/>• Fit → save → reload → predict: map/score sai số không quá 1e-5; ghi optimizer steps thực"]
+    B03["<b>B03 — EfficientAD-S (tile 256)</b><br/><i>§5 Bước 4; §7.1; contract Step 4</i><br/>• model.pt chứa weights teacher/student/autoencoder, normalization_stats và tile/inference params<br/>• artifact.json: normalization_stats; model_card.md; calibration_stats.json: phân phối score good/defect; báo cáo false positive"]
+    EXTRACT["<b>Trích dự đoán thô phát triển</b><br/><i>§5 Bước 3–4; contract Step 3–4</i><br/>• preds_calibration.jsonl: 460 dòng; preds_fusion.jsonl: 306 dòng; mỗi sample một dòng, sort<br/>sample_id<br/>• YOLO conf_floor=0.001, NMS iou=0.7, max_det=300, agnostic_nms=false, half=false<br/>• Candidate floor độc lập tau_yolo; mAP confidence sweep tách recall tại ngưỡng vận hành<br/>• Test bị PermissionError; lỗi giữ dòng/error_reason, score=null, không thành GOOD/0<br/>• timing_ms=null trong raw extraction; không dùng cache prediction để đo latency"]
+    B04["<b>B04 — PatchCore</b><br/><i>§7.1; §12; DECISIONS S3</i><br/>• Good-only train; đối chứng memory bank, nên có nếu đủ ngân sách<br/>• PaDiM đã smoke ở nguồn; tham khảo nếu PatchCore không chạy được"]
+    B05["<b>B05 — placeholder, VERIFY V1</b><br/><i>§7.1; DECISIONS R3,V1; NOTES N03</i><br/>• Loại khỏi ma trận bắt buộc; chỉ tái đưa detector mở rộng khi được xác minh<br/>• Không đăng ký tên model chưa được kiểm chứng"]
+    B06["<b>B06 — EfficientAD-M</b><br/><i>§7.1; §12</i><br/>• Good-only train; mở rộng để so dung lượng anomaly"]
+    B07["<b>B07 — FastFlow hoặc STFPM</b><br/><i>§7.1; §12</i><br/>• Good-only train; thêm họ anomaly khi đủ ngân sách"]
+    IMAGENETTE["<b>Tài nguyên regularization khi dùng anomalib</b><br/><i>§5 Bước 4</i><br/>• Kiểm pretrained teacher và ImageNette theo triển khai đã khóa<br/>• ImageNette phục vụ regularization, không cộng vào 895 PCB good"]
+  end
+
+  subgraph LANE_INFER["Suy luận: YOLO, EfficientAD, OR, cascade — §3"]
+    direction TB
+    CORE["<b>Một core — InferenceService</b><br/><i>§3.4; §4.2; §8</i><br/>• Chọn mode: yolo_only / efficientad_only / or / cascade / diagnostic_both<br/>• Nạp artifact đã đăng ký; preprocessing và output thống nhất cho CLI, UI, benchmark<br/>• YOLO không có box đạt ngưỡng không đồng nghĩa ảnh không lỗi; box thấp lưu được để phân tích"]
+    YINFER["<b>YOLO inference</b><br/><i>§3.1; §7.3; contract Step 3</i><br/>• Engine.infer RGB uint8 HWC → N×6 (xyxy, confidence, class)<br/>• YoloDetector.predict trả Detection tọa độ gốc, sort confidence/class_id/xyxy<br/>• accepted_boxes: đúng schema và confidence ≥ tau_yolo<br/>• yolo_image_score = max confidence trước ngưỡng; 0 khi không có candidate"]
+    ADINFER["<b>EfficientAD inference</b><br/><i>§3.1–3.3; §7.3; contract Step 4</i><br/>• EfficientAdEngine.infer_tiles: RGB uint8 NHWC → float32 [N,256,256]<br/>• Teacher / student / autoencoder + stats đã khóa; ghép toàn ảnh qua TileManager<br/>• Không cần template tham chiếu; không chọn ROI bằng ground truth<br/>• anomaly_score = max(stitched map); DEFECT nếu anomaly_score ≥ tau_ad<br/>• Vùng bất thường: anomaly_unclassified, class_id=None; không phải lớp GT thứ bảy"]
+    R8["<b>Heatmap → candidate boxes R8</b><br/><i>§7.7; contract Step 4</i><br/>• Heatmap stitched → tau_pixel=0.5 → Morph Open k=3 → Connected Components<br/>• Area lớn hơn min_area=20 → Bounding Rect → Global NMS IoU=0.45<br/>• Box confidence=max pixel trong component; xyxy_original clip ảnh gốc"]
+    CASCADE{"<b>H01 / H02 — Cascade</b><br/><i>§3.1,3.3; §7.1</i><br/>• H01 = B01 + B03; H02 = B02 + B03, bắt buộc vòng sàng lọc<br/>• Cùng checkpoint/ngưỡng: giữ mọi ảnh YOLO đã báo lỗi; recall ảnh không chứng minh đủ mọi box<br/>• Chỉ gọi AD khi accepted_boxes rỗng; không sửa được false positive của YOLO"}
+    YEXIT["<b>YOLO dương → DEFECT</b><br/><i>§3.1,3.3; DECISIONS S1</i><br/>• decision_source=YOLO; efficientad_executed=false<br/>• Kể cả FP: kết thúc cascade, KHÔNG gọi EfficientAD<br/>• AD bị khóa nên không cứu good bị báo nhầm, không tìm lỗi thứ hai bị sót"]
+    ORRUN["<b>H00 — OR chạy cả hai</b><br/><i>§3.2; §7.1</i><br/>• Mỗi ảnh gọi cả YOLO và AD; cùng checkpoint B01+B03 như H01<br/>• DEFECT nếu YOLO dương HOẶC anomaly_score ≥ tau_ad; ngược lại GOOD<br/>• decision_source=OR; AD route=100%; không early-exit<br/>• Giá trị recall / FRR / latency là kết quả cần đo; H5 không là kết luận đã xác minh"]
+    DIAG["<b>diagnostic_both</b><br/><i>§3.4; DECISIONS R5</i><br/>• Chạy cả YOLO và AD mọi ảnh để phân tích bù trừ đa lỗi<br/>• Không lấy latency diagnostic_both làm latency cascade"]
+    BGDIAG["<b>Nghiên cứu AD ngoài bbox</b><br/><i>§3.4; §9; DECISIONS R5; NOTES N06</i><br/>• Background-only / vùng ngoài box là optional hoặc ablation<br/>• Không thay routing toàn ảnh của cascade cơ bản"]
+    ADDEC{"<b>Quyết định từ AD</b><br/><i>§3.1; §3.3</i><br/>• Score ≥ tau_ad: DEFECT, decision_source=EFFICIENTAD<br/>• Score dưới tau_ad: GOOD — chưa phát hiện bất thường"}
+    RESULT["<b>Kết quả và lỗi</b><br/><i>§3.3; §8</i><br/>• GOOD / DEFECT cùng decision_source, routing_reason, score/ngưỡng và thời gian<br/>• Đọc ảnh hỏng, thiếu weights, timeout, inference lỗi: ERROR; không trả GOOD<br/>• Không dùng max/trung bình confidence YOLO với anomaly score thô làm score cascade"]
+    REVIEW["<b>REVIEW nếu được bật</b><br/><i>§3.3–3.4; §7.4; §10.1</i><br/>• Ảnh ngoài phạm vi có thể cảnh báo hoặc REVIEW; anomaly score không mặc nhiên đáng tin cho OOD<br/>• Coverage, review rate riêng good/defect, defect accepted GOOD, ma trận ba trạng thái<br/>• Không loại REVIEW để làm đẹp accuracy; giữ bảng binary baseline riêng"]
+    H03["<b>H03 — cấu hình biến thể có căn cứ</b><br/><i>§7.1</i><br/>• YOLO tốt nhất trên development → AD biến thể tốt nhất<br/>• Ghi rõ hai artifact; chỉ thực hiện khi thay đổi có căn cứ"]
+  end
+
+  subgraph LANE_CAL["Hiệu chỉnh ngưỡng — §5 Bước 5"]
+    direction TB
+    CALGRID{"<b>Bước 5 — Hiệu chỉnh có điều kiện</b><br/><i>§5 Bước 5; DECISIONS R2</i><br/>• Vào: score toàn calibration, gồm toàn bộ defect qua AD độc lập<br/>• 2-D Grid Search (tau_yolo,tau_ad): [0.1,0.9] × [mu_ad,mu_ad+3sigma_ad]<br/>• mu_ad/sigma_ad từ phân phối defect calibration; lưu toàn bộ điểm lưới<br/>• Tối đa Defect Recall với FRR ≤5%; mốc 1% là phân tích phụ; hòa thì ưu tiên latency thấp<br/>• Ngưỡng tái tạo được; không fit logistic fusion head"}
+    NORMAUDIT["<b>Phân biệt chuẩn hóa và ngưỡng</b><br/><i>§5 Bước 4–5; contract Step 4</i><br/>• normalization_stats: source_split=calibration, n_good_images=230, quantile_min/max, mean/std<br/>• Map quantiles 0.90/0.995 tính SAU khi fit trên 230 calibration good; tau_ad dùng good/defect để calibration<br/>• Theo dõi riêng good routed, cỡ mẫu và phân phối; không ước lượng cực trị quá mức"]
+    THRESH["<b>Artifact ngưỡng và routing</b><br/><i>§5 Bước 5</i><br/>• Ra: thresholds.json, routing_policy.json, báo cáo calibration/development selection<br/>• Fusion chạy H00 và H01 thật: delta_recall, delta_FRR, delta_latency; route_rate good/defect<br/>• Đổi checkpoint/resize/tile/score pooling/hậu xử lý: calibration lại và tăng version<br/>• Giữ tau_pixel sinh candidate độc lập với tau_ad quyết định ảnh"]
+  end
+
+  subgraph LANE_EVAL["Đánh giá và benchmark — §5 Bước 6–7,9; §6–7; §9"]
+    direction TB
+    EVALUATOR["<b>Một evaluator dùng chung</b><br/><i>§4.2; §5 Bước 6; §8</i><br/>• CLI / UI / benchmark cùng evaluator; chỉ tại đây prediction gặp ground truth<br/>• Input: output chuẩn + nhãn hợp lệ; adapter model không nhận GT<br/>• load / predict / describe nhất quán; chưa có nhãn chỉ tổng hợp prediction, không tạo accuracy"]
+    FAIR["<b>Đánh giá công bằng: dữ liệu và lựa chọn</b><br/><i>§6</i><br/>• Cùng danh sách canonical, không thêm template riêng và không bỏ ảnh model lỗi<br/>• Công bố supervision: detector bbox+good/defect, anomaly good-only, OR/cascade kế thừa hai nhánh<br/>• Calibration chọn checkpoint/ngưỡng; fusion chọn cấu hình; holdout cuối không tham gia lựa chọn<br/>• Công bố số thử, GPU-hours, external/pretrained data và ngân sách tuning từng model<br/>• Cùng device/backend/precision/batch/timing mỗi bảng; khác điều kiện tách bảng<br/>• Công bố input size, tile count/stride; resolution ablation tách kiến trúc khỏi lượng pixel"]
+    FAIRDATA["<b>Đánh giá công bằng: báo cáo</b><br/><i>§6; §8</i><br/>• Upload không nhãn: chỉ prediction/score; accuracy phải kèm dataset/split/N/artifact<br/>• Error rate + số mẫu thành công; run thiếu dự đoán không được xếp hạng như run đầy đủ<br/>• Dataset khác domain/schema/protocol có bảng riêng; phân biệt frozen zero-shot transfer và<br/>retrain/recalibration<br/>• Dataset adapter mới khai báo taxonomy, split/group, nhãn good, annotation, nguồn<br/>• Tập chỉ defect không đủ FRR / calibrate normal; thiếu điều kiện ghi N/A<br/>• Không gộp missing_hole với pin_hole để tạo taxonomy giả"]
+    SHORTLIST["<b>Bước 6 — Development và shortlist</b><br/><i>§5 Bước 6; §7.1; §12</i><br/>• Vào: calibration/fusion + evaluator chung + baseline/OR/cascade đã hiệu chỉnh<br/>• Vòng seed42: B01/B02/B03/H00/H01; H02 thuộc ma trận sàng lọc<br/>• Ưu tiên ablation dung lượng YOLO, tile vs resize, ngưỡng, rescue và added false reject<br/>• Chọn shortlist có lý do; chạy thêm seed43/44, không chọn seed đẹp nhất<br/>• Tập báo cáo cuối tối thiểu B01/B03/H00/H01; đối thủ mạnh bổ sung theo ngân sách<br/>• Ra: bảng development, bảng ablation, shortlist và ngân sách thực đã dùng"]
+    METRIC["<b>Metrics mức ảnh</b><br/><i>§7.2–7.3</i><br/>• DEFECT=1, GOOD=0; TP/TN/FP/FN và số FN tuyệt đối<br/>• Balanced accuracy=(TPR+TNR)/2; Accuracy trùng trên 50/50 nên bỏ cột chính<br/>• Defect recall / TPR=TP/(TP+FN); Defect→GOOD / miss rate=FN/(TP+FN)<br/>• FRR=FP/(FP+TN); precision=TP/(TP+FP)<br/>• F1: trung bình điều hòa precision/recall; MCC: tương quan từ confusion matrix<br/>• Image AUROC / AUPRC chỉ từ score liên tục có nghĩa, không từ nhãn cứng<br/>• Cascade ban đầu AUROC/AUPRC=N/A; score hợp nhất phải là biến thể hiệu chỉnh riêng<br/>• Per-class image recall: một ảnh có thể thuộc nhiều lớp; không thay box recall"]
+    COST["<b>ECPB: chi phí mô phỏng</b><br/><i>§7.2–7.3; §10.2; DECISIONS R4,H2; NOTES N02</i><br/>• ECPB=(C_FN×FN_sim+C_FP×FP_sim)/N_sim<br/>• N_sim=10.000: 100 defect, 9.900 good; đây là mô phỏng 1%/99%<br/>• C_FP=1; C_FN cần HUMAN/VERIFY H2, không gắn trọng số chưa duyệt như cam kết nhà máy"]
+    COSTPENDING["<b>Giả định trọng số chưa chốt</b><br/><i>§7.3; DECISIONS H2; TRIAGE R4</i><br/>• C_FN=50×C_FP là đề xuất cần xác nhận theo DECISIONS<br/>• Không tự chốt 100:1 từ plan; xem đối chiếu NOTES N02"]
+    BOXMETRIC["<b>Metrics detection và heatmap</b><br/><i>§7.2–7.3,7.7; contract Step 4</i><br/>• Bảng detection: mAP@0.5, mAP@0.5:0.95, box recall tại ngưỡng, AP/recall sáu lớp, FP box/ảnh good<br/>• YOLO output của cascade báo riêng; AD N/A cho AP sáu lớp, không ép heatmap thành class<br/>• Point-in-Box: argmax(Map) thuộc BBox_GT và Area_component ≤3×Area_GT<br/>• Class-agnostic localization ở bảng phụ; không thay mAP hay gọi là segmentation accuracy"]
+    HYBRIDMETRIC["<b>Metrics hybrid và Iso-FRR</b><br/><i>§7.4</i><br/>• route_rate=ảnh thực chạy AD/tổng ảnh; thêm riêng good/defect<br/>• rescued_defects: YOLO FN được AD cứu; rescue_rate=rescued_defects/FN_YOLO; mẫu số 0 → N/A<br/>• added_false_rejects: good YOLO cho qua nhưng AD báo lỗi; không cứu được FP sẵn có của YOLO<br/>• unclassified_positive_rate=AD DEFECT chưa có loại/tổng DEFECT của pipeline<br/>• delta_recall(H01−H00), delta_FRR(H01−H00), delta_latency(H01−H00), cùng checkpoint<br/>• DET/ROC và Recall @ FRR={1%,3%,5%} cho B01/B03/H00/H01<br/>• Operating point chọn trên calibration; không chỉnh holdout cuối để ép FRR bằng nhau"]
+    TIMING["<b>Đo latency và tài nguyên</b><br/><i>§7.5; §5 Bước 7,9</i><br/>• Tách model load/cold start và steady-state; warm-up 30, timing 440 ảnh ×3 lượt<br/>• N chất lượng vẫn 440, không phải 1.320; batch=1 cho tương tác, throughput batch lớn là track<br/>riêng<br/>• Đồng bộ GPU/XPU khi cần; E2E=decode→preprocess→tile→model thực chạy→hậu xử lý<br/>• UI/encode/render/network đo riêng; không dùng cache score để đo latency routing<br/>• Mean/p50/p95, từng tầng, peak RAM/VRAM, artifact size, train/fit time, throughput thực<br/>• Công bố device/backend/precision/input size/tile count; không so 256 và 640 như cùng input<br/>• Cascade mean≈T_yolo+route_rate×E[T_ad|routed]+overhead; p95 phải đo trực tiếp<br/>• OR≈T_yolo+T_ad; latency riêng good/defect, prevalence khác chỉ mô phỏng có chú thích"]
+    UNCERT["<b>Bất định và giới hạn so sánh</b><br/><i>§1.4; §7.6</i><br/>• Ít nhất ba seed42/43/44: từng seed và mean±std; seed std không là CI tổng quát hóa<br/>• TP/TN/FP/FN theo source_group và worst-group recall/FRR<br/>• 1 FP hoặc FN trên nhóm 220 ảnh tương ứng khoảng 0,45 điểm phần trăm<br/>• Calibration chọn checkpoint lẫn ngưỡng có thể lạc quan; fusion sau selection không còn độc lập<br/>• Không gọi quy trình là hiệu chuẩn có bảo đảm thống kê; N=2 không chứng minh chuyển miền"]
+    BOOT["<b>Bootstrap pair-level nếu dùng</b><br/><i>§7.6; DECISIONS R1</i><br/>• Chỉ sampling variance nội bộ 2 nhóm; không ngoại suy domain shift<br/>• Không thay thế đa dạng dữ liệu; không LOGO-CV 11 groups"]
+    SELECT{"<b>Quy tắc chọn model</b><br/><i>§7.6; §2.2</i><br/>• Trên development: đạt ràng buộc FRR trước, tối đa recall, rồi p95 và memory thấp<br/>• Pareto chất lượng–latency–memory, không tự gán điểm tổng hợp thiếu cơ sở<br/>• Mốc kế hoạch recall ≥95%, FRR ≤5%; khóa ngân sách latency sau biết phần cứng demo<br/>• Muốn đủ sáu lớp/định vị: cần detector AP/box recall, không thay bằng AD-only binary<br/>• Nếu không đạt: báo khoảng cách/trade-off; hybrid không đủ lợi ích thì chọn baseline<br/>• So H00/H01 tại cùng điều kiện; giữ kết quả âm, không mặc định hybrid tốt nhất"}
+    FREEZE{"<b>Bước 7 — Khóa trước đánh giá cuối</b><br/><i>§5 Bước 7</i><br/>• Vào: shortlist và cấu hình demo đã chọn bằng development<br/>• frozen_evaluation.json: checkpoint hash, tau, schema, split hash, preprocessing<br/>• runtime/backend, seed, metrics, quy tắc chọn model; danh sách phương pháp gồm H00/H01<br/>• Chỉ sau khóa mới mở luồng test; không dùng test để chọn checkpoint/ngưỡng"}
+    TESTFINAL["<b>Partition test — chỉ đánh giá cuối</b><br/><i>§1.2; §5 Bước 7; §7.6</i><br/>• 440 ảnh = 220 good + 220 defect; 220 pair; 2 nhóm group44000/group92000<br/>• Cùng danh sách canonical cho mọi model đã khóa; mỗi ảnh đúng một lần<br/>• Xuất từng seed / source_group / worst-group; đo pipeline routing thật<br/>• Ra: benchmark_summary.csv, benchmark_per_class.csv, benchmark_per_group.csv, predictions.jsonl<br/>• Không đạt thì báo không đạt; không sửa tau rồi ghi đè; nghiên cứu tiếp cần protocol/tập xác nhận<br/>mới<br/>• Phân tích lỗi test sau đánh giá chỉ giải thích hạn chế, không tuyên bố cải tiến trên cùng test"]
+    TABLE["<b>Bảng tổng hợp và bảng phụ</b><br/><i>§7.2; §7.8</i><br/>• ID, Model/mode, supervision; Balanced acc., Defect recall/precision, F1, MCC, FRR, Defect→GOOD,<br/>ECPB<br/>• E2E p95 ms, RAM/VRAM MB, AD route%; B03/H00=100, YOLO-only=N/A, B04=N/A<br/>• H00 đứng trước H01; B01/B02/B03/H00/H01/H02/B04 theo ma trận ưu tiên<br/>• CSV đầy đủ: dataset_id, protocol_id, artifact/config hash, seed, thiết bị<br/>• —=chưa đo; N/A=không áp dụng; không đưa điểm số nguồn vào bảng dự án<br/>• Bảng detection sáu lớp và bảng localization riêng; §7.8 là nhãn giữ số, không có nội dung bổ<br/>sung"]
+    ABLATE["<b>Ablation phát triển</b><br/><i>§9; §5 Bước 6</i><br/>• YOLO-only / AD-only / OR / cascade: cùng checkpoint/split/log score<br/>• YOLO11n vs YOLO11s: cùng recipe, công bố ngân sách<br/>• AD tile-256 vs resize-256 bắt buộc; đo bbox nhỏ, khóa stride/blend/NMS<br/>• Confidence + AD threshold: 2-D grid search calibration<br/>• Một seed vs ba seed: cùng split và ngân sách<br/>• Ưu tiên baseline→routing→threshold→resolution; không đổi mọi biến cùng lúc"]
+    POOLOPT["<b>Ablation pooling mở rộng</b><br/><i>§5 Bước 4; §9</i><br/>• Default max score vs top-k: biến thể riêng để kiểm nhiễu cực đại<br/>• Calibration riêng cho mỗi pooling, lưu version riêng"]
+    STRESS["<b>Robustness / stress riêng</b><br/><i>§9; DECISIONS R10</i><br/>• Xoay, mờ, đổi sáng, nén: tập phát triển, giữ liên kết ảnh gốc, không trộn benchmark chính<br/>• specular_glare — lóa phản xạ; motion_blur — rung lệch trục; defocus_blur — mất nét<br/>• alignment_jitter: dx/dy trong [−2,2] px, dtheta trong [−0.5°,0.5°]<br/>• Đánh giá jitter riêng B03/H01, kiểm false positive dọc biên do lệch template"]
+    NOVEL["<b>Lỗi chưa thấy — protocol riêng</b><br/><i>§2.2; §9</i><br/>• Leave-one-defect-type-out chỉ khi cần; không chặn MVP sáu lớp<br/>• Ảnh đa lỗi chứa lớp giữ lại phải loại khỏi toàn dữ liệu train/tuning có thể lộ lớp<br/>• Không chỉ xóa bbox rồi coi là nền; kiểm số ảnh còn lại trước chạy"]
+    RUNTIME["<b>Bước 9 — Profile sau baseline đúng</b><br/><i>§5 Bước 9</i><br/>• Vào: baseline đúng + artifact đã khóa<br/>• Profile decode/preprocess/YOLO/AD/stitch/NMS/hậu xử lý/render/load<br/>• Giữ model trong RAM, tránh copy tensor thừa; cascade chỉ gọi AD khi routed<br/>• Kiểm backend Intel Arc XPU / CUDA cloud; giữ CPU demo nếu khả thi<br/>• Ra: bảng accuracy–latency–memory theo backend; lợi ích phải đo, sai khác trong mức đã định"]
+    EXPORTOPT["<b>Export runtime khi hỗ trợ</b><br/><i>§5 Bước 9; §9</i><br/>• FP16 / ONNX / OpenVINO: thử theo phần cứng và khả năng export thực<br/>• So PyTorch với export trên cùng ảnh: score/box/decision và E2E<br/>• Artifact version riêng; calibration lại nếu cần rồi khóa lại trước đánh giá"]
+  end
+
+  subgraph LANE_RECORD["Prediction record, registry và artifacts — §4.1; §8"]
+    direction TB
+    RECIDENT["<b>Prediction record: định danh và provenance</b><br/><i>§8</i><br/>• run_id, sample_id, image_sha256, dataset_id, split, source_group<br/>• model_id, model_version, checkpoint_hashes, protocol_id, config_hash<br/>• mode, final_status, decision_source, routing_reason, error_reason"]
+    RECSCORE["<b>Prediction record: thực thi và điểm</b><br/><i>§8</i><br/>• yolo_executed, efficientad_executed, yolo_image_score, anomaly_score<br/>• tau_yolo, tau_ad, score_definition, preprocessing_version, tiling_params<br/>• Tầng không chạy: score và model timing=null, không phải 0"]
+    RECGEOM["<b>Prediction record: hình học và output</b><br/><i>§8</i><br/>• detections[{class_id,class_name,confidence,xyxy_original}]<br/>• anomaly_regions, anomaly_map_path, annotated_image_path<br/>• ground_truth_available, ground_truth_reference; GT chỉ dùng tại evaluator"]
+    RECTIME["<b>Prediction record: timing và runtime</b><br/><i>§8</i><br/>• timing_ms{decode,preprocess,yolo,efficientad,stitch,nms,postprocess,total_core}<br/>• device, backend, precision, input_size, tile_count, timestamp"]
+    RAWSCHEMA["<b>Raw predictions Step 3/4</b><br/><i>§5 Bước 3–4; §8; contract Step 3–4</i><br/>• run_id,sample_id,image_sha256,split,source_group,model_id,checkpoint_sha256,config_hash<br/>• preprocessing_version; YOLO inference_params,detections,yolo_image_score<br/>• AD tile_params,anomaly_score,boxes[{xyxy,confidence,class_name}]<br/>• error_reason; timing_ms=null; schema raw khác record đích §8, không tự đổi tên khóa"]
+    REGISTRY["<b>Registry và tính tương thích</b><br/><i>§4.1; §8; contract Step 3–4</i><br/>• Giữ checkpoint, threshold, class_order, normalization AD và benchmark đúng artifact<br/>• load / from_artifact kiểm checkpoint SHA-256, schema/class order, smoke opt-in<br/>• ArtifactMismatchError / ClassOrderError / SmokeArtifactError; không trộn threshold/cache/report<br/>khác nguồn<br/>• Config hash canonical không chứa seed; preprocessing version/hash có nguồn<br/>• Không nạp checkpoint PCB cũ thiếu split/schema; pretrained phổ thông có nguồn, version, hash"]
+    ARTIFACTS["<b>Artifacts và run theo seed</b><br/><i>§4.1; §5 Bước 3–4,7; contract Step 3–4</i><br/>• runs/yolo hoặc runs/efficientad: model_id/seed, run_manifest.json, env.json, train.log,<br/>checkpoints<br/>• artifacts/yolo:<br/>best.pt,last.pt,artifact.json,model_card.md,calibration_per_class.json,preds_calibration/fusion<br/>• artifacts/efficientad:<br/>model.pt,artifact.json,model_card.md,calibration_stats.json,preds_calibration/fusion<br/>• run manifest: schema/run/model/recipe/seed/smoke, git_commit/dirty, versions/device, dataset<br/>release hash, args_used<br/>• epochs/best_epoch/early stop/resume nếu có, train_time, peak RAM/VRAM, checkpoint hashes<br/>• artifact metadata: normalization/inference/tile params hoặc class_order, config hash,<br/>run_manifest path/hash, commit tạo<br/>• validation report và model card tiếng Việt; scope, supervision, hạn chế N=2, không dùng test"]
+    TREE1["<b>Cấu trúc dự án: cấu hình và core</b><br/><i>§4.1</i><br/>• PLAN.md, plan.v2.md, plan.v3.md, Review.md, review2.md; docs/TRIAGE.md, docs/DECISIONS.md<br/>• README.md, pyproject.toml, requirements khóa theo môi trường<br/>• configs/dataset.yaml, protocol.yaml, models/, experiments/<br/>• src/pcb_lab/data/, models/, inference/ (TileManager), evaluation/, registry/"]
+    TREE2["<b>Cấu trúc dự án: ứng dụng và output</b><br/><i>§4.1</i><br/>• app/ Streamlit; scripts/ audit/train/calibrate/benchmark/export; tests/ dữ liệu/routing/metrics<br/>• data_refs/ snapshot manifest và chữ ký, không nhân bản dataset<br/>• artifacts/, runs/, reports/ audit/bảng/hình/phân tích lỗi<br/>• uploads/ ảnh thử riêng không tự vào train; exports/ ZIP, CSV/JSON, ảnh kết quả"]
+    NOTEBOOK["<b>Runner GPU khi dùng từ xa</b><br/><i>§4.1; §5 Bước 10</i><br/>• notebooks/ Colab/Kaggle hoặc package riêng dự án<br/>• Resume và kiểm artifact tải về; không mặc định runner ba nhánh cũ"]
+    TECH["<b>Công nghệ và môi trường</b><br/><i>§4.2–4.3; contract Step 4</i><br/>• Python, PyTorch, Ultralytics; AD dùng anomalib hoặc standalone<br/>• Streamlit tiếng Việt; JSON/JSONL config/metadata/prediction; CSV benchmark<br/>• Venv mới; khóa Python, torch/torchvision, CUDA/driver, anomalib, Ultralytics, UI; không dùng<br/>latest<br/>• Không thay môi trường cũ; kiểm tác dụng phụ loader/audit/packaging nguồn trước tái sử dụng<br/>• Runner riêng phục vụ baseline/cascade, output root riêng; không chạy lại kiến trúc ba nhánh"]
+    FASTAPI["<b>FastAPI khi cần nhiều client</b><br/><i>§4.2</i><br/>• Chỉ bổ sung khi nhiều client hoặc tích hợp hệ thống ngoài<br/>• Không bắt buộc frontend/backend riêng"]
+    SQLITE["<b>SQLite khi JSONL bất tiện</b><br/><i>§4.2</i><br/>• Lịch sử UI có thể chuyển sang SQLite khi cần"]
+  end
+
+  subgraph LANE_PRODUCT["Giao diện và sản phẩm bàn giao — §2.1; §5 Bước 8,10; §10"]
+    direction TB
+    SCOPE["<b>Phạm vi và sản phẩm cần bàn giao</b><br/><i>§2.1</i><br/>• Core AI kiểm thử ảnh PCB trần có sẵn; không yêu cầu camera, robot hoặc phân loại vật lý<br/>• Không phát triển lại kiến trúc ba nhánh; YOLO11n+AD-S là cấu hình xuất phát chưa xác minh tốt<br/>nhất<br/>• Dataset adapter + báo cáo audit tái chạy; baseline checkpoint + cấu hình đầy đủ<br/>• OR/cascade hai tầng + ngưỡng khóa; benchmark chung + prediction từng ảnh<br/>• UI upload/bbox/heatmap/routing/batch/compare; gói chạy lại, hướng dẫn, báo cáo chọn model"]
+    HYPOTH["<b>Giả thuyết H1–H5 cần kiểm chứng</b><br/><i>§2.2</i><br/>• H1: AD cứu một phần defect YOLO không có box đạt ngưỡng<br/>• H2: recall tăng đáng chi phí false reject và tầng hai<br/>• H3: resolution/tiling ảnh hưởng lỗi nhỏ, phải đo<br/>• H4: cân bằng trên nhóm nguồn chưa thấy và nhiều seed<br/>• H5: H01 recall tương đương H00 nhưng latency và/hoặc FRR tốt hơn — mục tiêu chưa chứng minh<br/>• Sáu lớp đã biết không chứng minh mọi lỗi mới; mở rộng cần protocol riêng"]
+    CLI["<b>CLI dùng core và evaluator chung</b><br/><i>§4.2; §5 Bước 10; §11.1</i><br/>• Lệnh audit / train / calibrate / benchmark / UI; cấu hình mẫu<br/>• Inference gọi InferenceService; benchmark gọi cùng evaluator như UI<br/>• Công bố tác vụ cần cloud GPU và tài nguyên cần tải"]
+    UIBUILD["<b>Bước 8 — Streamlit nội bộ</b><br/><i>§5 Bước 8; §10</i><br/>• Vào: core đã kiểm Bước 5 + registry; sườn UI sớm có dữ liệu minh họa được đánh dấu<br/>• UI gọi InferenceService qua BaseImageSource, không đọc file trực tiếp<br/>• Chỉ load model đăng ký; cache giữa ảnh, trạng thái tải/chạy/lỗi<br/>• Benchmark khóa tách thử ngưỡng; mỗi chỉnh tham số tạo run mới, không ghi đè artifact<br/>• Ảnh mẫu mặc định calibration/fusion; gallery cuối chỉ trong chế độ xem báo cáo sau khóa<br/>• Ra: ứng dụng upload/batch/benchmark; overlay và số liệu khớp core/CLI"]
+    UI1["<b>Màn hình kiểm thử một ảnh</b><br/><i>§10.1</i><br/>• Upload PNG/JPG/JPEG; kích thước, dung lượng, ảnh gốc, cảnh báo khác domain/kích thước<br/>• Chọn artifact đăng ký + mode; nút chạy/tiến độ; không load lại model khi chỉnh hiển thị<br/>• Ảnh gốc/bbox/heatmap stitched 640×640 nếu AD chạy; bật/tắt overlay, opacity, zoom lỗi nhỏ<br/>• GOOD / DEFECT / ERROR và REVIEW nếu bật; lý do, decision_source, tuyến xử lý<br/>• AD không chạy: hiển thị Không chạy, không heatmap giả<br/>• Bảng bbox: class/confidence/xyxy/kích thước; AD score/tau/vùng chưa xác định loại<br/>• Model/version/hash rút gọn/tau/input size/tile count/stride/timing/device/backend/khóa hay thử<br/>• Tải ảnh kết quả và prediction JSON"]
+    UIACCURACY["<b>Hiển thị độ chính xác đúng nghĩa</b><br/><i>§10.2; DECISIONS R4,H2</i><br/>• YOLO confidence không là accuracy ảnh hay xác suất đã hiệu chuẩn; anomaly score không tự thành %<br/>đúng<br/>• Benchmark từ report khóa kèm dataset/split/N/model version; thiếu report ghi Chưa đánh giá<br/>• Upload không nhãn: Chưa có nhãn chuẩn để đánh giá đúng/sai<br/>• Có GT: so ảnh/box; một ảnh đúng không là 100% accuracy hệ thống<br/>• Thẻ Balanced accuracy, recall, FRR, F1, ECPB giả định được duyệt, p95<br/>• Chỉnh ngưỡng: thẻ lịch sử vẫn thuộc cấu hình gốc; không gán cho cấu hình mới"]
+    UIBATCH["<b>Màn hình kiểm thử batch</b><br/><i>§10.3</i><br/>• Nhiều ảnh hoặc dataset/manifest đăng ký; filename không là GT<br/>• Tiến độ, GOOD/DEFECT/REVIEW/ERROR, route_rate, thời gian, bảng từng ảnh<br/>• Có nhãn hợp lệ: confusion matrix/metrics/lọc FP/FN; thiếu nhãn chỉ tổng hợp dự đoán<br/>• Xem lại, tải CSV/JSON/overlay; upload không ghi vào split train/test"]
+    UICOMPARE["<b>Màn hình benchmark và so sánh</b><br/><i>§10.4</i><br/>• Bảng §7 lọc dataset/protocol/device/backend/seed/mode; không xếp điều kiện không tương thích<br/>• H00 vs H01 cùng bảng; cùng sample ID, disagreement, rescued defect, added false reject<br/>• Confusion matrix, AP/recall từng lớp, worst-group, route_rate, DET/ROC<br/>• Latency–recall OR/cascade; chất lượng–latency–memory; xuất bảng/hình<br/>• Benchmark chính thức đọc frozen config; thử nghiệm có run_id riêng"]
+    UIHISTORY["<b>Màn hình model và lịch sử</b><br/><i>§10.5</i><br/>• Artifact/schema/dữ liệu và ngày train/ngưỡng/số seed/trạng thái benchmark<br/>• Tra lịch sử ảnh/run theo thời gian/model/kết quả/lỗi hệ thống<br/>• Nhãn nhập tay tách GT xác minh; không tự đưa leaderboard hay retrain"]
+    DELIVERY["<b>Bước 10 — Đóng gói bàn giao</b><br/><i>§5 Bước 10; §2.1</i><br/>• Vào: checkpoint + metadata + benchmark + UI đã kiểm<br/>• README tiếng Việt, model card, dataset/protocol card, limitations và hướng dẫn tái lập<br/>• Demo phát triển: YOLO TP, AD rescue, good đúng, FP/FN tiêu biểu nếu có<br/>• Benchmark OR/cascade, confusion matrix, PR/ROC/DET phù hợp, sáu lớp, Pareto latency–recall,<br/>ablation<br/>• Ra: gói chạy / ZIP, báo cáo và demo tái lập; checkpoint đúng quyền sử dụng<br/>• Kiểm cài/chạy từ thư mục dự án; người khác theo README đối chiếu được kết quả"]
+  end
+
+  subgraph LANE_CONTROL["Điều khiển: Gate 0, ba cổng, kiểm thử và nghiệm thu — §5 Bước 0; §11–13"]
+    direction TB
+    STEP0["<b>Bước 0 — Protocol và môi trường</b><br/><i>§5 Bước 0</i><br/>• Vào: release nguồn + ma trận baseline + phần cứng thực có<br/>• Protocol deeppcb_cascade_holdout_v1; fusion → development_selection ghi trong protocol mới<br/>• Đăng ký trước baseline/metrics/seed42,43,44/ngưỡng mục tiêu/ngân sách; experiment manifest<br/>• Kiểm CPU/GPU, RAM/VRAM, dung lượng đĩa, framework/device thực; khóa môi trường local và cloud<br/>• Lưu dataset hash, code revision/snapshot, environment lock; không sửa dự án cũ<br/>• Ra: configs/protocol.yaml, reports/environment.json, reports/experiment_register.md"]
+    GATE0{"<b>Gate 0 — tiền điều kiện cloud GPU</b><br/><i>§5 Bước 0; §12</i><br/>• Colab / Kaggle, CUDA 12.x; smoke-train 3 epoch thành công<br/>• Chưa đạt: chưa đếm 4–6 tuần, hoãn train nặng Bước 3–7<br/>• Local CLI/UI/EDA/audit; smoke CPU kỹ thuật được contract Step 3/4 cho phép riêng"}
+    SMOKE["<b>Smoke CPU theo hợp đồng</b><br/><i>§5 Bước 3–4; contract Step 3–4; NOTES N04</i><br/>• Step 3: 1 epoch, view nhỏ, random từ kiến trúc, không cần pretrained<br/>• Step 4: 1 epoch, limit good=4, CPU; không tạo artifact chính thức<br/>• runs/smoke, smoke=true; không thay baseline, không chứng nhận Gate 0 cloud"]
+    GATE1{"<b>Cổng 1 — Sau audit</b><br/><i>§12; §5 Bước 1</i><br/>• Dữ liệu đủ hợp lệ để train thì qua cổng<br/>• Không đạt: sửa phiên bản dữ liệu mới, không âm thầm thay release khóa"}
+    GATE2{"<b>Cổng 2 — Sau development</b><br/><i>§12; §7.6; DECISIONS S4,H3</i><br/>• Hybrid có lợi ích đáng chi phí? So trực tiếp H00 / H01<br/>• Không đủ lợi ích: giữ kết quả âm; chọn OR hoặc baseline phù hợp hơn<br/>• Không mặc định giả thuyết hybrid đúng; trước khóa danh sách đánh giá cuối"}
+    GATE3{"<b>Cổng 3 — Sau test</b><br/><i>§12; §1.4</i><br/>• Kết luận trong DeepPCB / protocol / phần cứng đã đo<br/>• Chuyển sang camera: cần thu thập và xác nhận dữ liệu thực riêng"}
+    TESTS["<b>Kiểm thử ưu tiên</b><br/><i>§11.1; contract Step 2–4</i><br/>• Data isolation: AD good-only, không auto-split trộn partition/pair/group<br/>• Routing: YOLO+ không gọi AD kể cả FP; OR gọi hai; equality threshold; failure không GOOD<br/>• TileManager linear stitch không sọc, tọa độ/clip/NMS .45 đúng; unit riêng<br/>• Resize/padding/tiling round-trip đúng tọa độ gốc<br/>• Metric với TP/TN/FP/FN tính tay; mẫu số0/khôngscore/khôngmask=N/A; Point-in-Box có area<br/>constraint<br/>• Provenance: không trộn threshold/checkpoint, cache/preprocess, report/dataset<br/>• Reload/export trong tolerance; báo sai khác export riêng<br/>• UI integration khớp CLI: YOLO-positive, AD-positive, OR, GOOD, ERROR; chỉnh tau không ghi đè<br/>benchmark, ảnh hỏng/không nhãn thông báo đúng<br/>• Ưu tiên lỗi làm sai kết luận; không viết test phản chiếu từng dòng UI"]
+    ACCEPT["<b>Nghiệm thu cuối</b><br/><i>§11.2</i><br/>• Audit đạt, giữ sáu lớp và bốn partition<br/>• YOLO / AD / H00 / H01 chạy độc lập với artifact đầy đủ; log routing đúng<br/>• Có baseline đơn + benchmark chung + OR, không chỉ một số hybrid<br/>• Ba seed cho kết luận chính hoặc giải thích giới hạn; provenance truy được, không tuning test<br/>• UI upload/batch/box/heatmap/routing/version/latency/export hoạt động<br/>• Accuracy có nguồn; không gọi score là accuracy, không pixel metric khi không mask, không gán lớp<br/>cho AD<br/>• Limitations N=2/dedicated line/AD khóa khi YOLO+; README tái chạy, trade-off và chọn model hoặc<br/>chưa đạt"]
+    ROADMAP["<b>Lộ trình 4–6 tuần sau Gate 0</b><br/><i>§12</i><br/>• Tuần0: Colab/Kaggle CUDA12.x + smoke3epoch<br/>• Tuần1: Bước0–2 local, smoke, sườn UI, TileManager<br/>• Tuần2: cloud YOLO11n + AD-S; Bước3–5, cascade seed42, tau phát triển, UI một ảnh<br/>• Tuần3: YOLO11s, anomaly đối chứng, OR, tile/resize, development và shortlist<br/>• Tuần4: seed43/44, freeze, test cuối, worst-group, benchmark chính thức<br/>• Tuần5: UI batch/compare/DET, profiling, export khi cần<br/>• Tuần6: dự phòng, tái lập, phân tích lỗi, tài liệu/demo<br/>• Lịch tổ chức phụ thuộc GPU/kinh nghiệm/biến thể, không là thời gian train đã đo"]
+    PRIORITY["<b>Thứ tự ưu tiên khi thiếu thời gian</b><br/><i>§12</i><br/>• Audit → YOLO11n → EfficientAD-S tile256 → OR H00 → cascade H01 → evaluator → UI → ba seed/test<br/>• Lùi B04/B06/B07, export và nghiên cứu lỗi mới; B05 không thuộc ma trận bắt buộc"]
+    OPEN["<b>Các mục HUMAN / VERIFY còn mở</b><br/><i>§1.4; §7.6; §12; DECISIONS §3–4</i><br/>• HUMAN H1: LOGO-CV còn câu hỏi lịch sử; quyết định R1 hiện hành không làm<br/>• HUMAN H2: trọng số ECPB; HUMAN H3: chấp nhận hybrid có thể thua YOLO<br/>• VERIFY V1: detector mở rộng; V2: bbox nhỏ tile vs resize; V3: route_rate thực<br/>• HUMAN H1–H3 của DECISIONS khác giả thuyết H1–H5 của plan; không tự chốt"]
+    REFERENCES["<b>Nguồn kỹ thuật và trạng thái kế hoạch</b><br/><i>§13</i><br/>• DeepPCB của tác giả (commit nguồn pin trong dataset card); bài báo EfficientAD arXiv:2303.14535<br/>• API anomalib EfficientAD và Ultralytics YOLO11: đối chiếu phiên bản thư viện đã khóa<br/>• Nguồn dùng kiểm dữ liệu/thuật toán/API; không lấy điểm số nguồn làm kết quả PCB dự án<br/>• Cấu trúc/UI/protocol/tiêu chí là thiết kế; sơ đồ không tuyên bố đã có ứng dụng hay benchmark<br/>• Đọc PLAN.md §1–13, DECISIONS, TRIAGE, contracts Step2/3/4; không dùng docs/archive"]
+  end
+
+  subgraph LEGEND["Chú giải trình bày — áp dụng §1–§13"]
+    direction TB
+    LEG_FLOW["Nét liền: luồng / phụ thuộc được ghi trên cạnh<br/>Xanh lam: dữ liệu, preprocessing; xanh lục: model/core<br/>Tím: hiệu chỉnh, đánh giá; xanh ngọc: record, sản phẩm<br/>Vàng: điều kiện / cổng; xám: điều khiển và quy tắc<br/>§1–§13: nhãn chỉ nguồn, không là trạng thái hoàn thành"]
+    LEG_OPT["Nét đứt ở nút và cạnh: tùy chọn / mở rộng / điều kiện chưa chốt<br/>§2–§12: không mặc nhiên thuộc đường baseline bắt buộc"]
+  end
+  SOURCE -->|"metadata và dữ liệu phát triển"| AUDIT
+  SOURCE -->|"split=train"| TR
+  SOURCE -->|"split=calibration"| CA
+  SOURCE -->|"split=fusion"| FU
+  AUDIT -->|"kiểm toán trước train"| GATE1
+  GATE1 -->|"chỉ khi hợp lệ"| SAMPLE
+  SAMPLE -->|"Sample / canonical image"| PRE
+  PRE -->|"mode=yolo"| LETTER
+  PRE -->|"mode=ad_tile"| TILE
+  PRE -->|"mode=ad_resize, chỉ ablation"| RESIZE
+  TR -->|"chỉ train"| AUG
+  AUG -->|"recipe YOLO có phiên bản"| YOLOTRAIN
+  TR -->|"1.792 good + defect bbox"| YOLOTRAIN
+  TR -->|"CHỈ 895 good / AdTrainSet"| ADTRAIN
+  CA -->|"validation chọn checkpoint"| YOLOTRAIN
+  CA -->|"230 good"| NORMAUDIT
+  ADTRAIN -->|"checkpoint đã fit"| NORMAUDIT
+  NORMAUDIT -->|"normalization_stats"| B03
+  LETTER -->|"input 640"| YOLOTRAIN
+  TILE -->|"8.055 tile train good"| ADTRAIN
+  YOLOTRAIN -->|"best / last"| B01
+  YOLOTRAIN -->|"best / last"| B02
+  YOLOTRAIN -->|"checkpoint YOLO đã chọn"| EXTRACT
+  ADTRAIN -->|"checkpoint đã fit"| B03
+  B03 -->|"checkpoint B03"| EXTRACT
+  CA -->|"460 ảnh calibration"| EXTRACT
+  FU -->|"306 ảnh fusion"| EXTRACT
+  IMAGENETTE -. "dữ liệu regularization, chỉ nếu triển khai cần" .-> ADTRAIN
+  B01 -->|"checkpoint B01"| YINFER
+  B02 -->|"B02 cho H02 hoặc yolo_only"| YINFER
+  B03 -->|"checkpoint B03 + normalization"| ADINFER
+  B01 -->|"H00 dùng lại B01"| ORRUN
+  B03 -->|"H00 dùng lại B03"| ORRUN
+  B01 -->|"H01 cùng B01 với H00"| CASCADE
+  B03 -->|"H01 cùng B03 với H00"| CASCADE
+  B02 -->|"H02 dùng B02"| CASCADE
+  IMAGEAPI -->|"get_frame / predict / describe"| CORE
+  LETTER -->|"RGB + meta scale/pad"| YINFER
+  TILE -->|"RGB uint8 NHWC tiles"| ADINFER
+  CORE -->|"yolo_only / cascade / or / diagnostic_both"| YINFER
+  CORE -->|"efficientad_only: yolo_image_score=null; timing_ms.yolo=null"| ADINFER
+  CORE -->|"or / diagnostic_both: mọi ảnh"| ADINFER
+  CORE -->|"diagnostic_both: cả hai, phân tích riêng"| DIAG
+  YINFER -->|"chỉ mode=cascade: có accepted_boxes?"| CASCADE
+  CASCADE -->|"CÓ — kể cả false positive"| YEXIT
+  CASCADE -->|"KHÔNG có box đạt tau_yolo"| ADINFER
+  YEXIT -->|"DEFECT; AD bị khóa: anomaly_score=null; timing_ms.efficientad=null"| RESULT
+  YINFER -->|"mode=yolo_only: quyết định YOLO"| RESULT
+  ADINFER -->|"N tile anomaly maps"| STITCH
+  STITCH -->|"mode=cascade hoặc efficientad_only: max map"| ADDEC
+  ADDEC -->|"DEFECT hoặc GOOD theo tau_ad"| RESULT
+  YINFER -->|"mode=or: kết quả YOLO"| ORRUN
+  STITCH -->|"mode=or: kết quả AD"| ORRUN
+  ORRUN -->|"đã chạy cả hai: phép OR, decision_source=OR"| RESULT
+  YINFER -->|"diagnostic_both: ghi output YOLO"| RESULT
+  STITCH -->|"diagnostic_both: ghi output AD"| RESULT
+  DIAG -. "ablation ngoài bbox khi cần" .-> BGDIAG
+  CORE -. "chỉ khi được bật" .-> REVIEW
+  REVIEW -. "REVIEW có thống kê riêng" .-> RESULT
+  CORE -->|"lỗi bất kỳ tầng → ERROR"| RESULT
+  H03 -. "hai artifact biến thể đã chọn" .-> CORE
+  B04 -. "khi đủ ngân sách" .-> CORE
+  B06 -. "khi đủ ngân sách" .-> CORE
+  B07 -. "khi đủ ngân sách" .-> CORE
+  B05 -. "chỉ sau VERIFY, không thuộc bộ bắt buộc" .-> SHORTLIST
+  EXTRACT -->|"JSONL raw phát triển"| RAWSCHEMA
+  RAWSCHEMA -->|"score calibration, không timing"| CALGRID
+  CA -->|"good và TOÀN BỘ defect, không chỉ routed"| CALGRID
+  CALGRID -->|"tau_yolo / tau_ad đã chọn"| THRESH
+  THRESH -->|"tau và routing policy đã khóa"| CORE
+  THRESH -->|"báo cáo calibration và selection"| SHORTLIST
+  FU -->|"development_selection: chọn cấu hình"| SHORTLIST
+  RESULT -->|"prediction, không GT trong inference"| EVALUATOR
+  EVALUATOR -->|"chỉ kết quả development"| SHORTLIST
+  EVALUATOR -->|"metrics image"| METRIC
+  EVALUATOR -->|"GT bbox chỉ ở evaluator"| BOXMETRIC
+  STITCH -->|"map stitched: R8 sinh candidate boxes"| R8
+  R8 -->|"anomaly regions / boxes khi AD thực chạy"| RESULT
+  R8 -->|"đánh giá localization: GT chỉ tại evaluator"| BOXMETRIC
+  EVALUATOR -->|"routing / rescue / OR vs cascade"| HYBRIDMETRIC
+  EVALUATOR -->|"report chuẩn"| TABLE
+  METRIC -->|"FN / FP mô phỏng"| COST
+  COSTPENDING -. "H2 phải được xác nhận" .-> COST
+  SHORTLIST -->|"biến thể phát triển"| ABLATE
+  RESIZE -->|"tile vs resize"| ABLATE
+  RESIZE -. "ablation resize-256, §9" .-> ADINFER
+  FU -->|"ảnh phát triển riêng"| STRESS
+  ABLATE -. "nếu thử top-k" .-> POOLOPT
+  ABLATE -. "protocol lỗi chưa thấy nếu cần" .-> NOVEL
+  UNCERT -. "nếu dùng bootstrap" .-> BOOT
+  SHORTLIST -->|"ba seed, FRR / recall / p95 / memory"| SELECT
+  SELECT -->|"đánh đổi lợi ích và chi phí"| GATE2
+  GATE2 -->|"danh sách đã chọn"| FREEZE
+  FREEZE -->|"CHỈ sau khóa: mở pixel test"| TESTFINAL
+  TESTFINAL -->|"440 ảnh qua core với cấu hình đã khóa; không retune; preprocessing chung (prepare_input) chạy trong core, §7.5"| CORE
+  TESTFINAL -->|"chỉ nhãn/bbox GT và sample_id; chỉ báo cáo cuối, không retune"| EVALUATOR
+  TESTFINAL -->|"pipeline thực, không score cache"| TIMING
+  TESTFINAL -->|"kết luận giới hạn đã đo"| GATE3
+  TESTFINAL -->|"predictions.jsonl + các bảng benchmark"| RECIDENT
+  RUNTIME -. "khi backend hỗ trợ" .-> EXPORTOPT
+  EXPORTOPT -. "nếu cần calibration lại; version mới" .-> CALGRID
+  RESULT -->|"prediction chuẩn"| RECIDENT
+  RECIDENT -->|"record §8"| RECSCORE
+  RECSCORE -->|"record §8"| RECGEOM
+  RECGEOM -->|"record §8"| RECTIME
+  RECTIME -->|"provenance gắn đúng artifact"| REGISTRY
+  ARTIFACTS -->|"checkpoint / metadata / report"| REGISTRY
+  THRESH -->|"threshold gắn checkpoint"| REGISTRY
+  TABLE -->|"benchmark tương ứng"| REGISTRY
+  REGISTRY -->|"model đã đăng ký"| UIBUILD
+  CLI -->|"cùng InferenceService"| CORE
+  UIBUILD -->|"cùng InferenceService qua ImageSource"| CORE
+  CLI -->|"cùng evaluator"| EVALUATOR
+  UIBUILD -->|"cùng evaluator, chỉ khi có GT"| EVALUATOR
+  UIBUILD -->|"một ảnh"| UI1
+  UIBUILD -->|"batch"| UIBATCH
+  UIBUILD -->|"benchmark"| UICOMPARE
+  UIBUILD -->|"model và lịch sử"| UIHISTORY
+  SQLITE -. "khi JSONL không còn thuận tiện" .-> UIHISTORY
+  FASTAPI -. "nhiều client khi cần" .-> CORE
+  UI1 -->|"diễn giải score đúng"| UIACCURACY
+  TABLE -->|"bảng và biểu đồ khóa"| UICOMPARE
+  UIBUILD -->|"ứng dụng nội bộ"| DELIVERY
+  REGISTRY -->|"artifact + metadata"| DELIVERY
+  NOTEBOOK -. "package cloud khi dùng" .-> DELIVERY
+  STEP0 -->|"kiểm hạ tầng"| GATE0
+  GATE0 -->|"GPU sẵn sàng cho train nặng"| YOLOTRAIN
+  GATE0 -->|"GPU sẵn sàng cho train nặng"| ADTRAIN
+  SMOKE -->|"smoke CPU kỹ thuật không thay Gate 0"| TESTS
+  TESTS -->|"bằng chứng kiểm thử"| ACCEPT
+  GATE3 -->|"kết luận cuối đúng phạm vi"| ACCEPT
+  ACCEPT -->|"chỉ bàn giao khi đủ nghiệm thu"| DELIVERY
+  GATE0 -->|"bắt đầu đếm 4–6 tuần"| ROADMAP
+  PRIORITY -->|"thứ tự ưu tiên"| ROADMAP
+  OPEN -. "HUMAN H2" .-> COSTPENDING
+  OPEN -. "VERIFY V1" .-> B05
+
+  classDef data fill:#e9f2ff,stroke:#4c78a8,color:#172b4d;
+  classDef model fill:#eaf5e9,stroke:#548b56,color:#183e20;
+  classDef eval fill:#f2edff,stroke:#8467aa,color:#38254d;
+  classDef product fill:#e5f5f3,stroke:#368d86,color:#173d39;
+  classDef control fill:#f1f3f5,stroke:#7b8794,color:#263238;
+  classDef decision fill:#fff3cd,stroke:#b58516,color:#4a390f;
+  classDef optional fill:#fffaf1,stroke:#a67c2f,color:#4a390f,stroke-dasharray:6 4;
+  class SOURCE,TR,CA,FU,CLASSES,LIMITS,AUDIT,SAMPLE,PRE,LETTER,TILE,STITCH,AUG,RESIZE,IMAGEAPI data;
+  class R8,YOLOTRAIN,B01,B02,ADTRAIN,B03,EXTRACT,CORE,YINFER,ADINFER,YEXIT,ORRUN,DIAG,RESULT model;
+  class NORMAUDIT,THRESH,EVALUATOR,FAIR,FAIRDATA,SHORTLIST,METRIC,COST,BOXMETRIC,HYBRIDMETRIC,TIMING,UNCERT,TESTFINAL,TABLE,ABLATE,STRESS,RUNTIME eval;
+  class RECIDENT,RECSCORE,RECGEOM,RECTIME,RAWSCHEMA,REGISTRY,ARTIFACTS,TREE1,TREE2,TECH,SCOPE,HYPOTH,CLI,UIBUILD,UI1,UIACCURACY,UIBATCH,UICOMPARE,UIHISTORY,DELIVERY product;
+  class STEP0,SMOKE,TESTS,ACCEPT,ROADMAP,PRIORITY,OPEN,REFERENCES control;
+  class CASCADE,ADDEC,CALGRID,SELECT,FREEZE,GATE0,GATE1,GATE2,GATE3 decision;
+  class B04,B05,B06,B07,BGDIAG,REVIEW,H03,COSTPENDING,BOOT,POOLOPT,NOVEL,EXPORTOPT,IMAGENETTE,NOTEBOOK,FASTAPI,SQLITE,LEG_OPT optional;
+  class LEG_FLOW control;

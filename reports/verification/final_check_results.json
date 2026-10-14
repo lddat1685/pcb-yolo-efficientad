@@ -1,0 +1,13 @@
+{
+  "identical_files": 65,
+  "overlay_count": 60,
+  "audit_sha256": "c0f52b184b306bc75b5b529df624a329e7ec0edc56e1ca81bf8535305546ecbb",
+  "profile_sha256": "626f0fb1c1a496f9bca6887fb40b1a05ef13f02d011d8b51ec99072cfd2889d4",
+  "contract_schema": "PASS",
+  "versions": {
+    "Pillow": "12.1.1",
+    "PyYAML": "6.0.3",
+    "setuptools": "80.10.2",
+    "pcb-lab": "0.1.0"
+  }
+}

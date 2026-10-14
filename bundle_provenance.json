@@ -1,0 +1,5 @@
+{
+  "git_commit": "b98c9dab46db3d41dd3732bd6cb7126785c3942f",
+  "git_dirty": true,
+  "note": "Working tree includes the new IMV GigE camera integration, audit reports and git-ignored checkpoints/runs. See file hashes in HANDOFF_MANIFEST.json."
+}

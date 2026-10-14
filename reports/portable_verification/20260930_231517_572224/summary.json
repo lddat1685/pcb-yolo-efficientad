@@ -1,0 +1,14 @@
+[
+  {
+    "check": "integrity",
+    "exit_code": 0
+  },
+  {
+    "check": "pytest",
+    "exit_code": 1
+  },
+  {
+    "check": "parity",
+    "exit_code": 0
+  }
+]

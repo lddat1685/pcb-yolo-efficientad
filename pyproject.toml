@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools==80.10.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pcb-lab"
+version = "0.1.0"
+description = "Read-only canonical PCB dataset audit and development EDA"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "torch==2.6.0", "torchvision==0.21.0", "ultralytics==8.4.161",
+    "streamlit==1.55.0", "altair==6.0.0", "pandas==2.2.3",
+    "opencv-python-headless==4.11.0.86", "opencv-python==4.11.0.86",
+    "Pillow==12.1.1", "numpy==2.1.1", "PyYAML==6.0.3",
+    "psutil==7.2.2", "pytest==8.3.5",
+]
+
+[project.optional-dependencies]
+ui = [] # Kept for compatibility; UI is included in the demo installation.
+
+[tool.setuptools.packages.find]
+where = ["src"]

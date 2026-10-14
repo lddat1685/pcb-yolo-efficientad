@@ -1,0 +1,22 @@
+# Step 3 (Baseline YOLO) — CPU local development environment.
+# Pinned to versions verified installed in ../PCB_Lab_impl3/.venv (Python 3.14.7, Windows x64, CUDA unavailable).
+# For cloud GPU training see docs/RUN_GPU.md (same packages, torch CUDA wheels + GPU flags).
+#
+# Install:
+#   uv --cache-dir .cache/uv venv --python 3.14.7 .venv
+#   uv --cache-dir .cache/uv pip install --python .venv/Scripts/python.exe \
+#       --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple -r requirements/step3.txt
+#   uv --cache-dir .cache/uv pip install --python .venv/Scripts/python.exe --no-build-isolation --no-deps -e .
+
+# --- Step 2 runtime (reused: samples, preprocessing, tiling, augment) ---
+numpy==2.5.3
+pillow==12.3.0
+pyyaml==6.0.3
+setuptools==84.0.0
+
+# --- Step 3 ML stack (CPU wheels) ---
+torch==2.14.0
+torchvision==0.29.0
+ultralytics==8.4.161
+ultralytics-platform==0.1.62
+ultralytics-thop==2.1.6

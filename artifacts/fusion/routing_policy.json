@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "policy_id": "routing_policy_v1",
+  "selected_model": "H01_cascade",
+  "detector_1": "B01_yolo11n",
+  "anomaly_2": "B03_efficientad_s",
+  "tau_yolo": 0.14,
+  "tau_ad": 1.4598,
+  "rule": "if yolo_score >= tau_yolo then DEFECT (early-exit) else if ad_score >= tau_ad then DEFECT else GOOD",
+  "test_access": false,
+  "source_checksums": {
+    "yolo_n_calibration": "28de8c3bd95dcf5f9d81dff913379591c9d42ea9cc9223f77390a581c08a1941",
+    "yolo_n_fusion": "a3dfea548c3421ac05a5f343d1523edfcdc3b2f68324fa1aa8f60a6dbf0677b5",
+    "yolo_s_calibration": "2d8b410b766d2de50d5fdf8e154369f87503bd9f3ffe393bdda0b1c06e99effb",
+    "yolo_s_fusion": "29c72c0df08ab2ba2d8aab0cd7c1f85060e4930f4429f1a6af97ba295d2a96e6",
+    "ad_calibration": "080fb3e9614333e690e94023c2b7ce8c3b1a2a94a568e623beb2b1ed88d8bd24",
+    "ad_fusion": "506b8ff2615b9cbdc42ad37abc06dde65e12d9103479ef0d45115cb9c6b87edf"
+  }
+}

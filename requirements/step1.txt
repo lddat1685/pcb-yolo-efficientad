@@ -1,0 +1,4 @@
+# CPU audit and EDA; exact versions verified in the project environment.
+Pillow==12.1.1
+PyYAML==6.0.3
+setuptools==80.10.2

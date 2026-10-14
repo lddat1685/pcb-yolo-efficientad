@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: pcb-lab
+Version: 0.1.0
+Summary: Read-only canonical PCB dataset audit and development EDA
+Requires-Python: <3.13,>=3.11
+Requires-Dist: torch==2.6.0
+Requires-Dist: torchvision==0.21.0
+Requires-Dist: ultralytics==8.4.161
+Requires-Dist: streamlit==1.55.0
+Requires-Dist: altair==6.0.0
+Requires-Dist: pandas==2.2.3
+Requires-Dist: opencv-python-headless==4.11.0.86
+Requires-Dist: opencv-python==4.11.0.86
+Requires-Dist: Pillow==12.1.1
+Requires-Dist: numpy==2.1.1
+Requires-Dist: PyYAML==6.0.3
+Requires-Dist: psutil==7.2.2
+Requires-Dist: pytest==8.3.5
+Provides-Extra: ui

@@ -1,0 +1,160 @@
+{
+  "architecture": "yolo11n",
+  "args_used": {
+    "agnostic_nms": false,
+    "amp": true,
+    "batch": 16,
+    "bgr": 0.0,
+    "cache": false,
+    "close_mosaic": 0,
+    "conf": 0.001,
+    "copy_paste": 0.0,
+    "cos_lr": false,
+    "data": "/content/PCB_Lab_impl3/data_refs/yolo_view/B01_yolo11n/data.yaml",
+    "degrees": 0.0,
+    "deterministic": true,
+    "device": "0",
+    "epochs": 100,
+    "exist_ok": true,
+    "fliplr": 0.5,
+    "flipud": 0.0,
+    "hsv_h": 0.0,
+    "hsv_s": 0.0,
+    "hsv_v": 0.0,
+    "imgsz": 640,
+    "iou": 0.7,
+    "lr0": 0.001,
+    "max_det": 300,
+    "mixup": 0.0,
+    "model": "/content/PCB_Lab_impl3/artifacts/pretrained/yolo11n.pt",
+    "mosaic": 0.0,
+    "name": "seed42",
+    "optimizer": "AdamW",
+    "patience": 20,
+    "perspective": 0.0,
+    "plots": true,
+    "project": "/content/PCB_Lab_impl3/runs/yolo/B01_yolo11n",
+    "quantize": null,
+    "scale": 0.0,
+    "seed": 42,
+    "shear": 0.0,
+    "translate": 0.0,
+    "verbose": false,
+    "warmup_epochs": 3.0,
+    "workers": 8
+  },
+  "best_epoch": 13,
+  "checkpoints": {
+    "best_sha256": "c0cfe917a685a9d20014d4ece0c0d012f2a8a4d53c100190d7961a3d5cd21b05",
+    "last_sha256": "4de28ac1fbb70c3243c33e97aec0f2fb3b99f09784cd257338ade41c4dfbbfad"
+  },
+  "config_hash": "1361dcc44534ff23c52e97949271dab1aa755fe8a90e85874c962db2ac9482f1",
+  "cuda_version": "13.0",
+  "dataset_release_sha256": "e4311b277b93a4a863d14e5cac7a7aad267ae9df945508da9c6a85ed5f62e5ac",
+  "device": "0",
+  "early_stopped": true,
+  "epochs_run": 33,
+  "git_commit": "7623c11d88e4502c879d6f0efa71aab4ae495839",
+  "git_dirty": false,
+  "git_provenance": {
+    "bundle_sha256": "1a474917c538501d8352a30295c34c88b328fabf83744906a552d70a3fd6e984",
+    "source": "original Colab bundle matched against source commit",
+    "verified_files": 61
+  },
+  "link_mode": "hardlink",
+  "model_id": "B01_yolo11n",
+  "partitions_used": {
+    "train": 1792,
+    "val": "calibration"
+  },
+  "peak_ram_mb": {
+    "method": "process peak RSS (psutil; win32 psapi fallback)",
+    "value": 3596.1
+  },
+  "peak_vram_mb": {
+    "method": "torch.cuda.max_memory_allocated; null on CPU",
+    "value": 2160.8
+  },
+  "pretrained": {
+    "path": "/content/PCB_Lab_impl3/artifacts/pretrained/yolo11n.pt",
+    "sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+    "source": "ultralytics-assets(github)"
+  },
+  "python": "3.13.15",
+  "recipe_id": "yolo_aug_v1",
+  "resumed_from": null,
+  "run_id": "B01_yolo11n-seed42",
+  "schema_version": 1,
+  "seed": 42,
+  "smoke": false,
+  "torch_version": "2.14.0+cu130",
+  "train_time_s": 1260.5,
+  "ultralytics_version": "8.4.161",
+  "validation": {
+    "context": {
+      "batch": 16,
+      "checkpoint_sha256": "c0cfe917a685a9d20014d4ece0c0d012f2a8a4d53c100190d7961a3d5cd21b05",
+      "device": "cpu",
+      "half": false,
+      "imgsz": 640,
+      "python": "3.14.7",
+      "rect": false,
+      "split": "calibration",
+      "torch_version": "2.14.0+cpu",
+      "ultralytics_version": "8.4.161"
+    },
+    "overall": {
+      "map50": 0.9341408318893346,
+      "map50_95": 0.7240575938947142,
+      "pr_conf": 0.4964964964964965,
+      "pr_definition": "Ultralytics F1-optimal confidence (not operating threshold)",
+      "precision": 0.9200001954248777,
+      "recall": 0.8945469545445234
+    },
+    "per_class": {
+      "mouse_bite": {
+        "ap50": 0.9638803000948835,
+        "ap50_95": 0.7511297757465137,
+        "n_gt_boxes": 339,
+        "precision": 0.9191823533152107,
+        "recall": 0.9174041297935103
+      },
+      "open_circuit": {
+        "ap50": 0.9863670110986422,
+        "ap50_95": 0.6864870748855068,
+        "n_gt_boxes": 234,
+        "precision": 0.9416210895919941,
+        "recall": 0.9650139496327174
+      },
+      "pin_hole": {
+        "ap50": 0.8182132012674659,
+        "ap50_95": 0.7402501771368164,
+        "n_gt_boxes": 265,
+        "precision": 0.8063539646163647,
+        "recall": 0.7886792452830189
+      },
+      "short": {
+        "ap50": 0.9085818610403151,
+        "ap50_95": 0.5975648937099005,
+        "n_gt_boxes": 160,
+        "precision": 0.9065298055793938,
+        "recall": 0.8486344440622556
+      },
+      "spur": {
+        "ap50": 0.957774227710809,
+        "ap50_95": 0.6996073434204076,
+        "n_gt_boxes": 277,
+        "precision": 0.9621692959212941,
+        "recall": 0.9181819287558606
+      },
+      "spurious_copper": {
+        "ap50": 0.9700283901238927,
+        "ap50_95": 0.8693062984691406,
+        "n_gt_boxes": 269,
+        "precision": 0.9841446635250081,
+        "recall": 0.929368029739777
+      }
+    }
+  },
+  "view_signature": "d4e75ccc65d3e3665ce5cd6fbe03c4788f5b9b69daba60ae515b31f2b69d6bd1"
+}

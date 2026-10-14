@@ -1,0 +1,31 @@
+model_id: B03_efficientad_s
+recipe_id: efficientad_recipe_v1
+architecture: efficientad_s
+model_size: small
+pretrained_teacher: artifacts/pretrained/efficientad_teacher_s.pt
+train:
+  tile_size: 256
+  stride: 224
+  batch_size: 1
+  epochs: 70
+  lr: 0.0001
+  weight_decay: 0.00001
+  optimizer: AdamW
+  seed: 42
+  deterministic: true
+  device: null
+normalization:
+  teacher_stats_split: train
+  map_norm_split: calibration
+  quantile_min: 0.90
+  quantile_max: 0.995
+infer:
+  tile_size: 256
+  stride: 224
+  stitch_method: linear
+  score_metric: max
+  tau_pixel: 0.5
+  morph_k: 3
+  min_area: 20
+  nms_iou: 0.45
+  box_class_name: anomaly_unclassified

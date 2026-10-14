@@ -1,0 +1,59 @@
+﻿{
+  "flowcharts": 1,
+  "content_nodes": 99,
+  "legend_nodes": 2,
+  "edges": 136,
+  "subgraphs": 10,
+  "ends": 10,
+  "inventory_items": 409,
+  "coverage_rows": 409,
+  "label_content_matched": 409,
+  "optional_nodes": 16,
+  "review_requirements": {
+    "optional_models_via_core": true,
+    "imagenette_input": true,
+    "resize_ablation": true,
+    "postfit_quantiles": true,
+    "b03_artifact": true,
+    "b04_route_na": true,
+    "null_unexecuted_ad": true,
+    "null_unexecuted_yolo": true,
+    "test_gt_only": true,
+    "test_images_core_prepare_input": true
+  },
+  "protected_nodes_and_edges_unchanged": true,
+  "ecpb_content_unchanged": true,
+  "testfinal_paths_by_edges": {
+    "YOLOTRAIN": 0,
+    "ADTRAIN": 0,
+    "NORMAUDIT": 0,
+    "CALGRID": 0,
+    "THRESH": 0,
+    "SHORTLIST": 56
+  },
+  "testfinal_paths_by_node_sequences": {
+    "YOLOTRAIN": 0,
+    "ADTRAIN": 0,
+    "NORMAUDIT": 0,
+    "CALGRID": 0,
+    "THRESH": 0,
+    "SHORTLIST": 41
+  },
+  "path_enumeration_crosscheck": "forward DFS equals independent reverse traversal; all report rows checked",
+  "cycle_note": "One 24-node SCC; repeated walks to SHORTLIST are infinite; report enumerates all simple paths",
+  "issues": [],
+  "mermaid_parser_checked": false,
+  "svg_png_exported": false,
+  "export_failure": "Previous attempt: npx command not found; no export rerun in this review",
+  "note": "Structure/content checks are not a Mermaid syntax parser or visual render check",
+  "source_files_unchanged": true,
+  "preexisting_mermaid_config_unchanged": true,
+  "sha256": {
+    "NOTES.md": "e2a867cbc51c647d6cbbd91954d3e9fcd5544a20af40121822f28ef520818eb4",
+    "CHANGELOG.md": "c8f4ebaac3aef77c7401155f4d97a47cfcc021cfddd3e19cb02fa09541f64f76",
+    "PLAN_OVERVIEW.mmd": "036bd576c47caf606344818eb15c12023dd5df15f08a669e254805d94cf8432e",
+    "TESTFINAL_PATHS.md": "b54fe1e8cb0cd16a3f8aff1d76d86abf9a5c864924d18d6ca28c94fd6437577a",
+    "INVENTORY.md": "47783769025f1482b3ef3b5bb9f633f311b29a523627ec476fe9947e3d128ecb",
+    "COVERAGE.md": "762db625a22feb2bc4d5de03827694d1e1d8ff21fb0c6a6ac8b1ba1363e3c3d7"
+  }
+}
